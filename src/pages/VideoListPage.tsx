@@ -27,7 +27,7 @@ const VideoListPage = () => {
               fontWeight="bold"
               lineHeight="1.2"
             >
-              PickTem
+              SsikAPickTem
             </Heading>
             <Text
               fontSize={{ base: 'md', md: 'lg' }}
