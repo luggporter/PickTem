@@ -15,10 +15,9 @@ import { Product } from '../types'
 
 interface ProductCardProps {
   product: Product
-  showDirectPurchase?: boolean
 }
 
-const ProductCard = ({ product, showDirectPurchase = false }: ProductCardProps) => {
+const ProductCard = ({ product }: ProductCardProps) => {
   const handlePurchaseClick = () => {
     window.open(product.affiliateUrl, '_blank', 'noopener,noreferrer')
   }

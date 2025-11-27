@@ -1,18 +1,17 @@
 import {
+  Badge,
+  Box,
+  Button,
   Container,
-  VStack,
+  Divider,
   HStack,
   Heading,
-  Text,
-  Image,
-  Button,
-  Box,
-  Badge,
-  Divider,
   Icon,
+  Text,
+  VStack
 } from '@chakra-ui/react'
 import { FiArrowLeft, FiCalendar } from 'react-icons/fi'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import ProductCard from '../components/ProductCard'
 import { mockVideos } from '../data/mockData'
 
@@ -93,7 +92,7 @@ const VideoDetailPage = () => {
 
             <VStack spacing={4}>
               {video.products.map((product) => (
-                <ProductCard key={product.id} product={product} showDirectPurchase />
+                <ProductCard key={product.id} product={product}  />
               ))}
             </VStack>
           </VStack>
