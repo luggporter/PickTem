@@ -8,7 +8,7 @@ import theme from './theme/index.ts'
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
-      <BrowserRouter>
+      <BrowserRouter basename="/PickTem">
         <App />
       </BrowserRouter>
     </ChakraProvider>

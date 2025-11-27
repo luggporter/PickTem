@@ -26,7 +26,7 @@ const VideoDetailPage = () => {
       <Container maxW="container.md" py={8} px={4}>
         <VStack spacing={6}>
           <Text>영상을 찾을 수 없습니다.</Text>
-          <Button onClick={() => navigate('/PickTem')}>
+          <Button onClick={() => navigate('/')}>
             홈으로 돌아가기
           </Button>
         </VStack>
@@ -103,7 +103,7 @@ const VideoDetailPage = () => {
           <Button
             width="100%"
             variant="outline"
-            onClick={() => navigate('/PickTem')}
+            onClick={() => navigate('/')}
             size="lg"
           >
             다른 영상도 보러가기 🎬

@@ -7,7 +7,7 @@ function App() {
   return (
     <Box minH="100vh" bg="gray.100">
       <Routes>
-        <Route path="/PickTem" element={<VideoListPage />} />
+        <Route path="/" element={<VideoListPage />} />
         <Route path="/video/:id" element={<VideoDetailPage />} />
       </Routes>
     </Box>
