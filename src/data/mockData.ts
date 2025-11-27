@@ -114,7 +114,7 @@ export const mockVideos: Video[] = [
         name: '프릳츠 네스프레소 캡슐커피',
         description: '',
         imageUrl: 'https://image.coupangcdn.com/image/rs_quotation_api/rfpy5r3r/e4a91591ed7a4d28a27be4067116c691.jpg',
-        affiliateUrl: 'https://www.coupang.com/vp/products/7850917285?itemId=23588351399&vendorItemId=92986476904&q=FRITZ+10%EA%B0%9C%EC%9E%85&searchId=45187593196378&sourceType=search&itemsCount=36&searchRank=2&rank=2&traceId=mih0t1tr',
+        affiliateUrl: 'https://link.coupang.com/a/c8lixg',
         price: '₩9,500'
       },
       {
@@ -122,7 +122,7 @@ export const mockVideos: Video[] = [
         name: '새턴버드 콜드브루',
         description: '',
         imageUrl: 'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/126892586219806-d683c9b5-107b-40a3-baf2-04030dc13515.jpg',
-        affiliateUrl: 'https://www.coupang.com/vp/products/7650735716?itemId=20355884849&vendorItemId=87440150274&pickType=COU_PICK&q=saturnbird+coffee&searchId=7ce7c24f204789&sourceType=search&itemsCount=36&searchRank=0&rank=0&traceId=mih0wlzt',
+        affiliateUrl: 'https://link.coupang.com/a/c8lgG7',
         price: '₩14,950'
       },
       {
@@ -130,7 +130,7 @@ export const mockVideos: Video[] = [
         name: '스팀베이스 데일리 아이마스크 14개입',
         description: '',
         imageUrl: 'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/4527966722087763-5d43b948-fa9a-4072-a360-544f27fe9fd2.png',
-        affiliateUrl: 'https://www.coupang.com/vp/products/6773359479?itemId=18405927391&vendorItemId=85548538726&q=%EC%8A%A4%ED%8C%80%EB%B2%A0%EC%9D%B4%EC%8A%A4+%EB%8D%B0%EC%9D%BC%EB%A6%AC+%EC%95%84%EC%9D%B4%EB%A7%88%EC%8A%A4%ED%81%AC+15%EB%A7%A4%EC%9E%85&searchId=dab4710d426411&sourceType=search&itemsCount=36&searchRank=12&rank=12&traceId=mih233sy',
+        affiliateUrl: 'https://link.coupang.com/a/c8li7n',
         price: '₩19,000'
       },
       {
@@ -138,7 +138,7 @@ export const mockVideos: Video[] = [
         name: '모던하우스 세탁건조기 양모볼',
         description: '',
         imageUrl: 'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/aa57/ce78b76ade7e813e76b406801e0507e45046cf450acc424c16f142f15cd7.jpeg',
-        affiliateUrl: 'https://www.coupang.com/vp/products/8403366529?itemId=24292063140&vendorItemId=91533678669&q=%ED%81%AC%EB%A6%AC%EC%8A%A4%EB%A7%88%EC%8A%A4+%EA%B1%B4%EC%A1%B0%EA%B8%B0%EC%96%91%EB%AA%A8%EB%B3%BC&searchId=17da51cd564582&sourceType=search&itemsCount=36&searchRank=4&rank=4&traceId=mih2ophx',
+        affiliateUrl: 'https://link.coupang.com/a/c8ljWY',
         price: '₩15,900'
       },
       

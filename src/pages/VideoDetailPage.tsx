@@ -14,6 +14,7 @@ import { FiArrowLeft, FiCalendar } from 'react-icons/fi'
 import { useNavigate, useParams } from 'react-router-dom'
 import ProductCard from '../components/ProductCard'
 import { mockVideos } from '../data/mockData'
+import { useEffect } from 'react'
 
 const VideoDetailPage = () => {
   const { id } = useParams<{ id: string }>()
@@ -33,6 +34,10 @@ const VideoDetailPage = () => {
       </Container>
     )
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [video])
 
   return (
     <Container maxW="container.md" py={{ base: 4, md: 6 }} px={{ base: 4, md: 4 }}>
