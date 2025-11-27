@@ -5,9 +5,8 @@ import {
   Text,
   SimpleGrid,
   Box,
-  Icon,
+  Image,
 } from '@chakra-ui/react'
-import { FiShoppingBag } from 'react-icons/fi'
 import VideoCard from '../components/VideoCard'
 import { mockVideos } from '../data/mockData'
 
@@ -19,7 +18,13 @@ const VideoListPage = () => {
         <Box textAlign="center" py={{ base: 3, md: 4 }}>
           <VStack spacing={{ base: 3, md: 4 }}>
             <Box>
-              <Icon as={FiShoppingBag} w={{ base: 10, md: 12 }} h={{ base: 10, md: 12 }} color="brand.500" />
+              <Image 
+                src="/PickTem/SsikaPicktem_logo1.png" 
+                alt="SsikAPickTem 로고" 
+                w={{ base: '100px', md: '100px' }} 
+                h={{ base: '100px', md: '100px' }} 
+                objectFit="contain"
+              />
             </Box>
             <Heading
               size={{ base: 'lg', md: 'xl' }}
@@ -36,7 +41,8 @@ const VideoListPage = () => {
               lineHeight="1.5"
               px={2}
             >
-              영상별 추천 상품을 한눈에! 🛍️
+              영상별 추천 상품을 한눈에! <br />
+              상품 추천은 역시 씩아픽템 🐶🐈
             </Text>
           </VStack>
         </Box>

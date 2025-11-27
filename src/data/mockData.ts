@@ -105,7 +105,7 @@ export const mockVideos: Video[] = [
     id: '3',
     title: '2만원 이하 연말선물',
     description: '연말에 선물하기 좋은 2만원 이하 연말선물!',
-    thumbnailUrl: 'https://img.kwcdn.com/product/open/19480aedc79843b780fbad987e52355f-goods.jpeg?imageView2/2/w/800/q/70/format/avif',
+    thumbnailUrl: 'https://image.coupangcdn.com/image/rs_quotation_api/rfpy5r3r/e4a91591ed7a4d28a27be4067116c691.jpg',
     category: '쓸모없는 선물',
     publishedAt: '2025-11-27',
     products: [
