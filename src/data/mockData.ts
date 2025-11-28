@@ -106,7 +106,7 @@ export const mockVideos: Video[] = [
     title: '2만원 이하 연말선물',
     description: '연말에 선물하기 좋은 2만원 이하 연말선물!',
     thumbnailUrl: 'https://image.coupangcdn.com/image/rs_quotation_api/rfpy5r3r/e4a91591ed7a4d28a27be4067116c691.jpg',
-    category: '쓸모없는 선물',
+    category: '선물',
     publishedAt: '2025-11-27',
     products: [
       {
@@ -142,6 +142,107 @@ export const mockVideos: Video[] = [
         price: '₩15,900'
       },
       
+    ]
+  },
+  {
+    id: '4',
+    title: '크리스마스 강아지 선물 추천',
+    description: '강아지와 함께 크리스마스 즐기기!',
+    thumbnailUrl: 'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/3fc8/27a0035947bcc9c04d9c85e86b08977a6e4c0cfc5de8d23d7251d81fa5d9.png',
+    category: '크리스마스',
+    publishedAt: '2025-11-28',
+    products: [
+      {
+        id: '4-1',
+        name: '세코라 강아지 고양이 크리스마스 목도리',
+        description: '',
+        imageUrl: 'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/49fe/ab19d7c1f5479dc6c9ffeb5db3b76b21544f007443146de305881651815b.jpg',
+        affiliateUrl: 'https://link.coupang.com/a/c8FlIP',
+        price: '₩12,900'
+      },
+      {
+        id: '4-2',
+        name: '반려동물 크리스마스트리 귀여운 망토',
+        description: '',
+        imageUrl: 'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/978231515021494-4a847ffe-bbbf-487e-9d1c-b68321d1d0e6.png',
+        affiliateUrl: 'https://link.coupang.com/a/c8Fl34',
+        price: '₩8,040'
+      },
+      {
+        id: '4-3',
+        name: ' 반려동물 스탠딩 눈사람 변신 후드 셔츠',
+        description: '',
+        imageUrl: 'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/rs_quotation_api/jfzvbwiv/ab3dba88d4834371bfc37c26a9fea86d.jpg',
+        affiliateUrl: 'https://link.coupang.com/a/c8Fmr1',
+        price: '₩19,000'
+      },
+      {
+        id: '4-4',
+        name: '코코스튜디오 반려동물 크리스마스 방한 모자',
+        description: '',
+        imageUrl: 'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/3fc8/27a0035947bcc9c04d9c85e86b08977a6e4c0cfc5de8d23d7251d81fa5d9.png',
+        affiliateUrl: 'https://link.coupang.com/a/c8FmNM',
+        price: '₩5,400'
+      },
+      {
+        id: '4-5',
+        name: '강아지 크리스마스 조끼',
+        description: '',
+        imageUrl: 'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/rs_quotation_api/2kkpillc/f22ee3eb3ef14d9393644ca60d73c4d6.jpg',
+        affiliateUrl: 'https://link.coupang.com/a/c8FmNM',
+        price: '₩20,000'
+      },
+      
+    ]
+  },
+  {
+    id: '5',
+    title: '크리스마스 선물 추천',
+    description: '크리스마스에 선물하면 좋은 선물 모음!',
+    thumbnailUrl: 'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/30a7/3a37daf2d47ed7167296a209554caadbf9c6d2f754ccc8f5d7ce1e1ee3bd.jpg',
+    category: '크리스마스',
+    publishedAt: '2025-11-29',
+    products: [
+      {
+        id: '5-1',
+        name: '투데이리빙 크리스마스 스노우볼 머그컵',
+        description: '',
+        imageUrl: 'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/30a7/3a37daf2d47ed7167296a209554caadbf9c6d2f754ccc8f5d7ce1e1ee3bd.jpg',
+        affiliateUrl: 'https://link.coupang.com/a/c8E6UM',
+        price: '₩11,800'
+      },
+      {
+        id: '5-2',
+        name: '코코도르 크리스마스 퍼퓸 디퓨저 2종 선물세트',
+        description: '',
+        imageUrl: 'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/23246914892375-866d9984-30a9-4f43-a3bc-2cf517a54825.jpg',
+        affiliateUrl: 'https://link.coupang.com/a/c8E7Pv',
+        price: '₩18,810'
+      },
+      {
+        id: '5-3',
+        name: '슬림티슈 [크리스마스] ',
+        description: '',
+        imageUrl: 'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/4e9a/b43fa8a46c32d02664eee353cd3a58abaed71663c6b1dec3b331268245de.png',
+        affiliateUrl: 'https://link.coupang.com/a/c8E8i6',
+        price: '₩12,400'
+      },
+      {
+        id: '5-4',
+        name: '코코도르 크리스마스 디퓨저 조이풀트리',
+        description: '',
+        imageUrl: 'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2025/10/14/18/0/025d7a82-5157-4511-970e-a8f8743d411f.jpg',
+        affiliateUrl: 'https://link.coupang.com/a/c8E8Kj',
+        price: '₩15,900'
+      },
+      {
+        id: '5-5',
+        name: '크리스마스비누 선물비누 수제비누',
+        description: '',
+        imageUrl: 'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/88f9/b354ecce1c422d3e39f08a2e953b19ce1a9fb66e73726859d786ce446d41.jpg',
+        affiliateUrl: 'https://link.coupang.com/a/c8E9b5',
+        price: '₩5,500'
+      },
     ]
   },
 ];
