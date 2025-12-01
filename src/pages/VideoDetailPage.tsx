@@ -1,26 +1,23 @@
 import {
-  Badge,
   Box,
   Button,
+  Card,
+  CardBody,
   Container,
-  Divider,
   HStack,
   Heading,
   Icon,
-  Text,
-  VStack,
   SimpleGrid,
-  Progress,
-  Card,
-  CardBody,
+  Text,
+  VStack
 } from '@chakra-ui/react'
-import { FiCalendar, FiTrendingUp, FiPackage } from 'react-icons/fi'
+import { useEffect } from 'react'
+import { FiPackage, FiTrendingUp } from 'react-icons/fi'
 import { useNavigate, useParams } from 'react-router-dom'
-import ProductCard from '../components/ProductCard'
 import AdSense from '../components/AdSense'
 import MobileHeader from '../components/MobileHeader'
+import ProductCard from '../components/ProductCard'
 import { mockVideos } from '../data/mockData'
-import { useEffect } from 'react'
 
 const VideoDetailPage = () => {
   const { id } = useParams<{ id: string }>()
@@ -129,8 +126,6 @@ const VideoDetailPage = () => {
               <Box>
                 <VStack spacing={3} align="stretch">
                   {video.products.slice(0, 5).map((product) => {
-                    const price = parseInt(product.price?.replace(/[^0-9]/g, '') || '0')
-                    const percentage = (price / (avgPrice * 2)) * 100
                     return (
                       <Box key={product.id}>
                         <HStack justify="space-between" mb={2}>

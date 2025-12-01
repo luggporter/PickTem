@@ -16,11 +16,7 @@ const MobileHeader = ({
   showNotification = false,
   notificationCount = 0 
 }: MobileHeaderProps) => {
-  const currentTime = new Date().toLocaleTimeString('ko-KR', { 
-    hour: '2-digit', 
-    minute: '2-digit',
-    hour12: false 
-  })
+
 
   return (
     <Box

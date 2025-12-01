@@ -1,18 +1,17 @@
 import {
+  Badge,
   Box,
-  Button,
   Card,
   CardBody,
   Container,
   HStack,
   Heading,
-  Text,
-  VStack,
   Image,
-  Badge,
+  Text,
+  VStack
 } from '@chakra-ui/react'
-import { FiPlayCircle } from 'react-icons/fi'
 import { useEffect } from 'react'
+import { FiPlayCircle } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 import MobileHeader from '../components/MobileHeader'
 import { mockVideos } from '../data/mockData'

@@ -1,6 +1,6 @@
 import { Box, HStack, Icon, Text } from '@chakra-ui/react'
-import { FiHome, FiSearch, FiBarChart2, FiUser } from 'react-icons/fi'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { FiHome, FiSearch } from 'react-icons/fi'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const BottomNav = () => {
   const navigate = useNavigate()
