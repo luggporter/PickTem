@@ -34,7 +34,7 @@ const MobileHeader = ({
       py={3}
     >
       {/* 모바일 상태바 */}
-      <HStack justify="space-between" mb={2} fontSize="12px" color="gray.600">
+      {/* <HStack justify="space-between" mb={2} fontSize="12px" color="gray.600">
         <Text fontWeight="600">{currentTime}</Text>
         <HStack spacing={1}>
           <Box w="16px" h="10px" border="1.5px solid" borderColor="gray.600" borderRadius="2px" position="relative">
@@ -50,7 +50,7 @@ const MobileHeader = ({
           </Box>
           <Box w="4px" h="4px" bg="gray.600" borderRadius="full" />
         </HStack>
-      </HStack>
+      </HStack> */}
 
       {/* 헤더 컨텐츠 */}
       <HStack justify="space-between" align="center">

@@ -55,7 +55,7 @@ const VideoDetailPage = () => {
   return (
     <Box bg="#1a1a1a" minH="100vh">
       <MobileHeader 
-        title="Statistics" 
+        title={video?.title}
         showBack 
         onBack={() => navigate('/')} 
       />
@@ -63,7 +63,7 @@ const VideoDetailPage = () => {
         <VStack spacing={6} align="stretch">
 
         {/* 메인 통계 카드 */}
-        <Card bg="linear-gradient(135deg, #667eea 0%, #764ba2 100%)" borderRadius="20px" overflow="hidden">
+        {/* <Card bg="linear-gradient(135deg, #667eea 0%, #764ba2 100%)" borderRadius="20px" overflow="hidden">
           <CardBody p={6}>
             <VStack spacing={4} align="stretch">
               <HStack justify="space-between" align="center">
@@ -82,7 +82,7 @@ const VideoDetailPage = () => {
               </Text>
             </VStack>
           </CardBody>
-        </Card>
+        </Card> */}
 
         {/* 통계 그리드 */}
         <SimpleGrid columns={2} spacing={4}>
@@ -141,13 +141,6 @@ const VideoDetailPage = () => {
                             {product.price}
                           </Text>
                         </HStack>
-                        <Progress 
-                          value={Math.min(percentage, 100)} 
-                          colorScheme="green" 
-                          size="sm" 
-                          borderRadius="full"
-                          bg="rgba(255, 255, 255, 0.1)"
-                        />
                       </Box>
                     )
                   })}
@@ -157,58 +150,11 @@ const VideoDetailPage = () => {
           </CardBody>
         </Card>
 
-        {/* 최근 활동 */}
-        <Card bg="#2a2a2a" borderRadius="16px" border="1px solid" borderColor="#3a3a3a">
-          <CardBody p={6}>
-            <VStack spacing={4} align="stretch">
-              <HStack justify="space-between" align="center">
-                <Heading size="md" color="white" fontWeight="700">
-                  Latest Activity
-                </Heading>
-                <Text color="rgba(255, 255, 255, 0.7)" fontSize="12px" cursor="pointer">
-                  See more →
-                </Text>
-              </HStack>
-              
-              {video.publishedAt && (
-                <HStack color="rgba(255, 255, 255, 0.7)" fontSize="14px">
-                  <Icon as={FiCalendar} />
-                  <Text>{video.publishedAt}</Text>
-                </HStack>
-              )}
-              
-              <Text color="rgba(255, 255, 255, 0.8)" lineHeight="1.6" fontSize="15px">
-                {video.description}
-              </Text>
-            </VStack>
-          </CardBody>
-        </Card>
-
-        <Divider borderColor="#3a3a3a" />
 
         {/* 상품 리스트 섹션 */}
         <Box>
-          <VStack spacing={4} align="stretch">
-            <HStack justify="space-between" align="center">
-              <Heading size="md" color="white" fontWeight="700">
-                추천 상품 목록
-              </Heading>
-              <Badge 
-                bg="#43e97b" 
-                color="white" 
-                borderRadius="6px" 
-                px={3} 
-                py={1}
-                fontSize="13px"
-                fontWeight="600"
-              >
-                {video.products.length}개
-              </Badge>
-            </HStack>
-            
-            <Text fontSize="14px" color="rgba(255, 255, 255, 0.7)" textAlign="center">
-              💡 상품을 클릭하면 구매 페이지로 바로 이동합니다
-            </Text>
+            <VStack spacing={4} align="stretch">
+              
 
             {/* 광고 */}
             <Box py={4} display="flex" justifyContent="center">
@@ -217,7 +163,10 @@ const VideoDetailPage = () => {
                 adFormat="auto"
                 style={{ display: 'block', minHeight: '100px' }}
               />
-            </Box>
+              </Box>
+              <Text fontSize="14px" color="rgba(255, 255, 255, 0.7)" textAlign="center">
+              💡 상품을 클릭하면 구매 페이지로 바로 이동합니다
+            </Text>
 
             <VStack spacing={4}>
               {video.products.map((product) => (
@@ -225,29 +174,6 @@ const VideoDetailPage = () => {
               ))}
             </VStack>
           </VStack>
-        </Box>
-
-        {/* 하단 네비게이션 */}
-        <Box pt={4} pb={4}>
-          <Button
-            width="100%"
-            bg="linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
-            color="white"
-            borderRadius="12px"
-            fontWeight="600"
-            onClick={() => navigate('/')}
-            size="lg"
-            _hover={{
-              opacity: 0.9,
-              transform: 'translateY(-2px)',
-            }}
-            _active={{
-              transform: 'translateY(0)',
-            }}
-            transition="all 0.2s"
-          >
-            다른 영상도 보러가기 🎬
-          </Button>
         </Box>
         </VStack>
       </Container>

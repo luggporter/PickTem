@@ -245,4 +245,22 @@ export const mockVideos: Video[] = [
       },
     ]
   },
+  {
+    id: '6',
+    title: '북누크 키드 DIY',
+    description: '집에서 만들어보기 좋은 북누크 키드 DIY',
+    thumbnailUrl: 'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/267a/26198d56a73d2dc8cd2e64b3f98cd0c2c7482610c547dc82b8e03eda4f54.jpg',
+    category: '취미',
+    publishedAt: '2025-11-29',
+    products: [
+      {
+        id: '6-1',
+        name: 'DIY 북누크 키트 3D 나무 퍼즐 북누크 장식 북엔드',
+        description: '',
+        imageUrl: 'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/267a/26198d56a73d2dc8cd2e64b3f98cd0c2c7482610c547dc82b8e03eda4f54.jpg',
+        affiliateUrl: 'https://link.coupang.com/a/c9Cgef',
+        price: '₩52,900'
+      },
+    ]
+  },
 ];

@@ -6,6 +6,7 @@ import {
   Text,
   Badge,
   Box,
+  HStack,
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import { Video } from '../types'
@@ -21,17 +22,6 @@ const VideoCard = ({ video }: VideoCardProps) => {
     navigate(`/video/${video.id}`)
   }
 
-  // 그라데이션 색상 배열 (피트니스 앱 스타일)
-  const gradients = [
-    'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', // 보라색
-    'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', // 핑크
-    'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)', // 파란색
-    'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)', // 초록색
-    'linear-gradient(135deg, #fa709a 0%, #fee140 100%)', // 핑크-노란색
-  ]
-  const gradientIndex = parseInt(video.id) % gradients.length
-  const gradient = gradients[gradientIndex]
-
   return (
     <Card
       maxW="100%"
@@ -40,10 +30,11 @@ const VideoCard = ({ video }: VideoCardProps) => {
       borderRadius="20px"
       overflow="hidden"
       position="relative"
-      h={{ base: '280px', md: '320px' }}
+      h={{ base: '200px', md: '220px' }}
+      bg="gray.100"
       _hover={{
         transform: 'scale(1.02)',
-        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
+        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)',
       }}
       transition="all 0.3s ease"
     >
@@ -54,21 +45,26 @@ const VideoCard = ({ video }: VideoCardProps) => {
         left={0}
         right={0}
         bottom={0}
-        bgImage={video.thumbnailUrl}
+        borderRadius="20px"
+        bgImage={`url(${video.thumbnailUrl})`}
         bgSize="cover"
         bgPosition="center"
+        _hover={{
+          transform: 'scale(1.05)',
+        }}
+        transition="transform 0.5s ease"
       />
       
-      {/* 그라데이션 오버레이 */}
-      <Box
+      {/* 배경 전체에 살짝 어두운 오버레이 (이미지와 동일 크기) */}
+      {/* <Box
         position="absolute"
         top={0}
         left={0}
         right={0}
         bottom={0}
-        bgGradient={gradient}
-        opacity={0.85}
-      />
+        borderRadius="20px"
+        bg="rgba(0, 0, 0, 0.16)"
+      /> */}
       
       {/* 컨텐츠 */}
       <CardBody
@@ -77,70 +73,91 @@ const VideoCard = ({ video }: VideoCardProps) => {
         h="100%"
         display="flex"
         flexDirection="column"
-        justifyContent="space-between"
-        p={6}
+        justifyContent="flex-end"
+        // p={4}
+        w={'100%'}
+        p={0}
       >
-        <Stack spacing={3} flex="1">
-          {/* 카테고리 배지 */}
-          {video.category && (
-            <Badge
-              bg="rgba(255, 255, 255, 0.3)"
-              color="white"
-              borderRadius="20px"
-              px={3}
-              py={1}
-              fontSize="12px"
-              fontWeight="600"
-              backdropFilter="blur(10px)"
-              alignSelf="flex-start"
+        {/* 텍스트 가독성을 위한 반투명 블러 박스 */}
+        <Box
+          bg="rgba(0, 0, 0, 0.32)"
+          borderRadius="16px"
+          px={3}
+          py={3}
+          w="100%"
+          h="100%"
+          p={4}
+          // backdropFilter="blur(10px)"
+        >
+          <Stack spacing={2}>
+            {/* 카테고리 배지 */}
+            {video.category && (
+              <Badge
+                bg="rgba(0, 0, 0, 0.5)"
+                color="white"
+                borderRadius="6px"
+                px={2.5}
+                py={0.5}
+                fontSize="10px"
+                fontWeight="600"
+                alignSelf="flex-start"
+                border="1px solid rgba(255, 255, 255, 0.1)"
+              >
+                {video.category}
+              </Badge>
+            )}
+            
+            {/* 제목 */}
+            <Heading 
+              size="md" 
+              color="white" 
+              lineHeight="1.3"
+              fontWeight="700"
+              textShadow="0 1px 4px rgba(0, 0, 0, 0.6)"
+              noOfLines={2}
             >
-              {video.category}
-            </Badge>
-          )}
-          
-          {/* 제목 */}
-          <Heading 
-            size="xl" 
-            color="white" 
-            lineHeight="1.3"
-            fontWeight="700"
-            textShadow="0 2px 10px rgba(0, 0, 0, 0.3)"
-            noOfLines={2}
-          >
-            {video.title}
-          </Heading>
-          
-          {/* 설명 */}
-          <Text 
-            color="rgba(255, 255, 255, 0.9)" 
-            fontSize="15px" 
-            lineHeight="1.5"
-            textShadow="0 1px 5px rgba(0, 0, 0, 0.2)"
-            noOfLines={2}
-          >
-            {video.description}
-          </Text>
-        </Stack>
-        
-        {/* 하단 정보 */}
-        <Box pt={4}>
-          <Box
-            bg="rgba(255, 255, 255, 0.25)"
-            borderRadius="12px"
-            px={4}
-            py={3}
-            backdropFilter="blur(10px)"
-            border="1px solid rgba(255, 255, 255, 0.3)"
-          >
-            <Text
-              color="white"
-              fontSize="14px"
-              fontWeight="600"
-              textAlign="center"
+              {video.title}
+            </Heading>
+            
+            {/* 설명 */}
+            <Text 
+              color="rgba(255, 255, 255, 0.95)" 
+              fontSize="12px" 
+              lineHeight="1.4"
+              noOfLines={1}
+              fontWeight="400"
             >
-              상품 {video.products.length}개
+              {video.description}
             </Text>
-          </Box>
+            
+            {/* 하단 정보 */}
+            <Box pt={1}>
+              <HStack
+                spacing={1.5}
+                bg="rgba(0, 0, 0, 0.5)"
+                borderRadius="8px"
+                px={2.5}
+                py={1.5}
+                border="1px solid rgba(255, 255, 255, 0.1)"
+                display="inline-flex"
+              >
+                <Box
+                  w="5px"
+                  h="5px"
+                  borderRadius="full"
+                  bg="#48bb78"
+                  flexShrink={0}
+                />
+                <Text
+                  color="white"
+                  fontSize="12px"
+                  fontWeight="500"
+                >
+                  상품 {video.products.length}개
+                </Text>
+              </HStack>
+            </Box>
+          </Stack>
         </Box>
       </CardBody>
     </Card>

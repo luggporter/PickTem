@@ -7,10 +7,10 @@ const BottomNav = () => {
   const location = useLocation()
 
   const navItems = [
-    { icon: FiHome, label: 'Home', path: '/' },
-    { icon: FiSearch, label: 'Discover', path: '/discover' },
-    { icon: FiBarChart2, label: 'Statistics', path: '/statistics' },
-    { icon: FiUser, label: 'Profile', path: '/profile' },
+    { icon: FiHome, label: '홈', path: '/' },
+    { icon: FiSearch, label: '상품 리스트', path: '/list' },
+    // { icon: FiBarChart2, label: 'Statistics', path: '/statistics' },
+    // { icon: FiUser, label: 'Profile', path: '/profile' },
   ]
 
   const isActive = (path: string) => {
@@ -31,7 +31,7 @@ const BottomNav = () => {
       borderTop="1px solid"
       borderColor="gray.200"
       px={2}
-      py={2}
+      py={1}
       maxW="100%"
       mx="auto"
     >
