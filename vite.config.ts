@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/PickTem/', // 새로 만든 저장소 이름으로 변경하세요
+  base: '/', // 커스텀 도메인 사용 시 루트 경로
   server: {
     port: 3000,
     host: true

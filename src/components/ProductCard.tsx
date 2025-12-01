@@ -27,64 +27,85 @@ const ProductCard = ({ product }: ProductCardProps) => {
       direction={{ base: 'column', sm: 'row' }}
       overflow="hidden"
       bg="white"
-      boxShadow="0 6px 20px -5px rgba(0, 0, 0, 0.12), 0 8px 8px -5px rgba(0, 0, 0, 0.04)"
-      border="1px solid"
-      borderColor="gray.200"
-      borderRadius="lg"
-      w={'100%'}
+      borderRadius="12px"
+      w="100%"
       cursor="pointer"
       onClick={handlePurchaseClick}
       _hover={{
-        boxShadow: '0 15px 35px -5px rgba(0, 0, 0, 0.18), 0 12px 12px -5px rgba(0, 0, 0, 0.08)',
-        transform: 'translateY(-4px)',
-        borderColor: 'brand.200',
+        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.12)',
       }}
-      transition="all 0.3s ease-in-out"
+      transition="all 0.2s ease"
     >
       <Image
         objectFit="cover"
-        maxW={{ base: '100%', sm: '150px' }}
-        h={{ base: '200px', sm: '150px' }}
+        maxW={{ base: '100%', sm: '120px' }}
+        h={{ base: '180px', sm: '120px' }}
         src={product.imageUrl}
         alt={product.name}
       />
 
       <Stack flex="1">
-        <CardBody py={4} px={4}>
-          <Stack spacing={3}>
-            <HStack justify="space-between" align="flex-start">
-              <Heading size="sm" color="gray.800" lineHeight="1.3" flex="1">
+        <CardBody py={3} px={4}>
+          <Stack spacing={2}>
+            <HStack justify="space-between" align="flex-start" spacing={3}>
+              <Heading 
+                size="sm" 
+                color="#212529" 
+                lineHeight="1.4" 
+                flex="1"
+                fontWeight="600"
+                noOfLines={2}
+              >
                 {product.name}
               </Heading>
               {product.price && (
-                <Badge colorScheme="brand" variant="solid" borderRadius="full" px={2}>
+                <Badge 
+                  bg="#ff8f00" 
+                  color="white" 
+                  borderRadius="6px" 
+                  px={2}
+                  py={1}
+                  fontSize="13px"
+                  fontWeight="600"
+                  whiteSpace="nowrap"
+                >
                   {product.price}
                 </Badge>
               )}
             </HStack>
 
-            <Text 
-              color="gray.600" 
-              fontSize="sm" 
-              lineHeight="1.4"
-              noOfLines={2}
-            >
-              {product.description}
-            </Text>
+            {product.description && (
+              <Text 
+                color="#868e96" 
+                fontSize="13px" 
+                lineHeight="1.5"
+                noOfLines={2}
+              >
+                {product.description}
+              </Text>
+            )}
 
-            <Box pt={2}>
+            <Box pt={1}>
               <Button
                 size="sm"
-                colorScheme="brand"
-                variant="solid"
+                bg="#ff8f00"
+                color="white"
+                borderRadius="8px"
+                fontWeight="600"
                 rightIcon={<FiExternalLink />}
                 onClick={(e) => {
                   e.stopPropagation()
                   handlePurchaseClick()
                 }}
                 width="100%"
+                _hover={{
+                  bg: '#e67e00',
+                }}
+                _active={{
+                  bg: '#cc6d00',
+                }}
               >
-                이동하기
+                구매하러 가기
               </Button>
             </Box>
           </Stack>

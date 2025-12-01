@@ -3,16 +3,16 @@ import { extendTheme } from '@chakra-ui/react'
 const theme = extendTheme({
   colors: {
     brand: {
-      50: '#fef7f7',
-      100: '#fdeaea',
-      200: '#fbd5d5',
-      300: '#f8b4b4',
-      400: '#f38ba8',
-      500: '#e879a7', // 메인 트랜디 핑크
-      600: '#d946a0',
-      700: '#be2a7e',
-      800: '#9f1a6b',
-      900: '#831843',
+      50: '#fff4e6',
+      100: '#ffe0b3',
+      200: '#ffcc80',
+      300: '#ffb84d',
+      400: '#ffa31a',
+      500: '#ff8f00', // 당근마켓 주황색
+      600: '#e67e00',
+      700: '#cc6d00',
+      800: '#b35c00',
+      900: '#994b00',
     },
     gray: {
       50: '#fafafa',
@@ -25,6 +25,18 @@ const theme = extendTheme({
       700: '#616161',
       800: '#424242',
       900: '#212121',
+    },
+    carrot: {
+      50: '#fff4e6',
+      100: '#ffe0b3',
+      200: '#ffcc80',
+      300: '#ffb84d',
+      400: '#ffa31a',
+      500: '#ff8f00',
+      600: '#e67e00',
+      700: '#cc6d00',
+      800: '#b35c00',
+      900: '#994b00',
     }
   },
   fonts: {
@@ -34,8 +46,8 @@ const theme = extendTheme({
   styles: {
     global: {
       body: {
-        bg: 'gray.100',
-        color: 'gray.800',
+        bg: '#f7f7f7',
+        color: '#212529',
       },
       // 모바일 최적화를 위한 전역 스타일
       '*': {
@@ -90,16 +102,13 @@ const theme = extendTheme({
       baseStyle: {
         container: {
           bg: 'white',
-          borderRadius: 'xl',
-          boxShadow: '0 8px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-          border: '1px solid',
-          borderColor: 'gray.200',
+          borderRadius: '12px',
+          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.08)',
+          border: 'none',
           _hover: {
-            boxShadow: '0 20px 40px -10px rgba(0, 0, 0, 0.15), 0 15px 15px -5px rgba(0, 0, 0, 0.08)',
-            transform: 'translateY(-4px)',
-            borderColor: 'gray.300',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.12)',
           },
-          transition: 'all 0.3s ease-in-out',
+          transition: 'all 0.2s ease',
         },
       },
     },

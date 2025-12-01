@@ -5,57 +5,51 @@ import {
   Text,
   SimpleGrid,
   Box,
-  Image,
+  HStack,
 } from '@chakra-ui/react'
 import VideoCard from '../components/VideoCard'
+import MobileHeader from '../components/MobileHeader'
 import { mockVideos } from '../data/mockData'
 
 const VideoListPage = () => {
   return (
-    <Container maxW="container.md" py={{ base: 6, md: 8 }} px={{ base: 3, md: 4 }}>
-      <VStack spacing={8} align="stretch">
-        {/* 헤더 섹션 */}
-        <Box textAlign="center" py={{ base: 3, md: 4 }}>
-          <VStack spacing={{ base: 3, md: 4 }}>
-            <Box>
-              <Image 
-                src="/PickTem/SsikaPicktem_logo1.png" 
-                alt="SsikAPickTem 로고" 
-                w={{ base: '100px', md: '100px' }} 
-                h={{ base: '100px', md: '100px' }} 
-                objectFit="contain"
-              />
-            </Box>
-            <Heading
-              size={{ base: 'lg', md: 'xl' }}
-              color="gray.800"
-              fontWeight="bold"
-              lineHeight="1.2"
-            >
-              SsikAPickTem
+    <Box>
+      <MobileHeader title="Discover" showNotification notificationCount={9} />
+      <Container maxW="container.sm" py={4} px={4}>
+      <VStack spacing={6} align="stretch">
+        {/* 섹션 헤더 */}
+        <Box mb={2}>
+          <HStack justify="space-between" align="center" mb={4}>
+            <Heading size="lg" color="#212529" fontWeight="700">
+              Popular Exercises
             </Heading>
-            <Text
-              fontSize={{ base: 'md', md: 'lg' }}
-              color="gray.600"
-              maxW="300px"
-              lineHeight="1.5"
-              px={2}
-            >
-              영상별 추천 상품을 한눈에! <br />
-              상품 추천은 역시 씩아픽템 🐶🐈
+            <Text fontSize="14px" color="#868e96" cursor="pointer">
+              See more →
             </Text>
-          </VStack>
+          </HStack>
         </Box>
 
         {/* 영상 카드 그리드 */}
-        <SimpleGrid columns={1} spacing={{ base: 4, md: 6 }}>
+        <SimpleGrid columns={1} spacing={4}>
           {mockVideos.map((video) => (
             <VideoCard key={video.id} video={video} />
           ))}
         </SimpleGrid>
 
+        {/* Our Collection 섹션 */}
+        <Box mt={6}>
+          <Heading size="lg" color="#212529" fontWeight="700" mb={4}>
+            Our Collection
+          </Heading>
+          <SimpleGrid columns={1} spacing={4}>
+            {mockVideos.slice(0, 2).map((video) => (
+              <VideoCard key={video.id} video={video} />
+            ))}
+          </SimpleGrid>
+        </Box>
       </VStack>
-    </Container>
+      </Container>
+    </Box>
   )
 }
 
