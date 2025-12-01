@@ -18,7 +18,7 @@ const VideoListPage = () => {
   
   return (
     <Box bg="#f7f7f7" minH="100vh">
-      <MobileHeader title="Discover" showNotification notificationCount={0} />
+      <MobileHeader title="씩아픽템 홈" showNotification notificationCount={0} />
       <Container maxW="container.sm" py={4} px={4}>
         <VStack spacing={5} align="stretch">
           {/* 섹션 헤더 */}
