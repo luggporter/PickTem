@@ -36,6 +36,7 @@ const Home = () => {
   const [touchStart, setTouchStart] = useState(0)
   const [touchEnd, setTouchEnd] = useState(0)
   const autoSlideRef = useRef<number | null>(null)
+  const [showAdPlaceholder, setShowAdPlaceholder] = useState(true)
 
   // 배너 이미지 (상품 판매 사이트)
   // Unsplash License: 상업적 사용 포함 자유롭게 사용 가능
@@ -84,6 +85,40 @@ const Home = () => {
       }
     }
   }, [banners.length])
+
+  // 광고 로드 감지 (5초 후 placeholder 숨김)
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setShowAdPlaceholder(false)
+    }, 5000)
+
+    // 광고가 로드되었는지 확인 (MutationObserver 사용)
+    const adContainer = document.querySelector('.adsbygoogle')
+    if (adContainer) {
+      const observer = new MutationObserver(() => {
+        // 광고 iframe이 추가되었는지 확인
+        const hasAdContent = adContainer.querySelector('iframe')
+        if (hasAdContent) {
+          setShowAdPlaceholder(false)
+          observer.disconnect()
+        }
+      })
+
+      observer.observe(adContainer, {
+        childList: true,
+        subtree: true,
+      })
+
+      return () => {
+        window.clearTimeout(timer)
+        observer.disconnect()
+      }
+    }
+
+    return () => {
+      window.clearTimeout(timer)
+    }
+  }, [])
 
   // 스와이프 핸들러
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -323,27 +358,29 @@ const Home = () => {
                 bg="linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
               >
                 {/* 플레이스홀더 배경 (광고가 로드되지 않았을 때) */}
-                <Box
-                  position="absolute"
-                  top={0}
-                  left={0}
-                  right={0}
-                  bottom={0}
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  zIndex={1}
-                  pointerEvents="none"
-                >
-                  <VStack spacing={2}>
-                    <Text color="white" fontSize="14px" fontWeight="600" opacity={0.9}>
-                      Google 광고
-                    </Text>
-                    <Text color="rgba(255, 255, 255, 0.7)" fontSize="11px">
-                      광고가 곧 표시됩니다
-                    </Text>
-                  </VStack>
-                </Box>
+                {showAdPlaceholder && (
+                  <Box
+                    position="absolute"
+                    top={0}
+                    left={0}
+                    right={0}
+                    bottom={0}
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    zIndex={1}
+                    pointerEvents="none"
+                  >
+                    <VStack spacing={2}>
+                      <Text color="white" fontSize="14px" fontWeight="600" opacity={0.9}>
+                        Google 광고
+                      </Text>
+                      <Text color="rgba(255, 255, 255, 0.7)" fontSize="11px">
+                        광고가 곧 표시됩니다
+                      </Text>
+                    </VStack>
+                  </Box>
+                )}
                 
                 {/* 실제 광고 (로드되면 플레이스홀더 위에 표시) */}
                 <Box 
