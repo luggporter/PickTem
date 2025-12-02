@@ -35,7 +35,7 @@ const Home = () => {
   const [currentBanner, setCurrentBanner] = useState(0)
   const [touchStart, setTouchStart] = useState(0)
   const [touchEnd, setTouchEnd] = useState(0)
-  const autoSlideRef = useRef<NodeJS.Timeout | null>(null)
+  const autoSlideRef = useRef<number | null>(null)
 
   // 배너 이미지 (상품 판매 사이트)
   // Unsplash License: 상업적 사용 포함 자유롭게 사용 가능
@@ -74,13 +74,13 @@ const Home = () => {
 
   // 자동 슬라이드
   useEffect(() => {
-    autoSlideRef.current = setInterval(() => {
+    autoSlideRef.current = window.setInterval(() => {
       setCurrentBanner((prev) => (prev + 1) % banners.length)
     }, 4000) // 4초마다 자동 슬라이드
 
     return () => {
       if (autoSlideRef.current) {
-        clearInterval(autoSlideRef.current)
+        window.clearInterval(autoSlideRef.current)
       }
     }
   }, [banners.length])
@@ -110,9 +110,9 @@ const Home = () => {
 
     // 자동 슬라이드 재시작
     if (autoSlideRef.current) {
-      clearInterval(autoSlideRef.current)
+      window.clearInterval(autoSlideRef.current)
     }
-    autoSlideRef.current = setInterval(() => {
+    autoSlideRef.current = window.setInterval(() => {
       setCurrentBanner((prev) => (prev + 1) % banners.length)
     }, 4000)
   }
@@ -229,9 +229,9 @@ const Home = () => {
                     setCurrentBanner(index)
                     // 자동 슬라이드 재시작
                     if (autoSlideRef.current) {
-                      clearInterval(autoSlideRef.current)
+                      window.clearInterval(autoSlideRef.current)
                     }
-                    autoSlideRef.current = setInterval(() => {
+                    autoSlideRef.current = window.setInterval(() => {
                       setCurrentBanner((prev) => (prev + 1) % banners.length)
                     }, 4000)
                   }}
