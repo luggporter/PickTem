@@ -1,134 +1,193 @@
 import {
-  Badge,
   Box,
-  Card,
-  CardBody,
   Container,
   HStack,
   Heading,
-  Image,
   Text,
-  VStack
+  VStack,
+  Button,
+  SimpleGrid,
+  Image,
 } from '@chakra-ui/react'
-import { useEffect } from 'react'
-import { FiPlayCircle } from 'react-icons/fi'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useState, useMemo } from 'react'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import MobileHeader from '../components/MobileHeader'
+import VideoCard from '../components/VideoCard'
 import { mockVideos } from '../data/mockData'
 
 const PickTemList = () => {
   const navigate = useNavigate()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const categoryParam = searchParams.get('category') || '전체'
+  const [selectedCategory, setSelectedCategory] = useState<string>(categoryParam)
+
+  // 카테고리 목록 (상품 판매 사이트)
+  const categories: string[] = [
+    '전체',
+    '생활용품',
+    '가구',
+    '전자제품',
+    '미용',
+    '패션',
+    '주방용품',
+    '건강/의료',
+    '스포츠/레저',
+    '도서/문구',
+    '반려동물용품',
+  ]
+
+  // URL 파라미터 변경 시 카테고리 업데이트
+  useEffect(() => {
+    const categoryFromUrl = searchParams.get('category') || '전체'
+    if (categories.includes(categoryFromUrl)) {
+      setSelectedCategory(categoryFromUrl)
+    }
+  }, [searchParams])
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
 
+  // 카테고리 변경 핸들러
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category)
+    if (category === '전체') {
+      setSearchParams({})
+    } else {
+      setSearchParams({ category })
+    }
+  }
+
+  // 필터링된 비디오 목록
+  const filteredVideos = useMemo(() => {
+    if (selectedCategory === '전체') {
+      return mockVideos
+    }
+    return mockVideos.filter(v => v.category === selectedCategory)
+  }, [selectedCategory])
+
+  // 무작위 슬픈 이미지 선택 (카테고리 변경 시마다 새로운 이미지)
+  const randomSadImage = useMemo(() => {
+    const images = ['/SadAri.png', '/SadSsikSsiki.png']
+    return images[Math.floor(Math.random() * images.length)]
+  }, [selectedCategory])
+
   return (
-    <Box bg="#f7f7f7" minH="100vh">
+    <Box bg="white" minH="100vh">
       <MobileHeader
-        title="전체 영상 리스트"
+        title="상품 리스트"
         showBack
         onBack={() => navigate('/')}
       />
-      <Container maxW="container.sm" py={4} px={4}>
-        <VStack spacing={6} align="stretch" h={'100%'}>
-          {/* 전체 영상 리스트 (썸네일 + 텍스트) */}
-          <Card
-            borderRadius="20px"
-            bg="white"
-            border="1px solid"
+      <Container maxW="container.sm" px={0}>
+        <VStack spacing={0} align="stretch">
+          {/* 카테고리 탭 (가로 스크롤) */}
+          <Box
+            px={4}
+            py={3}
+            borderBottom="1px solid"
             borderColor="gray.100"
-            boxShadow="sm"
-            h={'100%'}
+            bg="white"
+            position="sticky"
+            top="60px"
+            zIndex={10}
           >
-            <CardBody p={5}>
-              <VStack spacing={3} align="stretch">
-                <HStack spacing={2} mb={2}>
-                  <Box
-                    w="24px"
-                    h="24px"
-                    borderRadius="full"
-                    bg="#f1f3f5"
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
+            <Box
+              overflowX="auto"
+              css={{
+                '&::-webkit-scrollbar': {
+                  display: 'none',
+                },
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none',
+              }}
+            >
+              <HStack spacing={2} pb={2}>
+                {categories.map((cat) => (
+                  <Button
+                    key={cat}
+                    size="sm"
+                    bg={selectedCategory === cat ? '#212529' : 'white'}
+                    color={selectedCategory === cat ? 'white' : '#212529'}
+                    borderRadius="20px"
+                    px={4}
+                    fontSize="13px"
+                    fontWeight="600"
+                    onClick={() => handleCategoryChange(cat)}
+                    _hover={{
+                      bg: selectedCategory === cat ? '#1a1a1a' : 'gray.50',
+                    }}
+                    border="1px solid"
+                    borderColor={selectedCategory === cat ? '#212529' : 'gray.200'}
+                    flexShrink={0}
+                    transition="all 0.2s"
                   >
-                    <FiPlayCircle size={14} color="#212529" />
-                  </Box>
-                  <Heading size="sm" color="#212529" fontWeight="700">
-                    전체 영상 리스트
-                  </Heading>
-                </HStack>
+                    {cat}
+                  </Button>
+                ))}
+              </HStack>
+            </Box>
 
-                <VStack spacing={2} align="stretch">
-                  {mockVideos.map((video) => (
-                    <HStack
-                      key={video.id}
-                      align="center"
-                      spacing={3}
-                      py={1.5}
-                      cursor="pointer"
-                      onClick={() => navigate(`/video/${video.id}`)}
+          
+          </Box>
+
+          <Container maxW="container.sm" py={4} px={4}>
+            <VStack spacing={5} align="stretch">
+              {/* 섹션 헤더 */}
+              <HStack justify="space-between" align="center">
+                <Heading size="lg" color="#212529" fontWeight="700">
+                  {selectedCategory === '전체' 
+                    ? `전체 영상` 
+                    : `${selectedCategory}`}
+                </Heading>
+               
+              </HStack>
+
+              {/* 2열 그리드 */}
+              <SimpleGrid columns={2} spacing={3}>
+                {filteredVideos.map((video) => (
+                  <VideoCard key={video.id} video={video} />
+                ))}
+              </SimpleGrid>
+
+              {/* 결과 없음 */}
+              {filteredVideos.length === 0 && (
+                <Box textAlign="center" py={16}>
+                  <VStack spacing={6}>
+                    {/* 우는 느낌의 로고 */}
+                    <Box
+                      position="relative"
+                      w="120px"
+                      h="120px"
+                      mx="auto"
+                      opacity={0.9}
+                      transition="all 0.3s ease"
                     >
-                      {/* 작은 썸네일 */}
-                      <Box
-                        w="64px"
-                        h="64px"
-                        borderRadius="12px"
-                        overflow="hidden"
-                        flexShrink={0}
-                      >
-                        <Image
-                          src={video.thumbnailUrl}
-                          alt={video.title}
-                          w="100%"
-                          h="100%"
-                          objectFit="cover"
-                        />
-                      </Box>
+                      <Image
+                        src={randomSadImage}
+                        alt="슬퍼하는 캐릭터"
+                        w="100%"
+                        h="100%"
+                        objectFit="contain"
+                      />
+                    </Box>
 
-                      {/* 텍스트 영역 */}
-                      <VStack
-                        align="flex-start"
-                        spacing={1}
-                        flex={1}
-                        minW={0}
-                      >
-                        <Text
-                          fontSize="14px"
-                          color="#212529"
-                          fontWeight="600"
-                          noOfLines={1}
-                        >
-                          {video.title}
-                        </Text>
-                        {video.category && (
-                          <Badge
-                            bg="#f1f3f5"
-                            color="#495057"
-                            borderRadius="999px"
-                            px={2}
-                            py={0.5}
-                            fontSize="10px"
-                          >
-                            {video.category}
-                          </Badge>
-                        )}
-                        <Text
-                          fontSize="12px"
-                          color="#868e96"
-                          noOfLines={1}
-                        >
-                          상품 {video.products.length}개
-                        </Text>
-                      </VStack>
-                    </HStack>
-                  ))}
-                </VStack>
-              </VStack>
-            </CardBody>
-          </Card>
-
+                    {/* 텍스트 */}
+                    <VStack spacing={3}>
+                      <Heading size="md" color="#212529" fontWeight="700">
+                        아직 {selectedCategory === '전체' ? '등록된' : selectedCategory + ' 카테고리의'} 영상이 없어요 😢
+                      </Heading>
+                      <Text color="#868e96" fontSize="15px" lineHeight="1.6" maxW="300px">
+                        빨리 좋은 상품 찾아서 올릴게요!
+                        <br />
+                        조금만 기다려주세요 🐾
+                      </Text>
+                    </VStack>
+                  </VStack>
+                </Box>
+              )}
+            </VStack>
+          </Container>
         </VStack>
       </Container>
     </Box>

@@ -6,7 +6,7 @@ export const mockVideos: Video[] = [
     title: '크리스마스에 잘 산 테무템 TOP5 🎄',
     description: '올해 크리스마스 시즌에 정말 유용했던 테무 아이템들을 소개해요!',
     thumbnailUrl: 'https://img.kwcdn.com/product/fancy/63bdc63c-33e0-4d68-aa54-15da2ca2d8a7.jpg?imageView2/2/w/800/q/70/format/avif',
-    category: '크리스마스',
+    category: '생활용품',
     publishedAt: '2025-11-25',
     products: [
       {
@@ -56,7 +56,7 @@ export const mockVideos: Video[] = [
     title: '쓸모 없지만 재미있는 테무템 TOP5',
     description: '쓸모는 없지만 선물하기 좋은 재미있는 아이템을 모아봤어요!',
     thumbnailUrl: 'https://img.kwcdn.com/product/open/19480aedc79843b780fbad987e52355f-goods.jpeg?imageView2/2/w/800/q/70/format/avif',
-    category: '쓸모없는 선물',
+    category: '생활용품',
     publishedAt: '2025-11-26',
     products: [
       {
@@ -106,7 +106,7 @@ export const mockVideos: Video[] = [
     title: '2만원 이하 연말선물',
     description: '연말에 선물하기 좋은 2만원 이하 연말선물!',
     thumbnailUrl: 'https://image.coupangcdn.com/image/rs_quotation_api/rfpy5r3r/e4a91591ed7a4d28a27be4067116c691.jpg',
-    category: '선물',
+    category: '생활용품',
     publishedAt: '2025-11-27',
     products: [
       {
@@ -149,7 +149,7 @@ export const mockVideos: Video[] = [
     title: '크리스마스 강아지 선물 추천',
     description: '강아지와 함께 크리스마스 즐기기!',
     thumbnailUrl: 'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/3fc8/27a0035947bcc9c04d9c85e86b08977a6e4c0cfc5de8d23d7251d81fa5d9.png',
-    category: '크리스마스',
+    category: '반려동물용품',
     publishedAt: '2025-11-28',
     products: [
       {
@@ -200,7 +200,7 @@ export const mockVideos: Video[] = [
     title: '크리스마스 선물 추천',
     description: '크리스마스에 선물하면 좋은 선물 모음!',
     thumbnailUrl: 'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/30a7/3a37daf2d47ed7167296a209554caadbf9c6d2f754ccc8f5d7ce1e1ee3bd.jpg',
-    category: '크리스마스',
+    category: '생활용품',
     publishedAt: '2025-11-29',
     products: [
       {
@@ -250,7 +250,7 @@ export const mockVideos: Video[] = [
     title: '북누크 키드 DIY',
     description: '집에서 만들어보기 좋은 북누크 키드 DIY',
     thumbnailUrl: 'https://thumbnail.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/267a/26198d56a73d2dc8cd2e64b3f98cd0c2c7482610c547dc82b8e03eda4f54.jpg',
-    category: '취미',
+    category: '생활용품',
     publishedAt: '2025-11-29',
     products: [
       {
