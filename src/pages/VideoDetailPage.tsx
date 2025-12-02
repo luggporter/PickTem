@@ -237,7 +237,7 @@ const VideoDetailPage = () => {
                 bg="transparent"
               >
                 <AdSense
-                  adSlot="1234567890"
+                  adSlot="9944590930"
                   adFormat="horizontal"
                   style={{
                     display: 'block',
