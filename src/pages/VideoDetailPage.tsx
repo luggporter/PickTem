@@ -13,6 +13,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import MobileHeader from '../components/MobileHeader'
 import ProductCard from '../components/ProductCard'
 import AdSense from '../components/AdSense'
+import SEO from '../components/SEO'
 import { useVideos } from '../hooks/useVideos'
 
 const VideoDetailPage = () => {
@@ -49,12 +50,39 @@ const VideoDetailPage = () => {
     return sum + price
   }, 0) / video.products.length
 
+  // 동적 SEO 정보
+  const pageTitle = `${video.title} - 씩아픽템`
+  const pageDescription = `${video.description || video.title}에서 소개된 ${video.products.length}개의 추천 상품을 확인하세요.`
+  const productNames = video.products.slice(0, 5).map(p => p.name).join(', ')
+  const keywords = `${video.category || '추천템'}, ${productNames}, 인스타 쇼핑, 유튜브 쇼츠`
+
+  // 구조화된 데이터 - 비디오 컨텐츠
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: video.title,
+    description: video.description || video.title,
+    thumbnailUrl: video.thumbnailUrl,
+    uploadDate: video.publishedAt || new Date().toISOString(),
+    contentUrl: `https://ssikapicktem.co.kr/#/video/${video.id}`,
+  }
+
   return (
-    <Box bg="white" minH="100vh">
-      <MobileHeader 
-        title=""
-        showBack 
-        onBack={() => navigate('/')} 
+    <>
+      <SEO
+        title={pageTitle}
+        description={pageDescription}
+        keywords={keywords}
+        ogImage={video.thumbnailUrl}
+        ogType="video.other"
+        canonical={`/#/video/${video.id}`}
+        structuredData={structuredData}
+      />
+      <Box bg="white" minH="100vh">
+        <MobileHeader 
+          title=""
+          showBack 
+          onBack={() => navigate('/')} 
       />
       <VStack spacing={0} align="stretch">
         {/* 메인 이미지 갤러리 */}
@@ -266,6 +294,7 @@ const VideoDetailPage = () => {
         </Container>
       </VStack>
     </Box>
+    </>
   )
 }
 

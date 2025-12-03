@@ -1,0 +1,33 @@
+# robots.txt for SsikAPickTem (씩아픽템)
+# https://ssikapicktem.co.kr
+
+# 모든 검색엔진 크롤러 허용
+User-agent: *
+Allow: /
+
+# Sitemap 위치
+Sitemap: https://ssikapicktem.co.kr/sitemap.xml
+
+# 크롤링 속도 조절 (선택사항, 서버 부하 방지)
+Crawl-delay: 1
+
+# 네이버 검색 로봇
+User-agent: Yeti
+Allow: /
+
+# 구글 검색 로봇
+User-agent: Googlebot
+Allow: /
+
+# 다음(Daum) 검색 로봇
+User-agent: Daumoa
+Allow: /
+
+# 빙(Bing) 검색 로봇
+User-agent: bingbot
+Allow: /
+
+# 특정 파일/폴더 크롤링 제외 (필요시)
+# Disallow: /api/
+# Disallow: /admin/
+

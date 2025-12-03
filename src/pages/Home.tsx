@@ -26,6 +26,7 @@ import {
 import VideoCard from '../components/VideoCard'
 import MobileHeader from '../components/MobileHeader'
 import AdSense from '../components/AdSense'
+import SEO from '../components/SEO'
 import { useVideos } from '../hooks/useVideos'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
@@ -167,9 +168,31 @@ const Home = () => {
     { icon: FiHeart, label: '반려동물용품', color: '#764ba2' },
   ]
 
+  // 구조화된 데이터
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'SsikAPickTem',
+    url: 'https://ssikapicktem.co.kr',
+    description: '인스타그램 릴스, 유튜브 쇼츠에서 소개된 인기 상품을 한눈에 모아보는 추천템 사이트',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://ssikapicktem.co.kr/#/search?q={search_term_string}',
+      'query-input': 'required name=search_term_string'
+    }
+  }
+
   return (
-    <Box bg="white" minH="100vh">
-      <MobileHeader title="씩아픽템" showNotification notificationCount={0} />
+    <>
+      <SEO
+        title="SsikAPickTem - 오늘의 추천템 몰아보기 | 인스타 유튜브 쇼츠 인기상품"
+        description="인스타그램 릴스, 유튜브 쇼츠에서 소개된 인기 상품을 한눈에! 씩아픽템에서 오늘의 추천 상품을 간편하게 찾아보세요."
+        keywords="추천템, 인스타 추천템, 유튜브 쇼츠, 인기상품, 테무, 알리익스프레스, 쇼핑몰, 추천상품, 씨카, 픽템, 소셜 쇼핑"
+        canonical="/#/"
+        structuredData={structuredData}
+      />
+      <Box bg="white" minH="100vh">
+        <MobileHeader title="씩아픽템" showNotification notificationCount={0} />
       <Container maxW="container.sm" px={0}>
         <VStack spacing={0} align="stretch">
           {/* 내부 광고 스와이프 배너 */}
@@ -436,6 +459,7 @@ const Home = () => {
         </VStack>
       </Container>
     </Box>
+    </>
   )
 }
 

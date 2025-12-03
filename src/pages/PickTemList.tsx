@@ -13,6 +13,7 @@ import { useEffect, useState, useMemo } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import MobileHeader from '../components/MobileHeader'
 import VideoCard from '../components/VideoCard'
+import SEO from '../components/SEO'
 import { useVideos } from '../hooks/useVideos'
 
 const PickTemList = () => {
@@ -73,12 +74,27 @@ const PickTemList = () => {
     return images[Math.floor(Math.random() * images.length)]
   }, [selectedCategory])
 
+  const pageTitle = selectedCategory === '전체' 
+    ? '전체 상품 리스트 - 씩아픽템'
+    : `${selectedCategory} 상품 리스트 - 씩아픽템`
+  
+  const pageDescription = selectedCategory === '전체'
+    ? '인스타그램과 유튜브 쇼츠에서 소개된 모든 추천 상품을 한눈에 모아보세요.'
+    : `${selectedCategory} 카테고리의 인기 추천 상품을 확인해보세요.`
+
   return (
-    <Box bg="white" minH="100vh">
-      <MobileHeader
-        title="상품 리스트"
-        showBack
-        onBack={() => navigate('/')}
+    <>
+      <SEO
+        title={pageTitle}
+        description={pageDescription}
+        keywords={`추천템, ${selectedCategory}, 인스타 쇼핑, 유튜브 쇼츠, 상품 추천`}
+        canonical={`/#/list${selectedCategory !== '전체' ? `?category=${selectedCategory}` : ''}`}
+      />
+      <Box bg="white" minH="100vh">
+        <MobileHeader
+          title="상품 리스트"
+          showBack
+          onBack={() => navigate('/')}
       />
       <Container maxW="container.sm" px={0}>
         <VStack spacing={0} align="stretch">
@@ -192,6 +208,7 @@ const PickTemList = () => {
         </VStack>
       </Container>
     </Box>
+    </>
   )
 }
 
