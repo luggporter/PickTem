@@ -13,11 +13,12 @@ import { useNavigate, useParams } from 'react-router-dom'
 import MobileHeader from '../components/MobileHeader'
 import ProductCard from '../components/ProductCard'
 import AdSense from '../components/AdSense'
-import { mockVideos } from '../data/mockData'
+import { useVideos } from '../hooks/useVideos'
 
 const VideoDetailPage = () => {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
+  const { videos: mockVideos } = useVideos()
   const [isLiked, setIsLiked] = useState(false)
   const [currentImage, setCurrentImage] = useState(0)
   

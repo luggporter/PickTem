@@ -22,11 +22,12 @@ import {
 } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 import MobileHeader from '../components/MobileHeader'
-import { mockVideos } from '../data/mockData'
+import { useVideos } from '../hooks/useVideos'
 import { useMemo } from 'react'
 
 const PopularItemsPage = () => {
   const navigate = useNavigate()
+  const { videos: mockVideos } = useVideos()
 
   // 카테고리별 통계 계산 (더미 데이터 - 나중에 실제 데이터로 교체)
   const categoryStats = useMemo(() => {

@@ -26,12 +26,13 @@ import {
 import VideoCard from '../components/VideoCard'
 import MobileHeader from '../components/MobileHeader'
 import AdSense from '../components/AdSense'
-import { mockVideos } from '../data/mockData'
+import { useVideos } from '../hooks/useVideos'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
 
 const Home = () => {
   const navigate = useNavigate()
+  const { videos: mockVideos } = useVideos()
   const [currentBanner, setCurrentBanner] = useState(0)
   const [touchStart, setTouchStart] = useState(0)
   const [touchEnd, setTouchEnd] = useState(0)

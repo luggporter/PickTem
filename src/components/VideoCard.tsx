@@ -11,7 +11,8 @@ import {
 import { FiHeart } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 import { Video } from '../types'
-import { useState } from 'react'
+import { useLikes } from '../hooks/useLikes'
+import { logVideoClick, logVideoLike } from '../services/activityLogger'
 
 interface VideoCardProps {
   video: Video
@@ -19,15 +20,20 @@ interface VideoCardProps {
 
 const VideoCard = ({ video }: VideoCardProps) => {
   const navigate = useNavigate()
-  const [isLiked, setIsLiked] = useState(false)
+  const { isLiked, toggleLike } = useLikes()
 
   const handleCardClick = () => {
+    logVideoClick(video.id, video.title)
     navigate(`/video/${video.id}`)
   }
 
   const handleLikeClick = (e: React.MouseEvent) => {
     e.stopPropagation()
-    setIsLiked(!isLiked)
+    const newIsLiked = toggleLike(video.id)
+    
+    if (newIsLiked) {
+      logVideoLike(video.id, video.title)
+    }
   }
 
   return (
@@ -81,14 +87,14 @@ const VideoCard = ({ video }: VideoCardProps) => {
           transition="all 0.2s"
           zIndex={2}
         >
-          <Icon
-            as={FiHeart}
-            w={5}
-            h={5}
-            color={isLiked ? '#ff6b6b' : '#868e96'}
-            fill={isLiked ? '#ff6b6b' : 'none'}
-            transition="all 0.2s"
-          />
+                <Icon
+                  as={FiHeart}
+                  w={5}
+                  h={5}
+                  color={isLiked(video.id) ? '#ff6b6b' : '#868e96'}
+                  fill={isLiked(video.id) ? '#ff6b6b' : 'none'}
+                  transition="all 0.2s"
+                />
         </Box>
       </Box>
 

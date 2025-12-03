@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react'
 import { FiExternalLink } from 'react-icons/fi'
 import { Product } from '../types'
+import { logProductClick } from '../services/activityLogger'
 
 interface ProductCardProps {
   product: Product
@@ -18,6 +19,7 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const handlePurchaseClick = () => {
+    logProductClick(product.id, product.name)
     window.open(product.affiliateUrl, '_blank', 'noopener,noreferrer')
   }
 

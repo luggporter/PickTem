@@ -13,10 +13,11 @@ import { useEffect, useState, useMemo } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import MobileHeader from '../components/MobileHeader'
 import VideoCard from '../components/VideoCard'
-import { mockVideos } from '../data/mockData'
+import { useVideos } from '../hooks/useVideos'
 
 const PickTemList = () => {
   const navigate = useNavigate()
+  const { videos: mockVideos } = useVideos()
   const [searchParams, setSearchParams] = useSearchParams()
   const categoryParam = searchParams.get('category') || '전체'
   const [selectedCategory, setSelectedCategory] = useState<string>(categoryParam)
