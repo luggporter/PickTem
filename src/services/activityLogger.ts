@@ -24,7 +24,7 @@ export async function logActivity(log: ActivityLog): Promise<boolean> {
   }
 
   try {
-    const response = await fetch(APPS_SCRIPT_URL, {
+    await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors', // Apps Script는 CORS를 지원하지 않으므로 no-cors 사용
       headers: {
