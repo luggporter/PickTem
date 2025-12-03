@@ -164,8 +164,6 @@ export async function getVideos(): Promise<Video[]> {
     cacheTimestamp = now
   }
 
-  console.log({API_KEY, SPREADSHEET_ID, VIDEO_RANGE, PRODUCT_RANGE});
-
   
   return videos
 }

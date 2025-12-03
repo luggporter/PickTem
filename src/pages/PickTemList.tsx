@@ -65,7 +65,7 @@ const PickTemList = () => {
       return mockVideos
     }
     return mockVideos.filter(v => v.category === selectedCategory)
-  }, [selectedCategory])
+  }, [selectedCategory, mockVideos])
 
   // 무작위 슬픈 이미지 선택 (카테고리 변경 시마다 새로운 이미지)
   const randomSadImage = useMemo(() => {
