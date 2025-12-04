@@ -30,6 +30,8 @@ import SEO from '../components/SEO'
 import { useVideos } from '../hooks/useVideos'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
+import { getPopularVideos } from '../services/googleSheets'
+import { Video } from '../types'
 
 const Home = () => {
   const navigate = useNavigate()
@@ -39,6 +41,8 @@ const Home = () => {
   const [touchEnd, setTouchEnd] = useState(0)
   const autoSlideRef = useRef<number | null>(null)
   const [showAdPlaceholder, setShowAdPlaceholder] = useState(true)
+  const [popularVideos, setPopularVideos] = useState<Video[]>([])
+  const [loadingPopular, setLoadingPopular] = useState(true)
 
   // 배너 이미지 (상품 판매 사이트)
   // Unsplash License: 상업적 사용 포함 자유롭게 사용 가능
@@ -121,6 +125,27 @@ const Home = () => {
       window.clearTimeout(timer)
     }
   }, [])
+
+  // 인기 비디오 가져오기
+  useEffect(() => {
+    async function fetchPopularVideos() {
+      try {
+        setLoadingPopular(true)
+        const popular = await getPopularVideos()
+        setPopularVideos(popular)
+      } catch (error) {
+        console.error('인기 비디오 로드 실패:', error)
+        // 실패하면 일반 비디오 목록 사용
+        setPopularVideos(mockVideos)
+      } finally {
+        setLoadingPopular(false)
+      }
+    }
+
+    if (mockVideos.length > 0) {
+      fetchPopularVideos()
+    }
+  }, [mockVideos])
 
   // 스와이프 핸들러
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -346,6 +371,11 @@ const Home = () => {
                     </Heading>
                     <Text fontSize="lg">🏆</Text>
                   </HStack>
+                  {!loadingPopular && popularVideos.length > 0 && (
+                    <Text fontSize="xs" color="#868e96">
+                      실시간 집계
+                    </Text>
+                  )}
                 </HStack>
 
                 {/* 가로 스크롤 카드 */}
@@ -359,17 +389,55 @@ const Home = () => {
                     msOverflowStyle: 'none',
                   }}
                 >
-                  <Flex gap={3} pb={2}>
-                    {mockVideos.slice(0, 6).map((video) => (
-                      <Box
-                        key={video.id}
-                        w={{ base: '70vw', md: '180px' }}
-                        flexShrink={0}
-                      >
-                        <VideoCard video={video} />
-                      </Box>
-                    ))}
-                  </Flex>
+                  {loadingPopular ? (
+                    <Flex gap={3} pb={2}>
+                      {[1, 2, 3, 4, 5, 6].map((i) => (
+                        <Box
+                          key={i}
+                          w={{ base: '70vw', md: '180px' }}
+                          h="200px"
+                          flexShrink={0}
+                          bg="#f1f3f5"
+                          borderRadius="12px"
+                          animation="pulse 1.5s ease-in-out infinite"
+                        />
+                      ))}
+                    </Flex>
+                  ) : (
+                    <Flex gap={3} pb={2}>
+                      {(popularVideos.length > 0 ? popularVideos : mockVideos)
+                        .slice(0, 6)
+                        .map((video, index) => (
+                          <Box
+                            key={video.id}
+                            w={{ base: '70vw', md: '180px' }}
+                            flexShrink={0}
+                            position="relative"
+                          >
+                            {/* 순위 뱃지 */}
+                            {popularVideos.length > 0 && (
+                              <Box
+                                position="absolute"
+                                top={2}
+                                left={2}
+                                zIndex={2}
+                                bg={index === 0 ? '#FFD700' : index === 1 ? '#C0C0C0' : index === 2 ? '#CD7F32' : '#495057'}
+                                color="white"
+                                fontSize="xs"
+                                fontWeight="700"
+                                px={2}
+                                py={1}
+                                borderRadius="full"
+                                boxShadow="sm"
+                              >
+                                {index + 1}위
+                              </Box>
+                            )}
+                            <VideoCard video={video} />
+                          </Box>
+                        ))}
+                    </Flex>
+                  )}
                 </Box>
               </Box>
 
