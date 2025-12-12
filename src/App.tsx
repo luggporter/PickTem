@@ -5,6 +5,8 @@ import VideoDetailPage from './pages/VideoDetailPage'
 import PopularItemsPage from './pages/PopularItemsPage'
 import BottomNav from './components/BottomNav'
 import PickTemList from './pages/PickTemList'
+import MagazinePage from './pages/MagazinePage'
+import MagazineDetailPage from './pages/MagazineDetailPage'
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route path="/list" element={<PickTemList />} />
         <Route path="/popular" element={<PopularItemsPage />} />
         <Route path="/video/:id" element={<VideoDetailPage />} />
+        <Route path="/magazine" element={<MagazinePage />} />
+        <Route path="/magazine/:id" element={<MagazineDetailPage />} />
       </Routes>
       <BottomNav />
     </Box>

@@ -106,7 +106,7 @@ const PickTemList = () => {
             borderColor="gray.100"
             bg="white"
             position="sticky"
-            top="60px"
+            top="50px"
             zIndex={10}
           >
             <Box

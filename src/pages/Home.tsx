@@ -10,6 +10,7 @@ import {
   Flex,
   Icon,
   Image,
+  Badge,
 } from '@chakra-ui/react'
 import { 
   FiHome, 
@@ -32,6 +33,7 @@ import { useNavigate } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
 import { getPopularVideos } from '../services/googleSheets'
 import { Video } from '../types'
+import { articles } from '../components/blog/blogList'
 
 const Home = () => {
   const navigate = useNavigate()
@@ -376,7 +378,8 @@ const Home = () => {
                       실시간 집계
                     </Text>
                   )}
-                </HStack>
+                  </HStack>
+                  
 
                 {/* 가로 스크롤 카드 */}
                 <Box
@@ -493,6 +496,149 @@ const Home = () => {
                     }}
                     fullWidthResponsive={true}
                   />
+                </Box>
+                </Box>
+                
+
+            {/* 메거진 섹션 */}
+            <Box>
+              <HStack justify="space-between" align="center" mb={4}>
+                <HStack spacing={2}>
+                    <Heading size="lg" color="#1a2e1a" fontWeight="700">
+                      메거진
+                  </Heading>
+                    <Icon as={FiBook} w={5} h={5} color="brand.500" />
+                </HStack>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  fontSize="13px"
+                  color="#868e96"
+                  fontWeight="500"
+                    _hover={{ color: '#1a2e1a', bg: 'transparent' }}
+                    onClick={() => navigate('/magazine')}
+                  >
+                    전체보기
+                  </Button>
+                </HStack>
+
+                {/* 가로 스크롤 메거진 배너 */}
+                <Box
+                  overflowX="auto"
+                  css={{
+                    '&::-webkit-scrollbar': {
+                      display: 'none',
+                    },
+                    scrollbarWidth: 'none',
+                    msOverflowStyle: 'none',
+                  }}
+                >
+                  <Flex gap={3} pb={2}>
+                    {[...articles].reverse().slice(0, 4).map((magazine) => (
+                      <Box
+                        key={magazine.id}
+                        w="247.33px"
+                        h="296.78px"
+                        flexShrink={0}
+                        cursor="pointer"
+                        onClick={() => navigate(`/magazine/${magazine.id}`)}
+                        _hover={{
+                          transform: 'translateY(-4px)',
+                        }}
+                        transition="all 0.3s ease"
+                      >
+                        {/* 이미지 배너 카드 */}
+                        <Box
+                          position="relative"
+                          w="100%"
+                          h="100%"
+                          bgImage={`url(${magazine.thumbnailUrl})`}
+                          bgSize="cover"
+                          bgPosition="center"
+                          borderRadius="16px"
+                          overflow="hidden"
+                          boxShadow="0 2px 8px rgba(0, 0, 0, 0.1)"
+                          _hover={{
+                            boxShadow: '0 8px 24px rgba(34, 197, 94, 0.15)',
+                          }}
+                        >
+                          {/* 그라데이션 오버레이 */}
+                          <Box
+                            position="absolute"
+                            bottom={0}
+                            left={0}
+                            right={0}
+                            h="70%"
+                            bgGradient="linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 50%, transparent 100%)"
+                            zIndex={1}
+                          />
+                          
+                          {/* 카테고리 배지 */}
+                          {magazine.category && (
+                            <Badge
+                              position="absolute"
+                              top={4}
+                              left={4}
+                              colorScheme="brand"
+                              borderRadius="8px"
+                              px={3}
+                              py={1.5}
+                              fontSize="11px"
+                              fontWeight="700"
+                              zIndex={2}
+                            >
+                              {magazine.category}
+                            </Badge>
+                          )}
+
+                          {/* 텍스트 영역 */}
+                          <Box
+                            position="absolute"
+                            bottom={0}
+                            left={0}
+                            right={0}
+                            p={4}
+                            zIndex={2}
+                          >
+                            <Text
+                              fontSize="16px"
+                              fontWeight="700"
+                              color="white"
+                              mb={2}
+                              noOfLines={2}
+                              lineHeight="1.4"
+                              textShadow="0 2px 4px rgba(0,0,0,0.5)"
+                            >
+                              {magazine.title}
+                            </Text>
+                            <Text
+                              fontSize="13px"
+                              color="rgba(255,255,255,0.9)"
+                              mb={3}
+                              noOfLines={1}
+                              textShadow="0 1px 3px rgba(0,0,0,0.5)"
+                            >
+                              {magazine.description}
+                            </Text>
+                            <HStack spacing={2} fontSize="12px" color="rgba(255,255,255,0.85)">
+                              {magazine.readTime && (
+                                <>
+                                  <Text fontWeight="500">{magazine.readTime}분 읽기</Text>
+                                  <Text>•</Text>
+                                </>
+                              )}
+                              <Text>
+                                {new Date(magazine.publishedAt).toLocaleDateString('ko-KR', {
+                                  month: 'short',
+                                  day: 'numeric',
+                                })}
+                              </Text>
+                            </HStack>
+                          </Box>
+                        </Box>
+                      </Box>
+                    ))}
+                  </Flex>
                 </Box>
               </Box>
 
