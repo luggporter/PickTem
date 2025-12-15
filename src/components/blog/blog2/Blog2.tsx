@@ -523,7 +523,7 @@ const Blog2 = () => {
                       </Text>
 
                       {/* 광고 3: 마지막 섹션 전 */}
-                      <AdRotator type="auto" />
+                      <AdRotator type="kakao" />
 
                       <Box
                         bg="brand.50"
