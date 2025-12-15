@@ -147,7 +147,7 @@ const Blog1 = () => {
                 bg="white"
               >
                 <Image
-                  src="/images/blog/blog2.p"
+                  src="/images/blog/blog2.png"
                   alt="정리된 거실과 수납 공간이 잘 보이는 집 안 풍경"
                   width="100%"
                   height="auto"
