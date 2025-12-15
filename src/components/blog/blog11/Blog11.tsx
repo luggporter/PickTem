@@ -152,7 +152,7 @@ const Blog11 = () => {
                 bg="white"
               >
                 <Image
-                  src="/images/blog/blog11.WEBP"
+                  src="/images/blog/blog11.png"
                   alt="체크리스트와 청소 도구가 놓인 깔끔한 거실"
                   width="100%"
                   height="auto"

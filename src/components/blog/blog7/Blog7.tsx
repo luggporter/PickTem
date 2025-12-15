@@ -152,7 +152,7 @@ const Blog7 = () => {
                 bg="white"
               >
                 <Image
-                  src="/images/blog/blog8.WEBP"
+                  src="/images/blog/blog8.png"
                   alt="깔끔하게 정리된 거실과 주방, 생활 꿀팁이 느껴지는 집안 풍경"
                   width="100%"
                   height="auto"

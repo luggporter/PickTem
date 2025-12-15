@@ -122,7 +122,7 @@ const Blog9 = () => {
               {/* Hero Image */}
               <Box borderRadius="20px" overflow="hidden" boxShadow="xl" bg="white">
                 <Image
-                  src="/images/blog/blog9.WEBP"
+                  src="/images/blog/blog9.png"
                   alt="아침 햇살이 비치는 방에서 커피와 노트를 준비하는 모습"
                   width="100%"
                   objectFit="cover"

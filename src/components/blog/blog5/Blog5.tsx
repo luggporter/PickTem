@@ -14,7 +14,6 @@ import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { FiCalendar, FiUser } from 'react-icons/fi';
 import MobileHeader from '../../MobileHeader';
-import AdSense from '../../AdSense';
 
 const Blog5 = () => {
   const navigate = useNavigate();
@@ -23,11 +22,9 @@ const Blog5 = () => {
   const description =
     '단순히 물건을 줄이는 것이 아니라, 마음의 여유를 되찾고 생활 루틴을 정돈하는 미니멀 라이프 실전 가이드. 정리 심리학부터 공간별 실천법까지 모두 담았습니다.';
 
-  const baseUrl = window.location.hostname === 'localhost' 
-    ? 'http://localhost:3001/' 
-    : 'https://ssikapicktem.co.kr/';
-  const url = `${baseUrl}#/magazine/5`;
-  const ogImage = `${baseUrl}images/blog/blog5.png`;
+  const baseUrl = 'https://ssikapicktem.co.kr/';
+  const url = `${baseUrl}/magazine/6`;
+  const ogImage = `${baseUrl}/images/blog/blog5.png`;
 
   const publishedDate = '2024년 2월 19일';
   const author = '씩씩이';
@@ -131,7 +128,7 @@ const Blog5 = () => {
               {/* IMAGE */}
               <Box borderRadius="20px" overflow="hidden" bg="white" boxShadow="xl">
                 <Image
-                  src="/images/blog/blog6.WEBP"
+                  src="/images/blog/blog6.png"
                   alt="미니멀한 인테리어 공간, 화이트와 우드톤이 조화를 이루는 방"
                   width="100%"
                   objectFit="cover"
@@ -177,19 +174,6 @@ const Blog5 = () => {
                   </Box>
 
                   <Divider />
-
-                  {/* 광고 1: 첫 번째 섹션 후 */}
-                  <Box py={4} display="flex" justifyContent="center">
-                    <AdSense
-                      adSlot="9944590930"
-                      adFormat="horizontal"
-                      style={{
-                        display: 'block',
-                        minHeight: '120px',
-                        width: '100%',
-                      }}
-                    />
-                  </Box>
 
                   {/* SECTION 1 — 심리학 */}
                   <Box>
@@ -241,19 +225,6 @@ const Blog5 = () => {
                   </Box>
 
                   <Divider />
-
-                  {/* 광고 2: 중간 지점 */}
-                  <Box py={4} display="flex" justifyContent="center">
-                    <AdSense
-                      adSlot="9944590930"
-                      adFormat="horizontal"
-                      style={{
-                        display: 'block',
-                        minHeight: '120px',
-                        width: '100%',
-                      }}
-                    />
-                  </Box>
 
                   {/* SECTION 2 — 실전 정리법 */}
                   <Box>
@@ -417,19 +388,6 @@ const Blog5 = () => {
                         마음이 덜 복잡해지고,  
                         하루를 살아갈 선택과 에너지가 조금 더 넉넉해집니다.
                       </Text>
-
-                      {/* 광고 3: 마지막 섹션 전 */}
-                      <Box py={4} display="flex" justifyContent="center">
-                        <AdSense
-                          adSlot="9944590930"
-                          adFormat="horizontal"
-                          style={{
-                            display: 'block',
-                            minHeight: '120px',
-                            width: '100%',
-                          }}
-                        />
-                      </Box>
 
                       <Box
                         bg="brand.50"

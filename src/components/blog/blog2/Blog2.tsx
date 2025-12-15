@@ -147,7 +147,7 @@ const Blog2 = () => {
                 bg="white"
               >
                 <Image
-                  src="/images/blog/blog3.WEBP"
+                  src="/images/blog/blog3.png"
                   alt="온라인 쇼핑 장바구니와 카드, 영수증이 함께 놓인 책상 위 모습"
                   width="100%"
                   height="auto"

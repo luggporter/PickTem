@@ -14,7 +14,6 @@ import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { FiCalendar, FiUser } from 'react-icons/fi';
 import MobileHeader from '../../MobileHeader';
-import AdSense from '../../AdSense';
 
 const Blog3 = () => {
   const navigate = useNavigate();
@@ -22,14 +21,12 @@ const Blog3 = () => {
   const description =
     '온도만 낮추는 절약법이 아니라, 집 구조·습도·동선까지 고려해 실제 체감 온도를 올리면서 난방비를 줄이는 12가지 현실적인 방법을 정리했습니다.';
 
-  const baseUrl = window.location.hostname === 'localhost' 
-    ? 'http://localhost:3001/' 
-    : 'https://ssikapicktem.co.kr/';
-  const url = `${baseUrl}#/magazine/3`;
-  const ogImage = `${baseUrl}images/blog/blog3.png`;
+  const baseUrl = 'https://ssikapicktem.co.kr/';
+  const url = `${baseUrl}/magazine/4`;
+  const ogImage = `${baseUrl}/images/blog/blog3.png`;
 
   const publishedDate = '2024년 2월 5일';
-  const author = '씩씩이';
+  const author = 'LeafTalk';
   const category = '생활 꿀팁';
   const readTime = 9;
 
@@ -46,7 +43,7 @@ const Blog3 = () => {
     },
     publisher: {
       '@type': 'Organization',
-      name: '씩씩이',
+      name: 'LeafTalk',
       logo: {
         '@type': 'ImageObject',
         url: `${baseUrl}/favicon.png`,
@@ -152,7 +149,7 @@ const Blog3 = () => {
                 bg="white"
               >
                 <Image
-                  src="/images/blog/blog4.WEBP"
+                  src="/images/blog/blog4.png"
                   alt="따뜻한 조명과 담요가 놓인 겨울 거실"
                   width="100%"
                   height="auto"
@@ -208,19 +205,6 @@ const Blog3 = () => {
                   </Box>
 
                   <Divider borderColor="gray.200" />
-
-                  {/* 광고 1: 첫 번째 섹션 후 */}
-                  <Box py={4} display="flex" justifyContent="center">
-                    <AdSense
-                      adSlot="9944590930"
-                      adFormat="horizontal"
-                      style={{
-                        display: 'block',
-                        minHeight: '120px',
-                        width: '100%',
-                      }}
-                    />
-                  </Box>
 
                   {/* 섹션 1 */}
                   <Box as="section">
@@ -397,19 +381,6 @@ const Blog3 = () => {
 
                   <Divider borderColor="gray.200" />
 
-                  {/* 광고 2: 중간 지점 */}
-                  <Box py={4} display="flex" justifyContent="center">
-                    <AdSense
-                      adSlot="9944590930"
-                      adFormat="horizontal"
-                      style={{
-                        display: 'block',
-                        minHeight: '120px',
-                        width: '100%',
-                      }}
-                    />
-                  </Box>
-
                   {/* 마무리 */}
                   <Box as="section">
                     <Heading
@@ -441,20 +412,6 @@ const Blog3 = () => {
                         고지서를 열어보는 마음이 조금은 덜 무거워질지도
                         모릅니다.
                       </Text>
-
-                      {/* 광고 3: 마지막 섹션 전 */}
-                      <Box py={4} display="flex" justifyContent="center">
-                        <AdSense
-                          adSlot="9944590930"
-                          adFormat="horizontal"
-                          style={{
-                            display: 'block',
-                            minHeight: '120px',
-                            width: '100%',
-                          }}
-                        />
-                      </Box>
-
                       <Box
                         bg="brand.50"
                         borderRadius="12px"

@@ -153,7 +153,7 @@ const Blog8 = () => {
                 bg="white"
               >
                 <Image
-                  src="/images/blog/blog9.WEBP"
+                  src="/images/blog/blog9.png"
                   alt="창문과 식물이 있는 거실, 공기정화와 환기가 잘 되는 집의 모습"
                   width="100%"
                   height="auto"

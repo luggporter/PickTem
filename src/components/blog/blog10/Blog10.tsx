@@ -132,7 +132,7 @@ const Blog10 = () => {
               {/* Main Image */}
               <Box overflow="hidden" borderRadius="20px" boxShadow="xl">
                 <Image
-                  src="/images/blog/blog10.WEBP"
+                  src="/images/blog/blog10.png"
                   alt="집안 냄새 관리 방법을 설명하는 이미지"
                   width="100%"
                   objectFit="cover"
