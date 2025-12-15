@@ -149,7 +149,7 @@ const Blog3 = () => {
                 bg="white"
               >
                 <Image
-                  src="/images/blog/blog4.png"
+                  src="/images/blog/blog3.png"
                   alt="따뜻한 조명과 담요가 놓인 겨울 거실"
                   width="100%"
                   height="auto"

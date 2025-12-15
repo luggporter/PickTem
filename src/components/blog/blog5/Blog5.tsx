@@ -128,7 +128,7 @@ const Blog5 = () => {
               {/* IMAGE */}
               <Box borderRadius="20px" overflow="hidden" bg="white" boxShadow="xl">
                 <Image
-                  src="/images/blog/blog6.png"
+                  src="/images/blog/blog5.png"
                   alt="미니멀한 인테리어 공간, 화이트와 우드톤이 조화를 이루는 방"
                   width="100%"
                   objectFit="cover"

@@ -135,7 +135,7 @@ const Blog6 = () => {
               {/* MAIN IMAGE */}
               <Box overflow="hidden" borderRadius="20px" bg="white" boxShadow="xl">
                 <Image
-                  src="/images/blog/blog7.png"
+                  src="/images/blog/blog6.png"
                   alt="계절에 따라 분위기가 변화하는 거실 인테리어"
                   width="100%"
                   objectFit="cover"

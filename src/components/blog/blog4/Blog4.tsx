@@ -133,7 +133,7 @@ const Blog4 = () => {
               {/* THUMBNAIL */}
               <Box borderRadius="20px" overflow="hidden" boxShadow="xl" bg="white">
                 <Image
-                  src="/images/blog/blog5.png"
+                  src="/images/blog/blog4.png"
                   alt="따뜻한 조명이 켜진 감성적인 거실 인테리어"
                   width="100%"
                   objectFit="cover"
