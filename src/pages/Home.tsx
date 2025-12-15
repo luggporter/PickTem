@@ -27,6 +27,7 @@ import {
 import VideoCard from '../components/VideoCard'
 import MobileHeader from '../components/MobileHeader'
 import AdSense from '../components/AdSense'
+import AdRotator from '../components/ads/AdRotator'
 import SEO from '../components/SEO'
 import { useVideos } from '../hooks/useVideos'
 import { useNavigate } from 'react-router-dom'
@@ -326,6 +327,9 @@ const Home = () => {
             </HStack>
           </Box>
 
+          {/* 광고 1: 배너 아래 */}
+          {/* <AdRotator type="auto" /> */}
+
           <Container maxW="container.sm" py={6} px={4}>
             <VStack spacing={6} align="stretch">
               {/* 카테고리 10개 */}
@@ -363,6 +367,9 @@ const Home = () => {
                   </Box>
                 ))}
               </SimpleGrid>
+
+              {/* 광고 2: 카테고리 아래 */}
+              {/* <AdRotator type="auto" /> */}
 
               {/* 주간 인기 BEST 섹션 */}
               <Box>
@@ -443,6 +450,9 @@ const Home = () => {
                   )}
                 </Box>
               </Box>
+
+              {/* 광고 3: 인기 BEST 섹션 후 */}
+              {/* <AdRotator type="auto" /> */}
 
               {/* 구글 광고 배너 */}
               <Box 
@@ -642,6 +652,9 @@ const Home = () => {
                 </Box>
               </Box>
 
+              {/* 광고 5: 메거진 섹션 후 */}
+              <AdRotator type="auto" />
+
               {/* 최근 영상 섹션 */}
               <Box>
                 <HStack justify="space-between" align="center" mb={4}>
@@ -668,6 +681,9 @@ const Home = () => {
                   ))}
                 </SimpleGrid>
               </Box>
+
+              {/* 광고 6: 최근 영상 섹션 후 */}
+              <AdRotator type="auto" />
             </VStack>
           </Container>
         </VStack>

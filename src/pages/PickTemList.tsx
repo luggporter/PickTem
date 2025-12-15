@@ -14,6 +14,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import MobileHeader from '../components/MobileHeader'
 import VideoCard from '../components/VideoCard'
 import SEO from '../components/SEO'
+// import AdRotator from '../components/ads/AdRotator'
 import { useVideos } from '../hooks/useVideos'
 
 const PickTemList = () => {
@@ -148,6 +149,9 @@ const PickTemList = () => {
           
           </Box>
 
+          {/* 광고 1: 카테고리 필터 아래 */}
+          {/* <AdRotator type="auto" /> */}
+
           <Container maxW="container.sm" py={4} px={4}>
             <VStack spacing={5} align="stretch">
               {/* 섹션 헤더 */}
@@ -160,12 +164,18 @@ const PickTemList = () => {
                
               </HStack>
 
+              {/* 광고 2: 비디오 리스트 전 */}
+              {/* {filteredVideos.length > 0 && <AdRotator type="auto" />} */}
+
               {/* 2열 그리드 */}
               <SimpleGrid columns={2} spacing={3}>
                 {filteredVideos.map((video) => (
                   <VideoCard key={video.id} video={video} />
                 ))}
               </SimpleGrid>
+
+              {/* 광고 3: 비디오 리스트 후 */}
+              {/* {filteredVideos.length > 0 && <AdRotator type="auto" />} */}
 
               {/* 결과 없음 */}
               {filteredVideos.length === 0 && (

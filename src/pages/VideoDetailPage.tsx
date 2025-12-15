@@ -13,6 +13,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import MobileHeader from '../components/MobileHeader'
 import ProductCard from '../components/ProductCard'
 import AdSense from '../components/AdSense'
+// import AdRotator from '../components/ads/AdRotator'
 import SEO from '../components/SEO'
 import { useVideos } from '../hooks/useVideos'
 
@@ -169,6 +170,9 @@ const VideoDetailPage = () => {
           )}
         </Box>
 
+        {/* 광고 1: 이미지 갤러리 아래 */}
+        {/* <AdRotator type="auto" /> */}
+
         <Container maxW="container.sm" py={6} px={4}>
           <VStack spacing={6} align="stretch">
             {/* 제목 */}
@@ -279,6 +283,9 @@ const VideoDetailPage = () => {
               </Box>
             </Box>
 
+            {/* 광고 2: 상품 리스트 전 */}
+            {/* <AdRotator type="auto" /> */}
+
             {/* 상품 리스트 */}
             <Box>
               <Heading size="md" color="#212529" fontWeight="700" mb={4}>
@@ -290,6 +297,9 @@ const VideoDetailPage = () => {
                 ))}
               </VStack>
             </Box>
+
+            {/* 광고 3: 상품 리스트 후 */}
+            {/* <AdRotator type="auto" /> */}
           </VStack>
         </Container>
       </VStack>

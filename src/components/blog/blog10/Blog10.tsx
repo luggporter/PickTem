@@ -15,6 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import { FiCalendar, FiUser } from 'react-icons/fi';
 import MobileHeader from '../../MobileHeader';
 import AdSense from '../../AdSense';
+import AdRotator from '../../ads/AdRotator';
 
 const Blog10 = () => {
   const navigate = useNavigate();
@@ -170,17 +171,7 @@ const Blog10 = () => {
                   <Divider />
 
                   {/* 광고 1: 첫 번째 섹션 후 */}
-                  <Box py={4} display="flex" justifyContent="center">
-                    <AdSense
-                      adSlot="9944590930"
-                      adFormat="horizontal"
-                      style={{
-                        display: 'block',
-                        minHeight: '120px',
-                        width: '100%',
-                      }}
-                    />
-                  </Box>
+                  <AdRotator type="auto" />
 
                   {/* SECTION 1 */}
                   <Box>

@@ -23,6 +23,7 @@ import {
 import { useNavigate } from 'react-router-dom'
 import MobileHeader from '../components/MobileHeader'
 import SEO from '../components/SEO'
+import AdRotator from '../components/ads/AdRotator'
 import { useVideos } from '../hooks/useVideos'
 import { useMemo } from 'react'
 
@@ -160,6 +161,9 @@ const PopularItemsPage = () => {
               </SimpleGrid>
             </VStack>
           </Box>
+
+          {/* 광고 2: 헤더 통계 카드 후 */}
+          <AdRotator type="auto" />
 
           {/* 왜 인기가 많을까? 섹션 */}
           <Box>
@@ -451,6 +455,9 @@ const PopularItemsPage = () => {
               곧 실시간 데이터를 확인하실 수 있어요!
             </Text>
           </Box>
+
+          {/* 광고 3: 페이지 하단 */}
+          <AdRotator type="auto" />
         </VStack>
       </Container>
     </Box>

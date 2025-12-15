@@ -14,6 +14,8 @@ import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { FiCalendar, FiUser } from 'react-icons/fi';
 import MobileHeader from '../../MobileHeader';
+import AdSense from '../../AdSense';
+import AdRotator from '../../ads/AdRotator';
 
 const Blog3 = () => {
   const navigate = useNavigate();
@@ -255,6 +257,19 @@ const Blog3 = () => {
 
                   <Divider borderColor="gray.200" />
 
+                  {/* 광고 2: 중간 지점 */}
+                  <Box py={4} display="flex" justifyContent="center">
+                    <AdSense
+                      adSlot="9944590930"
+                      adFormat="horizontal"
+                      style={{
+                        display: 'block',
+                        minHeight: '120px',
+                        width: '100%',
+                      }}
+                    />
+                  </Box>
+
                   {/* 섹션 2 */}
                   <Box as="section">
                     <Heading
@@ -309,6 +324,19 @@ const Blog3 = () => {
                   </Box>
 
                   <Divider borderColor="gray.200" />
+
+                  {/* 광고 2: 중간 지점 */}
+                  <Box py={4} display="flex" justifyContent="center">
+                    <AdSense
+                      adSlot="9944590930"
+                      adFormat="horizontal"
+                      style={{
+                        display: 'block',
+                        minHeight: '120px',
+                        width: '100%',
+                      }}
+                    />
+                  </Box>
 
                   {/* 섹션 3 */}
                   <Box as="section">
@@ -436,6 +464,9 @@ const Blog3 = () => {
                       </Box>
                     </Stack>
                   </Box>
+
+                  {/* 광고 3: 마지막 섹션 전 */}
+                  <AdRotator type="auto" />
                 </Stack>
               </Box>
             </VStack>
