@@ -14,7 +14,6 @@ import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import MobileHeader from '../components/MobileHeader'
 import SEO from '../components/SEO'
-import { MagazineArticle } from '../types'
 import { articles } from '../components/blog/blogList'
 
 const ITEMS_PER_PAGE = 6
