@@ -56,8 +56,6 @@ const AdRotator = ({
       {selectedType === 'kakao' && kakaoAdUnitId && kakaoAdUnitId !== 'YOUR_KAKAO_AD_UNIT_ID' && (
         <KakaoAdFit
           adUnitId={kakaoAdUnitId}
-          adWidth={320}
-          adHeight={100}
           style={style}
         />
       )}

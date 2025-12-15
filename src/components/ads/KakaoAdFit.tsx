@@ -71,7 +71,7 @@ const KakaoAdFit = ({
       // 카카오 애드핏 공식 방식으로 광고 영역 생성
       const ins = document.createElement('ins')
       ins.className = 'kakao_ad_area'
-      ins.style.display = 'none'
+      ins.style.display = 'block'
       ins.setAttribute('data-ad-unit', adUnitId)
       ins.setAttribute('data-ad-width', adWidth.toString())
       ins.setAttribute('data-ad-height', adHeight.toString())
