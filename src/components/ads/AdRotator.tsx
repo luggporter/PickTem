@@ -27,7 +27,7 @@ interface AdRotatorProps {
 const AdRotator = ({
   type = 'auto',
   adSenseSlot = '9944590930',
-  kakaoAdUnitId = 'DAN-TuJyMLJV5hB5UXIO',
+  kakaoAdUnitId = 'DAN-TuJyMLJV5hB5UXiO',
   mediaNetCid = 'YOUR_MEDIANET_CID',
   style = { display: 'block', minHeight: '120px', width: '100%' }
 }: AdRotatorProps) => {
