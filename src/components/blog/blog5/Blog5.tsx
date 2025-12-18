@@ -428,7 +428,7 @@ const Blog5 = () => {
                   </Box>
 
                   {/* 광고 3: 마지막 섹션 전 */}
-                  <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
+                  <KakaoAdDirect adUnitId="DAN-qRlpXvY15cfMPpl0" adWidth={300} adHeight={250} />
 
                 </Stack>
               </Box>

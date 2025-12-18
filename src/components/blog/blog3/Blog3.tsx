@@ -410,7 +410,7 @@ const Blog3 = () => {
                   </Box>
 
                   <Divider borderColor="gray.200" />
-                  <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
+                  <KakaoAdDirect adUnitId="DAN-qRlpXvY15cfMPpl0" adWidth={300} adHeight={250} />
 
                   {/* 마무리 */}
                   <Box as="section">

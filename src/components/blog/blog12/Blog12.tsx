@@ -165,7 +165,7 @@ const Blog12 = () => {
 
                   <Divider />
 
-                  <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
+                  <KakaoAdDirect adUnitId="DAN-qRlpXvY15cfMPpl0" adWidth={300} adHeight={250} />
                   <Box as="section">
                     <Heading
                       as="h2"

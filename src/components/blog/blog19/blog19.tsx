@@ -224,7 +224,7 @@ const Blog19 = () => {
                   </Box>
 
                   {/* 광고 넣기 좋은 구간 */}
-                  <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
+                  <KakaoAdDirect adUnitId="DAN-qRlpXvY15cfMPpl0" adWidth={300} adHeight={250} />
 
                   <Divider borderColor="gray.200" />
 

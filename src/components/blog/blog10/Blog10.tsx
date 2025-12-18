@@ -273,7 +273,7 @@ const Blog10 = () => {
                   </Box>
 
                   <Divider />
-                  <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
+                  <KakaoAdDirect adUnitId="DAN-qRlpXvY15cfMPpl0" adWidth={300} adHeight={250} />
 
                   {/* SECTION 3 */}
                   <Box>
