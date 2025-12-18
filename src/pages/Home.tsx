@@ -753,7 +753,7 @@ const Home = () => {
               </Box>
 
               {/* 광고 6: 최근 영상 섹션 후 */}
-              <AdRotator type="kakao" kakaoAdUnitId="DAN-TuJyMLJV5hB5UXiO" />
+              <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
             </VStack>
           </Container>
         </VStack>
