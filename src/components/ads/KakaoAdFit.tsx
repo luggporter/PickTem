@@ -62,9 +62,9 @@ const KakaoAdFit = ({
     const createAdArea = () => {
       if (!adRef.current) return
 
-      // 기존 광고 영역이 있으면 제거
+      // 기존 광고 영역이 있으면 제거 (같은 컨테이너 내)
       const existingAd = adRef.current.querySelector('.kakao_ad_area')
-      if (existingAd) {
+      if (existingAd && existingAd.getAttribute('data-ad-unit') === adUnitId) {
         existingAd.remove()
       }
 
@@ -79,8 +79,27 @@ const KakaoAdFit = ({
       adRef.current.appendChild(ins)
     }
 
-    loadScript()
-    createAdArea()
+    // 스크립트가 이미 있는지 확인
+    const existingScript = document.querySelector('script[src*="ba.min.js"]')
+    
+    if (existingScript) {
+      // 이미 스크립트가 있으면 바로 광고 영역 생성
+      createAdArea()
+    } else {
+      // 스크립트 로드
+      loadScript()
+      
+      // 스크립트 로드 완료 후 광고 영역 생성
+      const checkInterval = setInterval(() => {
+        if (window.kakaoAdFitLoaded || document.querySelector('script[src*="ba.min.js"]')) {
+          clearInterval(checkInterval)
+          createAdArea()
+        }
+      }, 100)
+      
+      // 5초 후 타임아웃
+      setTimeout(() => clearInterval(checkInterval), 5000)
+    }
   }, [adUnitId, adWidth, adHeight])
 
   return (
