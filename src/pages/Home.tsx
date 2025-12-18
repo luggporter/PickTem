@@ -330,7 +330,7 @@ const Home = () => {
           {/* 광고 1: 배너 아래 */}
           {/* <AdRotator type="auto" /> */}
 
-            <ins className="kakao_ad_area" style={{display:'none'}}
+            <ins className="kakao_ad_area" style={{display:'none', width: '100%'}}
 data-ad-unit = "DAN-TuJyMLJV5hB5UXiO"
 data-ad-width = "320"
 data-ad-height = "100"></ins>
