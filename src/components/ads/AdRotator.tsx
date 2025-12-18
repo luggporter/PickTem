@@ -68,13 +68,13 @@ const AdRotator = ({
         />
       )} */}
       {/* 기본값이거나 설정되지 않은 경우 AdSense 사용 */}
-      {selectedType === 'kakao' && (!kakaoAdUnitId || kakaoAdUnitId === 'YOUR_KAKAO_AD_UNIT_ID') && (
+      {/* {selectedType === 'kakao' && (!kakaoAdUnitId || kakaoAdUnitId === 'YOUR_KAKAO_AD_UNIT_ID') && (
         <AdSense
           adSlot={adSenseSlot}
           adFormat="horizontal"
           style={style}
         />
-      )}
+      )} */}
     </Box>
   )
 }
