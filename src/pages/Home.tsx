@@ -752,7 +752,7 @@ const Home = () => {
               </Box>
 
               {/* 광고 6: 최근 영상 섹션 후 */}
-              <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
+              <KakaoAdDirect adUnitId="DAN-dvF1SjhFXI54NDXm" adWidth={250} adHeight={250} />
             </VStack>
           </Container>
         </VStack>
