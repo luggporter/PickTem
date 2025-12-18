@@ -36,6 +36,74 @@ import { getPopularVideos } from '../services/googleSheets'
 import { Video } from '../types'
 import { articles } from '../components/blog/blogList'
 
+// 카카오 애드핏 직접 삽입 컴포넌트
+const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: string; adWidth: number; adHeight: number }) => {
+  const adRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!adRef.current) return
+
+    // 기존 광고 영역 제거
+    const existing = adRef.current.querySelector('.kakao_ad_area')
+    if (existing) {
+      existing.remove()
+    }
+
+    // ins 태그 생성
+    const ins = document.createElement('ins')
+    ins.className = 'kakao_ad_area'
+    ins.style.display = 'block'
+    ins.style.width = adWidth + 'px'
+    ins.style.height = adHeight + 'px'
+    ins.style.margin = '0 auto'
+    ins.setAttribute('data-ad-unit', adUnitId)
+    ins.setAttribute('data-ad-width', adWidth.toString())
+    ins.setAttribute('data-ad-height', adHeight.toString())
+
+    adRef.current.appendChild(ins)
+
+    // 카카오 애드핏 스크립트 확인 및 재스캔 트리거
+    const checkAndTrigger = () => {
+      const script = document.querySelector('script[src*="ba.min.js"]')
+      if (script) {
+        // 스크립트가 이미 있으면 DOM 변경을 트리거하여 재스캔 유도
+        setTimeout(() => {
+          if (ins && ins.parentNode) {
+            // 요소를 복제해서 교체 (카카오 스크립트 재스캔 트리거)
+            const clone = ins.cloneNode(true) as HTMLElement
+            ins.parentNode.replaceChild(clone, ins)
+          }
+        }, 500)
+      } else {
+        // 스크립트가 없으면 로드
+        const scriptTag = document.createElement('script')
+        scriptTag.type = 'text/javascript'
+        scriptTag.src = '//t1.daumcdn.net/kas/static/ba.min.js'
+        scriptTag.async = true
+        document.head.appendChild(scriptTag)
+      }
+    }
+
+    checkAndTrigger()
+
+    // 정리 함수
+    return () => {
+      if (adRef.current) {
+        const ad = adRef.current.querySelector('.kakao_ad_area')
+        if (ad) {
+          ad.remove()
+        }
+      }
+    }
+  }, [adUnitId, adWidth, adHeight])
+
+  return (
+    <Box py={4} display="flex" justifyContent="center" w="100%">
+      <div ref={adRef} style={{ width: '100%', display: 'flex', justifyContent: 'center' }} />
+    </Box>
+  )
+}
+
 const Home = () => {
   const navigate = useNavigate()
   const { videos: mockVideos } = useVideos()
@@ -328,13 +396,7 @@ const Home = () => {
           </Box>
 
           {/* 광고 1: 배너 아래 */}
-          {/* <AdRotator type="auto" /> */}
-
-            <ins className="kakao_ad_area" style={{display:'block', width: '100%'}}
-data-ad-unit = "DAN-TuJyMLJV5hB5UXiO"
-data-ad-width = "320"
-data-ad-height = "100"></ins>
-            <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+          <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
             
           <Container maxW="container.sm" py={6} px={4}>
             <VStack spacing={6} align="stretch">
@@ -657,11 +719,7 @@ data-ad-height = "100"></ins>
                   </Flex>
                 </Box>
                 </Box>
-                <ins className="kakao_ad_area" style={{display:'block'}}
-data-ad-unit = "DAN-qRlpXvY15cfMPpl0"
-data-ad-width = "300"
-data-ad-height = "250"></ins>
-<script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+                <KakaoAdDirect adUnitId="DAN-qRlpXvY15cfMPpl0" adWidth={300} adHeight={250} />
 
               {/* 광고 5: 메거진 섹션 후 */}
               {/* <AdRotator type="auto" /> */}
