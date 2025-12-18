@@ -1,6 +1,5 @@
 import { Box } from '@chakra-ui/react'
 import AdSense from '../AdSense'
-import KakaoAdFit from './KakaoAdFit'
 
 interface AdRotatorProps {
   /** 광고 타입: 'auto'는 랜덤 선택, 특정 타입 지정 가능 */
