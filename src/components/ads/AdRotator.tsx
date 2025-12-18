@@ -53,12 +53,13 @@ const AdRotator = ({
           style={style}
         />
       )}
-      {selectedType === 'kakao' && kakaoAdUnitId && kakaoAdUnitId !== 'YOUR_KAKAO_AD_UNIT_ID' && (
-        <KakaoAdFit
-          adUnitId={kakaoAdUnitId}
-          adWidth={320}
-          adHeight={100}
-          style={style}
+      {selectedType === 'kakao' && kakaoAdUnitId && (
+        <ins 
+          className="kakao_ad_area" 
+          style={{ display: 'block', width: '320px', height: '100px', margin: '0 auto', ...style }}
+          data-ad-unit={kakaoAdUnitId}
+          data-ad-width="320"
+          data-ad-height="100"
         />
       )}
       {/* {selectedType === 'medianet' && mediaNetCid !== 'YOUR_MEDIANET_CID' && (

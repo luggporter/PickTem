@@ -683,7 +683,7 @@ const Home = () => {
               </Box>
 
               {/* 광고 6: 최근 영상 섹션 후 */}
-              <AdRotator type="kakao" />
+              <AdRotator type="kakao" kakaoAdUnitId="DAN-TuJyMLJV5hB5UXiO" />
             </VStack>
           </Container>
         </VStack>
