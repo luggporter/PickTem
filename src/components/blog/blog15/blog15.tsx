@@ -16,6 +16,7 @@ import { FiCalendar, FiUser } from 'react-icons/fi';
 import MobileHeader from '../../MobileHeader';
 import AdSense from '../../AdSense';
 import AdRotator from '../../ads/AdRotator';
+import { KakaoAdDirect } from '../../../pages/Home';
 
 const Blog15 = () => {
   const navigate = useNavigate();
@@ -240,6 +241,7 @@ const Blog15 = () => {
                   </Box>
 
                   <Divider />
+                  <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
 
                   <Box as="section">
                     <Heading as="h2" fontSize="2xl" mb={5} borderBottom="3px solid" borderColor="brand.500" w="fit-content">
@@ -252,6 +254,7 @@ const Blog15 = () => {
                   </Box>
 
                   <Divider />
+                  <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
 
                   <Box as="section">
                     <Heading as="h2" fontSize="2xl" mb={5} borderBottom="3px solid" borderColor="brand.500" w="fit-content">

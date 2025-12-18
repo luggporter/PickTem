@@ -26,6 +26,7 @@ import SEO from '../components/SEO'
 import AdRotator from '../components/ads/AdRotator'
 import { useVideos } from '../hooks/useVideos'
 import { useMemo } from 'react'
+import { KakaoAdDirect } from './Home'
 
 const PopularItemsPage = () => {
   const navigate = useNavigate()
@@ -457,7 +458,7 @@ const PopularItemsPage = () => {
           </Box>
 
           {/* 광고 3: 페이지 하단 */}
-          <AdRotator type="auto" />
+          <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
         </VStack>
       </Container>
     </Box>

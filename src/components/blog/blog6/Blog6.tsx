@@ -1,21 +1,21 @@
 import {
+  Badge,
   Box,
   Container,
+  Divider,
   Heading,
-  Text,
+  HStack,
   Image,
   Stack,
-  HStack,
-  Badge,
-  Divider,
+  Text,
   VStack,
 } from '@chakra-ui/react';
 import { Helmet } from 'react-helmet-async';
-import { useNavigate } from 'react-router-dom';
 import { FiCalendar, FiUser } from 'react-icons/fi';
-import MobileHeader from '../../MobileHeader';
+import { useNavigate } from 'react-router-dom';
+import { KakaoAdDirect } from '../../../pages/Home';
 import AdSense from '../../AdSense';
-import AdRotator from '../../ads/AdRotator';
+import MobileHeader from '../../MobileHeader';
 
 const Blog6 = () => {
   const navigate = useNavigate();
@@ -179,7 +179,7 @@ const Blog6 = () => {
                   <Divider />
 
                   {/* 광고 1: 첫 번째 섹션 후 */}
-                  <AdRotator type="auto" />
+                  <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
 
                   {/* SPRING */}
                   <Box>
@@ -273,6 +273,7 @@ const Blog6 = () => {
                   </Box>
 
                   <Divider />
+                  <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
 
                   {/* AUTUMN */}
                   <Box>

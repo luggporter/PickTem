@@ -16,6 +16,7 @@ import AdSense from '../components/AdSense'
 // import AdRotator from '../components/ads/AdRotator'
 import SEO from '../components/SEO'
 import { useVideos } from '../hooks/useVideos'
+import { KakaoAdDirect } from './Home'
 
 const VideoDetailPage = () => {
   const { id } = useParams<{ id: string }>()
@@ -284,7 +285,8 @@ const VideoDetailPage = () => {
             </Box>
 
             {/* 광고 2: 상품 리스트 전 */}
-            {/* <AdRotator type="auto" /> */}
+              {/* <AdRotator type="auto" /> */}
+            <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
 
             {/* 상품 리스트 */}
             <Box>

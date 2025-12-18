@@ -27,7 +27,6 @@ import {
 import VideoCard from '../components/VideoCard'
 import MobileHeader from '../components/MobileHeader'
 import AdSense from '../components/AdSense'
-import AdRotator from '../components/ads/AdRotator'
 import SEO from '../components/SEO'
 import { useVideos } from '../hooks/useVideos'
 import { useNavigate } from 'react-router-dom'
@@ -37,7 +36,7 @@ import { Video } from '../types'
 import { articles } from '../components/blog/blogList'
 
 // 카카오 애드핏 직접 삽입 컴포넌트
-const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: string; adWidth: number; adHeight: number }) => {
+export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: string; adWidth: number; adHeight: number }) => {
   const adRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {

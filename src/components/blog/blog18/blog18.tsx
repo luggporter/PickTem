@@ -16,6 +16,7 @@ import { FiCalendar, FiUser } from 'react-icons/fi';
 import MobileHeader from '../../MobileHeader';
 import AdSense from '../../AdSense';
 import AdRotator from '../../ads/AdRotator';
+import { KakaoAdDirect } from '../../../pages/Home';
 
 const Blog18 = () => {
   const navigate = useNavigate();
@@ -143,7 +144,7 @@ const Blog18 = () => {
                   <Divider borderColor="gray.200" />
 
                   {/* 광고 1: 첫 번째 섹션 후 */}
-                  <AdRotator type="auto" />
+                  <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
 
                   {/* 섹션 1 */}
                   <Box as="section">

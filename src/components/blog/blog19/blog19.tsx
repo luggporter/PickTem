@@ -1,21 +1,21 @@
 import {
+  Badge,
   Box,
   Container,
+  Divider,
   Heading,
-  Text,
+  HStack,
   Image,
   Stack,
-  HStack,
-  Badge,
-  Divider,
+  Text,
   VStack,
 } from '@chakra-ui/react';
 import { Helmet } from 'react-helmet-async';
-import { useNavigate } from 'react-router-dom';
 import { FiCalendar, FiUser } from 'react-icons/fi';
-import MobileHeader from '../../MobileHeader';
+import { useNavigate } from 'react-router-dom';
+import { KakaoAdDirect } from '../../../pages/Home';
 import AdSense from '../../AdSense';
-import AdRotator from '../../ads/AdRotator';
+import MobileHeader from '../../MobileHeader';
 
 const Blog19 = () => {
   const navigate = useNavigate();
@@ -163,7 +163,7 @@ const Blog19 = () => {
                   <Divider borderColor="gray.200" />
 
                   {/* 광고 1: 첫 번째 섹션 후 */}
-                  <AdRotator type="auto" />
+                  <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
 
                   {/* 섹션 1 */}
                   <Box as="section">
@@ -224,11 +224,7 @@ const Blog19 = () => {
                   </Box>
 
                   {/* 광고 넣기 좋은 구간 */}
-                  <Box>
-                    <Text fontSize="14px" color="#868e96">
-                      ※ (여기 광고 넣기 좋음) 일정/동선 섹션 끝난 직후
-                    </Text>
-                  </Box>
+                  <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
 
                   <Divider borderColor="gray.200" />
 
@@ -329,11 +325,7 @@ const Blog19 = () => {
                   <Divider borderColor="gray.200" />
 
                   {/* 광고 넣기 좋은 구간 */}
-                  <Box>
-                    <Text fontSize="14px" color="#868e96">
-                      ※ (여기 광고 넣기 좋음) 선물 파트 끝난 직후
-                    </Text>
-                  </Box>
+                  <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
 
                   <Divider borderColor="gray.200" />
 

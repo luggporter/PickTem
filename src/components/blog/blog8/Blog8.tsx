@@ -16,6 +16,7 @@ import { FiCalendar, FiUser } from 'react-icons/fi';
 import MobileHeader from '../../MobileHeader';
 import AdSense from '../../AdSense';
 import AdRotator from '../../ads/AdRotator';
+import { KakaoAdDirect } from '../../../pages/Home';
 
 const Blog8 = () => {
   const navigate = useNavigate();
@@ -394,6 +395,7 @@ const Blog8 = () => {
 
                   <Divider borderColor="gray.200" />
 
+                  <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
                   {/* 섹션 3: 미세먼지 & 공기청정기 */}
                   <Box as="section">
                     <Heading
@@ -471,6 +473,7 @@ const Blog8 = () => {
                   </Box>
 
                   <Divider borderColor="gray.200" />
+                  <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
 
                   {/* 섹션 4: 습도 & 곰팡이 */}
                   <Box as="section">
