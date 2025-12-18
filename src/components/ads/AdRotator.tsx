@@ -43,6 +43,8 @@ const AdRotator = ({
 
   const selectedType = getAdType()
 
+  console.log({selectedType, kakaoAdUnitId});
+  
   return (
     <Box py={4} display="flex" justifyContent="center" w="100%">
       {selectedType === 'adsense' && (
