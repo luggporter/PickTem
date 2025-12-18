@@ -653,7 +653,7 @@ const Home = () => {
               </Box>
 
               {/* 광고 5: 메거진 섹션 후 */}
-              <AdRotator type="auto" />
+              {/* <AdRotator type="auto" /> */}
 
               {/* 최근 영상 섹션 */}
               <Box>

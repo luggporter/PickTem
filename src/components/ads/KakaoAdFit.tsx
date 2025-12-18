@@ -32,8 +32,8 @@ interface KakaoAdFitProps {
 const KakaoAdFit = ({ 
   adUnitId,
   adWidth = 320,
-  adHeight = 50,
-  style = { display: 'block', minHeight: '50px', width: '100%' }
+  adHeight = 100,
+  style = { display: 'block', minHeight: '100px', width: '100%' }
 }: KakaoAdFitProps) => {
   const adRef = useRef<HTMLDivElement>(null)
 
