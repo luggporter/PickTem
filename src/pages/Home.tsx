@@ -330,6 +330,12 @@ const Home = () => {
           {/* 광고 1: 배너 아래 */}
           {/* <AdRotator type="auto" /> */}
 
+            <ins className="kakao_ad_area" style={{display:'none'}}
+data-ad-unit = "DAN-TuJyMLJV5hB5UXiO"
+data-ad-width = "320"
+data-ad-height = "100"></ins>
+            <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+            
           <Container maxW="container.sm" py={6} px={4}>
             <VStack spacing={6} align="stretch">
               {/* 카테고리 10개 */}
