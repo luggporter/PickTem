@@ -650,7 +650,12 @@ const Home = () => {
                     ))}
                   </Flex>
                 </Box>
-              </Box>
+                </Box>
+                <ins class="kakao_ad_area" style={{display:'none'}}
+data-ad-unit = "DAN-qRlpXvY15cfMPpl0"
+data-ad-width = "300"
+data-ad-height = "250"></ins>
+<script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
 
               {/* 광고 5: 메거진 섹션 후 */}
               {/* <AdRotator type="auto" /> */}

@@ -71,7 +71,10 @@ const KakaoAdFit = ({
       // 카카오 애드핏 공식 방식으로 광고 영역 생성
       const ins = document.createElement('ins')
       ins.className = 'kakao_ad_area'
-      ins.style.display = 'none'  // 카카오 애드핏은 none으로 시작, 스크립트가 자동으로 표시
+      ins.style.display = 'block'  // block으로 설정하여 광고가 표시되도록 함
+      ins.style.width = adWidth + 'px'
+      ins.style.height = adHeight + 'px'
+      ins.style.margin = '0 auto'
       ins.setAttribute('data-ad-unit', adUnitId)
       ins.setAttribute('data-ad-width', adWidth.toString())
       ins.setAttribute('data-ad-height', adHeight.toString())

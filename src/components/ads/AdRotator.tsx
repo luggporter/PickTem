@@ -1,5 +1,6 @@
 import { Box } from '@chakra-ui/react'
 import AdSense from '../AdSense'
+import KakaoAdFit from './KakaoAdFit'
 
 interface AdRotatorProps {
   /** 광고 타입: 'auto'는 랜덤 선택, 특정 타입 지정 가능 */
@@ -55,12 +56,11 @@ const AdRotator = ({
         />
       )}
       {selectedType === 'kakao' && kakaoAdUnitId && (
-        <ins 
-          className="kakao_ad_area" 
-          style={{ display: 'block', width: '320px', height: '100px', margin: '0 auto', ...style }}
-          data-ad-unit={kakaoAdUnitId}
-          data-ad-width="320"
-          data-ad-height="100"
+        <KakaoAdFit
+          adUnitId={kakaoAdUnitId}
+          adWidth={320}
+          adHeight={100}
+          style={style}
         />
       )}
       {/* {selectedType === 'medianet' && mediaNetCid !== 'YOUR_MEDIANET_CID' && (
