@@ -719,7 +719,8 @@ const Home = () => {
                   </Flex>
                 </Box>
                 </Box>
-                <KakaoAdDirect adUnitId="DAN-qRlpXvY15cfMPpl0" adWidth={300} adHeight={250} />
+                {/* <KakaoAdDirect adUnitId="DAN-qRlpXvY15cfMPpl0" adWidth={300} adHeight={250} /> */}
+                <KakaoAdDirect adUnitId="DAN-Q1xrPzktMlJWOR70" adWidth={728} adHeight={90} />
 
               {/* 광고 5: 메거진 섹션 후 */}
               {/* <AdRotator type="auto" /> */}
