@@ -169,7 +169,7 @@ const PickTemList = () => {
 
               {/* 2열 그리드 */}
               <SimpleGrid columns={2} spacing={3}>
-                {filteredVideos.map((video) => (
+                {[...filteredVideos].reverse().map((video) => (
                   <VideoCard key={video.id} video={video} />
                 ))}
               </SimpleGrid>

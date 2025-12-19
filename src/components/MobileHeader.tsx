@@ -1,5 +1,5 @@
 import { Box, HStack, Text, Icon } from '@chakra-ui/react'
-import { FiBell } from 'react-icons/fi'
+import { FiBell, FiSettings } from 'react-icons/fi'
 
 interface MobileHeaderProps {
   title?: string
@@ -7,6 +7,7 @@ interface MobileHeaderProps {
   onBack?: () => void
   showNotification?: boolean
   notificationCount?: number
+  onSettingsClick?: () => void
 }
 
 const MobileHeader = ({ 
@@ -14,7 +15,8 @@ const MobileHeader = ({
   showBack = false, 
   onBack,
   showNotification = false,
-  notificationCount = 0 
+  notificationCount = 0,
+  onSettingsClick
 }: MobileHeaderProps) => {
 
 
@@ -69,7 +71,8 @@ const MobileHeader = ({
           </Text>
         )}
         
-        {showNotification ? (
+        {/* 알림 아이콘 주석 처리 */}
+        {/* {showNotification ? (
           <Box position="relative">
             <Icon as={FiBell} w={6} h={6} color="#212529" />
             {notificationCount > 0 && (
@@ -92,6 +95,20 @@ const MobileHeader = ({
               </Box>
             )}
           </Box>
+        ) : (
+          <Box />
+        )} */}
+        
+        {/* 설정 버튼 */}
+        {onSettingsClick ? (
+          <Icon 
+            as={FiSettings} 
+            w={6} 
+            h={6} 
+            color="#212529" 
+            cursor="pointer"
+            onClick={onSettingsClick}
+          />
         ) : (
           <Box />
         )}

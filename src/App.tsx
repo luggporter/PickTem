@@ -10,16 +10,33 @@ import MagazineDetailPage from './pages/MagazineDetailPage'
 
 function App() {
   return (
-    <Box minH="100vh" bg="#f7f7f7" pb="80px">
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/list" element={<PickTemList />} />
-        <Route path="/popular" element={<PopularItemsPage />} />
-        <Route path="/video/:id" element={<VideoDetailPage />} />
-        <Route path="/magazine" element={<MagazinePage />} />
-        <Route path="/magazine/:id" element={<MagazineDetailPage />} />
-      </Routes>
-      <BottomNav />
+    <Box 
+      minH="100vh" 
+      bg="#f7f7f7" 
+      pb="80px"
+      maxW="100vw"
+      mx="auto"
+      position="relative"
+    >
+      {/* 모바일 스타일 유지를 위한 컨테이너 */}
+      <Box
+        maxW="480px"
+        mx="auto"
+        bg="white"
+        minH="100vh"
+        position="relative"
+        boxShadow={{ base: 'none', md: '0 0 20px rgba(0,0,0,0.1)' }}
+      >
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/list" element={<PickTemList />} />
+          <Route path="/popular" element={<PopularItemsPage />} />
+          <Route path="/video/:id" element={<VideoDetailPage />} />
+          <Route path="/magazine" element={<MagazinePage />} />
+          <Route path="/magazine/:id" element={<MagazineDetailPage />} />
+        </Routes>
+        <BottomNav />
+      </Box>
     </Box>
   )
 }

@@ -15,7 +15,6 @@ import { useNavigate } from 'react-router-dom';
 import { FiCalendar, FiUser } from 'react-icons/fi';
 import MobileHeader from '../../MobileHeader';
 import AdSense from '../../AdSense';
-import AdRotator from '../../ads/AdRotator';
 import { KakaoAdDirect } from '../../../pages/Home';
 
 const Blog2 = () => {
@@ -191,22 +190,42 @@ const Blog2 = () => {
                       흥미로운 점은, 후회하는 쇼핑에는 일정한 패턴이 있다는
                       것입니다. 단순히 “운이 나빴던 소비”가 아니라, 같은
                       실수를 반복하게 만드는 감정과 상황이 존재합니다.
-                      이 패턴을 이해하면, 쇼핑 실패 확률을 크게 줄일 수
-                      있습니다.
+                      예를 들어 스트레스가 심한 날, 야근 후 늦은 밤,
+                      월급 직후처럼 감정이 크게 출렁이는 순간일수록
+                      “나를 위한 선물”이라는 명분으로 지갑이 쉽게 열립니다.
+                    </Text>
+                    <Text mb={4}>
+                      또 하나의 공통점은, 사는 순간에는 머릿속에 “이걸 쓰는
+                      멋진 내 모습”만 떠오르고, 정작 보관과 관리에 들어갈
+                      시간과 에너지는 잘 떠올리지 못한다는 점입니다. 구매는
+                      클릭 한 번으로 끝나지만, 물건을 보관하고, 관리하고,
+                      사용하지 않을 때 죄책감을 느끼는 시간은 훨씬 길게
+                      이어집니다.
                     </Text>
                     <Text>
                       이 글에서는 사람들이 가장 많이 후회하는 구매 유형 10가지를
                       정리하고, 실제로 쓸모 있는 소비만 남기는 실전 체크리스트를
                       소개합니다. 소비를 줄이자는 이야기가 아니라, 나에게
                       진짜 도움이 되는 소비를 골라내는 방법에 가깝습니다.
+                      “아예 사지 말자”가 아니라 “살 거라면 덜 후회하게
+                      사 보자”에 가까운 현실적인 가이드를 목표로 합니다.
                     </Text>
                   </Box>
 
                   <Divider borderColor="gray.200" />
 
-                  {/* 광고 1: 첫 번째 섹션 후 */}
-                  <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
-                  {/* <AdRotator type="auto" /> */}
+                  {/* 광고 1: 상단 – 구글 */}
+                  <Box py={4} display="flex" justifyContent="center">
+                    <AdSense
+                      adSlot="9944590930"
+                      adFormat="horizontal"
+                      style={{
+                        display: 'block',
+                        minHeight: '120px',
+                        width: '100%',
+                      }}
+                    />
+                  </Box>
 
                   <Box as="section">
                     <Heading
@@ -241,6 +260,12 @@ const Blog2 = () => {
                         “싸서 산 것”이지, “필요해서 산 것”이 아닌 경우가
                         많습니다.
                       </Text>
+                      <Text>
+                        특히 쇼핑몰 메인 배너나 푸시 알림으로 들어간 페이지에서
+                        바로 결제할수록 이런 실수가 자주 발생합니다.
+                        “원래부터 찾던 물건인지, 세일을 보고 처음 본 물건인지”
+                        한 번만 구분해봐도 많은 구매를 걸러낼 수 있습니다.
+                      </Text>
 
                       <Text fontWeight="600">
                         ② 사이즈·공간을 고려하지 않은 가구/인테리어
@@ -253,6 +278,13 @@ const Blog2 = () => {
                         더 들었다면 피할 수 있었던 대표적인 쇼핑 실패
                         유형입니다.
                       </Text>
+                      <Text>
+                        특히 원룸이나 작은 집에서는 가구 한 개가 동선 전체를
+                        바꿔버리기도 합니다. “가구를 먼저 사고 배치를 고민”
+                        하기보다, 현재 집 구조를 사진과 간단한 스케치로
+                        남겨두고, 그 위에 사이즈를 적어가며 시뮬레이션해보면
+                        후회를 크게 줄일 수 있습니다.
+                      </Text>
 
                       <Text fontWeight="600">
                         ③ 유행만 보고 고른 패션 아이템
@@ -263,6 +295,13 @@ const Blog2 = () => {
                         내 체형, 평소 스타일, 회사 드레스 코드와 맞지
                         않으면 특별한 날 몇 번 입고 옷장 속으로 사라지기
                         쉽습니다.
+                      </Text>
+                      <Text>
+                        패션 아이템은 “내 옷장 안 다른 옷들과 얼마나 잘
+                        어울리는지”를 기준으로 보는 것이 좋습니다.
+                        가지고 있는 옷들과 최소 3가지 이상 코디 조합이
+                        떠오르지 않는다면, 사진 속에서는 멋져 보여도
+                        실제 생활에서는 활용도가 낮을 가능성이 큽니다.
                       </Text>
 
                       <Text fontWeight="600">
@@ -347,7 +386,13 @@ const Blog2 = () => {
                   </Box>
 
                   <Divider borderColor="gray.200" />
-                  <KakaoAdDirect adUnitId="DAN-qRlpXvY15cfMPpl0" adWidth={300} adHeight={250} />
+
+                  {/* 광고 2: 중간 – 카카오 다이렉트 */}
+                  <KakaoAdDirect
+                    adUnitId="DAN-TuJyMLJV5hB5UXiO"
+                    adWidth={320}
+                    adHeight={100}
+                  />
 
                   <Box as="section">
                     <Heading
@@ -480,20 +525,7 @@ const Blog2 = () => {
                     </Stack>
                   </Box>
 
-                  <Divider borderColor="gray.200" />
-
-                  {/* 광고 2: 중간 지점 */}
-                  <Box py={4} display="flex" justifyContent="center">
-                    <AdSense
-                      adSlot="9944590930"
-                      adFormat="horizontal"
-                      style={{
-                        display: 'block',
-                        minHeight: '120px',
-                        width: '100%',
-                      }}
-                    />
-                  </Box>
+                  {/* 중간 AdSense 블록 제거 (상단에만 배치) */}
 
                   <Box as="section">
                     <Heading
@@ -524,9 +556,27 @@ const Blog2 = () => {
                         명세서를 보는 나를 조금 더 편안하게 만들어 줄
                         것입니다.
                       </Text>
+                      <Text>
+                        꼭 완벽한 소비 습관을 만들지 않아도 괜찮습니다. 다만 “아무 생각 없이”
+                        결제하던 순간이 “한 번쯤은 나에게 물어보고 결제하는 순간”으로 바뀐다면,
+                        같은 수입으로도 훨씬 만족스러운 삶을 쌓아갈 수 있습니다. 쇼핑은 사라지지
+                        않지만, 후회는 훨씬 줄어들 수 있습니다.
+                      </Text>
+                      <Text>
+                        작은 노트나 메모 앱에 “나만의 소비 원칙” 두세 가지만 적어두고,
+                        한 번씩 꺼내보는 것만으로도 선택은 달라집니다. 예를 들어
+                        “세일이 먼저 보이면 보지 않는다”, “집에 둘 자리가 떠오르지
+                        않으면 보류한다”, “월 구독 서비스는 3개를 넘기지 않는다”처럼
+                        아주 단순한 문장으로요. 기준이 분명해질수록, 쇼핑은
+                        죄책감이 아닌 만족감에 가까워집니다.
+                      </Text>
 
-                      {/* 광고 3: 마지막 섹션 전 */}
-                      <AdRotator type="kakao" />
+                      {/* 광고 3: 하단 – 카카오 다이렉트 */}
+                      <KakaoAdDirect
+                        adUnitId="DAN-qRlpXvY15cfMPpl0"
+                        adWidth={300}
+                        adHeight={250}
+                      />
 
                       <Box
                         bg="brand.50"

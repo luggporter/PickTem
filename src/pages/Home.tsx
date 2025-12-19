@@ -34,6 +34,7 @@ import { useState, useEffect, useRef } from 'react'
 import { getPopularVideos } from '../services/googleSheets'
 import { Video } from '../types'
 import { articles } from '../components/blog/blogList'
+import SettingsModal from '../components/SettingsModal'
 
 // 카카오 애드핏 타입 정의
 interface Adfit {
@@ -93,6 +94,7 @@ const Home = () => {
   const [showAdPlaceholder, setShowAdPlaceholder] = useState(true)
   const [popularVideos, setPopularVideos] = useState<Video[]>([])
   const [loadingPopular, setLoadingPopular] = useState(true)
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false)
 
   // 배너 이미지 (상품 판매 사이트)
   // Unsplash License: 상업적 사용 포함 자유롭게 사용 가능
@@ -267,7 +269,14 @@ const Home = () => {
         structuredData={structuredData}
       />
       <Box bg="white" minH="100vh">
-        <MobileHeader title="씩아픽템" showNotification notificationCount={0} />
+        <MobileHeader 
+          title="씩아픽템" 
+          onSettingsClick={() => setIsSettingsOpen(true)}
+        />
+        <SettingsModal 
+          isOpen={isSettingsOpen} 
+          onClose={() => setIsSettingsOpen(false)} 
+        />
       <Container maxW="container.sm" px={0}>
         <VStack spacing={0} align="stretch">
           {/* 내부 광고 스와이프 배너 */}

@@ -24,16 +24,16 @@ const BottomNav = () => {
     <Box
       position="fixed"
       bottom={0}
-      left={0}
-      right={0}
+      left="50%"
+      transform="translateX(-50%)"
       zIndex={100}
       bg="white"
       borderTop="1px solid"
       borderColor="gray.200"
       px={2}
       py={1}
-      maxW="100%"
-      mx="auto"
+      maxW="480px"
+      w="100%"
     >
       <HStack justify="space-around" spacing={0}>
         {navItems.map((item) => {
