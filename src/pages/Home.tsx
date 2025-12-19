@@ -83,13 +83,43 @@ export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: strin
         return
       }
       
-      // DOM 변경을 트리거하여 카카오 스크립트가 인식하도록 함
+      retryCount++
+      console.log(`[KakaoAdDirect] 재스캔 시도 ${retryCount}/${maxRetries}`)
+      
+      // 방법 1: DOM 변경을 트리거
       const clone = ins.cloneNode(true) as HTMLElement
       ins.parentNode.replaceChild(clone, ins)
       ins = clone
       
-      retryCount++
-      console.log(`[KakaoAdDirect] 재스캔 시도 ${retryCount}/${maxRetries}`)
+      // 방법 2: 카카오 애드핏 API 직접 호출 시도
+      try {
+        // 카카오 애드핏이 전역 객체에 있는지 확인
+        if ((window as any).kakao && (window as any).kakao.adfit) {
+          console.log('[KakaoAdDirect] 카카오 애드핏 API 발견, 재스캔 호출 시도')
+          const adfit = (window as any).kakao.adfit
+          
+          // 가능한 메서드들 시도
+          if (typeof adfit.start === 'function') {
+            adfit.start()
+            console.log('[KakaoAdDirect] adfit.start() 호출')
+          }
+          if (typeof adfit.render === 'function') {
+            adfit.render()
+            console.log('[KakaoAdDirect] adfit.render() 호출')
+          }
+          if (typeof adfit.scan === 'function') {
+            adfit.scan()
+            console.log('[KakaoAdDirect] adfit.scan() 호출')
+          }
+        } else {
+          console.log('[KakaoAdDirect] 카카오 애드핏 API를 찾을 수 없음', {
+            hasKakao: !!(window as any).kakao,
+            hasAdfit: !!(window as any).kakao?.adfit
+          })
+        }
+      } catch (e) {
+        console.warn('[KakaoAdDirect] API 호출 중 오류:', e)
+      }
       
       // 광고가 로드되었는지 확인 (iframe이 추가되었는지)
       setTimeout(() => {
@@ -99,18 +129,19 @@ export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: strin
           hasIframe: !!hasAd,
           hasChildren,
           childrenCount: ins?.children.length ?? 0,
-          innerHTMLLength: ins?.innerHTML.length ?? 0
+          innerHTMLLength: ins?.innerHTML.length ?? 0,
+          kakaoAdfit: !!(window as any).kakao?.adfit
         })
         
         if (!hasAd && retryCount < maxRetries) {
           // 아직 광고가 로드되지 않았으면 계속 재시도
-          setTimeout(triggerRescan, 200)
+          setTimeout(triggerRescan, 300)
         } else if (hasAd) {
           console.log('[KakaoAdDirect] ✅ 광고 로드 성공!', { retryCount })
         } else {
           console.warn('[KakaoAdDirect] ⚠️ 최대 재시도 횟수 도달, 광고 로드 실패', { retryCount })
         }
-      }, 100)
+      }, 200)
     }
 
     // 스크립트 확인
