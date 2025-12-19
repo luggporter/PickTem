@@ -55,62 +55,25 @@ export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: strin
   useEffect(() => {
     if (!scriptElementWrapper.current) return
 
-    // 스크립트가 이미 로드되어 있는지 확인
-    const existingScript = document.querySelector('script[src*="ba.min.js"]')
-    
-    const initializeAd = () => {
-      // 스크립트가 준비되면 display 메서드 호출
-      if (window.adfit && typeof window.adfit.display === 'function') {
-        try {
-          window.adfit.display(adUnitId)
-        } catch (e) {
-          // display 실패 무시
-        }
-      }
-    }
-
-    if (!existingScript) {
-      // 스크립트가 없으면 컴포넌트 컨테이너에 추가
-      const script = document.createElement('script')
-      script.setAttribute('src', '//t1.daumcdn.net/kas/static/ba.min.js')
-      script.setAttribute('async', 'true')
-      script.onload = () => {
-        // 스크립트 로드 후 약간의 딜레이를 두고 display 호출
-        setTimeout(initializeAd, 100)
-      }
-      scriptElementWrapper.current.appendChild(script)
-    } else {
-      // 스크립트가 이미 있으면 즉시 display 호출 시도
-      // window.adfit이 준비될 때까지 대기
-      const checkInterval = setInterval(() => {
-        if (window.adfit) {
-          clearInterval(checkInterval)
-          setTimeout(initializeAd, 100)
-        }
-      }, 50)
-      
-      // 최대 3초 후 타임아웃
-      setTimeout(() => clearInterval(checkInterval), 3000)
-    }
+    const script = document.createElement('script')
+    script.setAttribute('src', 'https://t1.daumcdn.net/kas/static/ba.min.js')
+    scriptElementWrapper.current.appendChild(script)
 
     // cleanup 함수
     return () => {
-      if (window.adfit && typeof window.adfit.destroy === 'function') {
-        try {
-          window.adfit.destroy(adUnitId)
-        } catch (e) {
-          // destroy 실패 무시
-        }
+      const globalAdfit = window.adfit
+      if (globalAdfit) {
+        globalAdfit.destroy(adUnitId)
       }
     }
-  }, [adUnitId])
+  }, [])
 
   return (
     <Box py={4} display="flex" justifyContent="center" w="100%">
       <div ref={scriptElementWrapper} style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
         <ins
           className="kakao_ad_area"
-          style={{ display: 'block', width: `${adWidth}px`, height: `${adHeight}px`, margin: '0 auto' }}
+          style={{ display: 'none' }}
           data-ad-unit={adUnitId}
           data-ad-width={adWidth}
           data-ad-height={adHeight}
