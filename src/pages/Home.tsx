@@ -152,20 +152,42 @@ export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: strin
       }, 400) // 체크 딜레이를 400ms로 증가
     }
 
-    // 스크립트 확인
+    // 스크립트 확인 및 대기
     const existingScript = document.querySelector('script[src*="ba.min.js"]')
     console.log('[KakaoAdDirect] 스크립트 확인:', { 
       scriptExists: !!existingScript,
-      scriptSrc: existingScript?.getAttribute('src')
+      scriptSrc: existingScript?.getAttribute('src'),
+      adUnitId,
+      windowKakao: !!(window as any).kakao
     })
     
+    // 스크립트가 완전히 로드되고 실행될 때까지 기다리는 함수
+    const waitForKakaoScript = (callback: () => void, maxWait = 3000) => {
+      const startTime = Date.now()
+      const checkInterval = setInterval(() => {
+        // window.kakao 객체가 생성되었는지 확인
+        const hasKakao = !!(window as any).kakao
+        
+        if (hasKakao || Date.now() - startTime > maxWait) {
+          clearInterval(checkInterval)
+          console.log('[KakaoAdDirect] 스크립트 준비 완료 또는 타임아웃', {
+            hasKakao,
+            waitTime: Date.now() - startTime,
+            adUnitId
+          })
+          callback()
+        }
+      }, 50) // 50ms마다 체크
+    }
+    
     if (existingScript) {
-      // 스크립트가 이미 있으면 즉시 재스캔 시작
-      // 약간의 딜레이를 주어 스크립트가 준비될 시간을 줌
-      console.log('[KakaoAdDirect] 스크립트가 이미 존재, 재스캔 시작 예약')
-      setTimeout(() => {
-        triggerRescan()
-      }, 100)
+      // 스크립트가 이미 있으면, window.kakao가 생성될 때까지 기다린 후 재스캔
+      console.log('[KakaoAdDirect] 스크립트가 이미 존재, 초기화 대기 후 재스캔')
+      waitForKakaoScript(() => {
+        setTimeout(() => {
+          triggerRescan()
+        }, 200)
+      })
     } else {
       // 스크립트가 없으면 로드 후 재스캔
       console.log('[KakaoAdDirect] 스크립트가 없어서 로드 시작')
@@ -174,10 +196,12 @@ export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: strin
       scriptTag.src = '//t1.daumcdn.net/kas/static/ba.min.js'
       scriptTag.async = true
       scriptTag.onload = () => {
-        console.log('[KakaoAdDirect] 스크립트 로드 완료, 재스캔 시작 예약')
-        setTimeout(() => {
-          triggerRescan()
-        }, 100)
+        console.log('[KakaoAdDirect] 스크립트 로드 완료, 초기화 대기 후 재스캔')
+        waitForKakaoScript(() => {
+          setTimeout(() => {
+            triggerRescan()
+          }, 200)
+        })
       }
       document.head.appendChild(scriptTag)
     }
