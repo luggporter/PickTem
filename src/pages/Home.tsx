@@ -43,42 +43,44 @@ export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: strin
     if (!adRef.current) return
 
     let ins: HTMLElement | null = null
-    const timeouts: number[] = []
+    let retryCount = 0
+    const maxRetries = 15
 
-    const createAdArea = () => {
-      if (!adRef.current) return
+    // 기존 광고 영역 제거
+    const existing = adRef.current.querySelector('.kakao_ad_area')
+    if (existing) {
+      existing.remove()
+    }
 
-      // 기존 광고 영역 제거
-      const existing = adRef.current.querySelector('.kakao_ad_area')
-      if (existing) {
-        existing.remove()
-      }
+    // ins 태그 생성 (먼저 생성)
+    ins = document.createElement('ins')
+    ins.className = 'kakao_ad_area'
+    ins.style.display = 'block'
+    ins.style.width = adWidth + 'px'
+    ins.style.height = adHeight + 'px'
+    ins.style.margin = '0 auto'
+    ins.setAttribute('data-ad-unit', adUnitId)
+    ins.setAttribute('data-ad-width', adWidth.toString())
+    ins.setAttribute('data-ad-height', adHeight.toString())
 
-      // ins 태그 생성
-      ins = document.createElement('ins')
-      ins.className = 'kakao_ad_area'
-      ins.style.display = 'block'
-      ins.style.width = adWidth + 'px'
-      ins.style.height = adHeight + 'px'
-      ins.style.margin = '0 auto'
-      ins.setAttribute('data-ad-unit', adUnitId)
-      ins.setAttribute('data-ad-width', adWidth.toString())
-      ins.setAttribute('data-ad-height', adHeight.toString())
+    adRef.current.appendChild(ins)
 
-      adRef.current.appendChild(ins)
-
-      // 카카오 애드핏이 동적으로 추가된 요소를 인식하도록 여러 번 재시도
-      // 스크립트가 이미 로드된 경우를 대비하여 여러 시도
-      for (let i = 0; i < 5; i++) {
-        const timeoutId = window.setTimeout(() => {
-          if (ins && ins.parentNode) {
-            // DOM 변경을 트리거하여 재스캔 유도
-            const clone = ins.cloneNode(true) as HTMLElement
-            ins.parentNode.replaceChild(clone, ins)
-            ins = clone
-          }
-        }, 300 + (i * 300))
-        timeouts.push(timeoutId)
+    // 재스캔 트리거 함수
+    const triggerRescan = () => {
+      if (!ins || !ins.parentNode) return
+      
+      // DOM 변경을 트리거하여 카카오 스크립트가 인식하도록 함
+      const clone = ins.cloneNode(true) as HTMLElement
+      ins.parentNode.replaceChild(clone, ins)
+      ins = clone
+      
+      retryCount++
+      
+      // 광고가 로드되었는지 확인 (iframe이 추가되었는지)
+      const hasAd = ins.querySelector('iframe')
+      if (!hasAd && retryCount < maxRetries) {
+        // 아직 광고가 로드되지 않았으면 계속 재시도
+        setTimeout(triggerRescan, 200)
       }
     }
 
@@ -86,38 +88,27 @@ export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: strin
     const existingScript = document.querySelector('script[src*="ba.min.js"]')
     
     if (existingScript) {
-      // 스크립트가 이미 있으면, 페이지 로드 완료를 기다린 후 광고 영역 생성
-      // 새로고침이 아닌 클라이언트 사이드 라우팅의 경우를 대비
-      if (document.readyState === 'complete') {
-        // 페이지가 이미 로드 완료된 경우 (라우터 이동)
-        setTimeout(() => {
-          createAdArea()
-        }, 500)
-      } else {
-        // 페이지가 아직 로딩 중인 경우
-        window.addEventListener('load', () => {
-          setTimeout(() => {
-            createAdArea()
-          }, 500)
-        }, { once: true })
-      }
+      // 스크립트가 이미 있으면 즉시 재스캔 시작
+      // 약간의 딜레이를 주어 스크립트가 준비될 시간을 줌
+      setTimeout(() => {
+        triggerRescan()
+      }, 100)
     } else {
-      // 스크립트가 없으면 로드
+      // 스크립트가 없으면 로드 후 재스캔
       const scriptTag = document.createElement('script')
       scriptTag.type = 'text/javascript'
       scriptTag.src = '//t1.daumcdn.net/kas/static/ba.min.js'
       scriptTag.async = true
       scriptTag.onload = () => {
         setTimeout(() => {
-          createAdArea()
-        }, 300)
+          triggerRescan()
+        }, 100)
       }
       document.head.appendChild(scriptTag)
     }
 
     // 정리 함수
     return () => {
-      timeouts.forEach(id => window.clearTimeout(id))
       if (adRef.current) {
         const ad = adRef.current.querySelector('.kakao_ad_area')
         if (ad) {
