@@ -84,21 +84,19 @@ export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: strin
       }
       
       retryCount++
-      console.log(`[KakaoAdDirect] 재스캔 시도 ${retryCount}/${maxRetries}`)
+      console.log(`[KakaoAdDirect] 재스캔 시도 ${retryCount}/${maxRetries}`, { adUnitId })
       
-      // 방법 1: DOM 변경을 트리거
+      // DOM 변경을 트리거 (카카오 스크립트가 인식하도록)
       const clone = ins.cloneNode(true) as HTMLElement
       ins.parentNode.replaceChild(clone, ins)
       ins = clone
       
-      // 방법 2: 카카오 애드핏 API 직접 호출 시도
+      // 카카오 애드핏 API 직접 호출 시도
       try {
-        // 카카오 애드핏이 전역 객체에 있는지 확인
         if ((window as any).kakao && (window as any).kakao.adfit) {
           console.log('[KakaoAdDirect] 카카오 애드핏 API 발견, 재스캔 호출 시도')
           const adfit = (window as any).kakao.adfit
           
-          // 가능한 메서드들 시도
           if (typeof adfit.start === 'function') {
             adfit.start()
             console.log('[KakaoAdDirect] adfit.start() 호출')
@@ -121,27 +119,37 @@ export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: strin
         console.warn('[KakaoAdDirect] API 호출 중 오류:', e)
       }
       
-      // 광고가 로드되었는지 확인 (iframe이 추가되었는지)
+      // 광고가 로드되었는지 확인 (더 긴 대기 시간)
+      // 성공한 케이스가 첫 번째 재스캔에서 성공했으므로, 충분한 시간을 줌
       setTimeout(() => {
         const hasAd = ins?.querySelector('iframe')
         const hasChildren = (ins?.children.length ?? 0) > 0
+        const innerHTML = ins?.innerHTML || ''
+        
         console.log(`[KakaoAdDirect] 재스캔 ${retryCount} 후 상태:`, {
+          adUnitId,
           hasIframe: !!hasAd,
           hasChildren,
           childrenCount: ins?.children.length ?? 0,
-          innerHTMLLength: ins?.innerHTML.length ?? 0,
-          kakaoAdfit: !!(window as any).kakao?.adfit
+          innerHTMLLength: innerHTML.length,
+          hasContent: innerHTML.length > 0
         })
         
-        if (!hasAd && retryCount < maxRetries) {
-          // 아직 광고가 로드되지 않았으면 계속 재시도
-          setTimeout(triggerRescan, 300)
-        } else if (hasAd) {
-          console.log('[KakaoAdDirect] ✅ 광고 로드 성공!', { retryCount })
-        } else {
-          console.warn('[KakaoAdDirect] ⚠️ 최대 재시도 횟수 도달, 광고 로드 실패', { retryCount })
+        if (hasAd || (hasChildren && innerHTML.length > 100)) {
+          // 광고가 로드됨 (iframe이 있거나 충분한 콘텐츠가 있음)
+          console.log('[KakaoAdDirect] ✅ 광고 로드 성공!', { retryCount, adUnitId })
+          return // 재시도 중단
         }
-      }, 200)
+        
+        if (retryCount < maxRetries) {
+          // 아직 광고가 로드되지 않았으면 계속 재시도
+          // 첫 번째 재시도는 빠르게, 이후는 점진적으로 딜레이 증가
+          const delay = retryCount === 1 ? 500 : 400 + (retryCount * 100)
+          setTimeout(triggerRescan, delay)
+        } else {
+          console.warn('[KakaoAdDirect] ⚠️ 최대 재시도 횟수 도달, 광고 로드 실패', { retryCount, adUnitId })
+        }
+      }, 400) // 체크 딜레이를 400ms로 증가
     }
 
     // 스크립트 확인
