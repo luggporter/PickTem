@@ -35,140 +35,60 @@ import { getPopularVideos } from '../services/googleSheets'
 import { Video } from '../types'
 import { articles } from '../components/blog/blogList'
 
+// 카카오 애드핏 타입 정의
+interface Adfit {
+  display: (unit: string) => void
+  destroy: (unit: string) => void
+  refresh: (unit: string) => void
+}
+
+declare global {
+  interface Window {
+    adfit?: Adfit
+  }
+}
+
 // 카카오 애드핏 직접 삽입 컴포넌트
 export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: string; adWidth: number; adHeight: number }) => {
-  const adRef = useRef<HTMLDivElement>(null)
+  const scriptElementWrapper = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!adRef.current) return
+    if (!scriptElementWrapper.current) return
 
-    let ins: HTMLElement | null = null
-    let retryCount = 0
-    const maxRetries = 15
-
-    // 기존 광고 영역 제거
-    const existing = adRef.current.querySelector('.kakao_ad_area')
-    if (existing) {
-      existing.remove()
-    }
-
-    // ins 태그 생성 (먼저 생성)
-    ins = document.createElement('ins')
-    ins.className = 'kakao_ad_area'
-    ins.style.display = 'block'
-    ins.style.width = adWidth + 'px'
-    ins.style.height = adHeight + 'px'
-    ins.style.margin = '0 auto'
-    ins.setAttribute('data-ad-unit', adUnitId)
-    ins.setAttribute('data-ad-width', adWidth.toString())
-    ins.setAttribute('data-ad-height', adHeight.toString())
-
-    adRef.current.appendChild(ins)
-
-    // 재스캔 트리거 함수
-    const triggerRescan = () => {
-      if (!ins || !ins.parentNode) return
-      
-      retryCount++
-      
-      // DOM 변경을 트리거 (카카오 스크립트가 인식하도록)
-      const clone = ins.cloneNode(true) as HTMLElement
-      ins.parentNode.replaceChild(clone, ins)
-      ins = clone
-      
-      // 카카오 애드핏 API 직접 호출 시도
-      try {
-        if ((window as any).kakao && (window as any).kakao.adfit) {
-          const adfit = (window as any).kakao.adfit
-          
-          if (typeof adfit.start === 'function') {
-            adfit.start()
-          }
-          if (typeof adfit.render === 'function') {
-            adfit.render()
-          }
-          if (typeof adfit.scan === 'function') {
-            adfit.scan()
-          }
-        }
-      } catch (e) {
-        // API 호출 실패 무시
-      }
-      
-      // 광고가 로드되었는지 확인
-      setTimeout(() => {
-        const hasAd = ins?.querySelector('iframe')
-        const hasChildren = (ins?.children.length ?? 0) > 0
-        const innerHTML = ins?.innerHTML || ''
-        
-        if (hasAd || (hasChildren && innerHTML.length > 100)) {
-          // 광고가 로드됨 (iframe이 있거나 충분한 콘텐츠가 있음)
-          return // 재시도 중단
-        }
-        
-        if (retryCount < maxRetries) {
-          // 아직 광고가 로드되지 않았으면 계속 재시도
-          // 첫 번째 재시도는 빠르게, 이후는 점진적으로 딜레이 증가
-          const delay = retryCount === 1 ? 500 : 400 + (retryCount * 100)
-          setTimeout(triggerRescan, delay)
-        }
-      }, 400)
-    }
-
-    // 스크립트 확인 및 대기
+    // 스크립트가 이미 로드되어 있는지 확인
     const existingScript = document.querySelector('script[src*="ba.min.js"]')
     
-    // 스크립트가 완전히 로드되고 실행될 때까지 기다리는 함수
-    const waitForKakaoScript = (callback: () => void, maxWait = 3000) => {
-      const startTime = Date.now()
-      const checkInterval = setInterval(() => {
-        // window.kakao 객체가 생성되었는지 확인
-        const hasKakao = !!(window as any).kakao
-        
-        if (hasKakao || Date.now() - startTime > maxWait) {
-          clearInterval(checkInterval)
-          callback()
-        }
-      }, 50) // 50ms마다 체크
-    }
-    
-    if (existingScript) {
-      // 스크립트가 이미 있으면, window.kakao가 생성될 때까지 기다린 후 재스캔
-      waitForKakaoScript(() => {
-        setTimeout(() => {
-          triggerRescan()
-        }, 200)
-      })
-    } else {
-      // 스크립트가 없으면 로드 후 재스캔
-      const scriptTag = document.createElement('script')
-      scriptTag.type = 'text/javascript'
-      scriptTag.src = '//t1.daumcdn.net/kas/static/ba.min.js'
-      scriptTag.async = true
-      scriptTag.onload = () => {
-        waitForKakaoScript(() => {
-          setTimeout(() => {
-            triggerRescan()
-          }, 200)
-        })
-      }
-      document.head.appendChild(scriptTag)
+    if (!existingScript) {
+      // 스크립트가 없으면 컴포넌트 컨테이너에 추가
+      const script = document.createElement('script')
+      script.setAttribute('src', '//t1.daumcdn.net/kas/static/ba.min.js')
+      script.setAttribute('async', 'true')
+      scriptElementWrapper.current.appendChild(script)
     }
 
-    // 정리 함수
+    // cleanup 함수
     return () => {
-      if (adRef.current) {
-        const ad = adRef.current.querySelector('.kakao_ad_area')
-        if (ad) {
-          ad.remove()
+      if (window.adfit && typeof window.adfit.destroy === 'function') {
+        try {
+          window.adfit.destroy(adUnitId)
+        } catch (e) {
+          // destroy 실패 무시
         }
       }
     }
-  }, [adUnitId, adWidth, adHeight])
+  }, [adUnitId])
 
   return (
     <Box py={4} display="flex" justifyContent="center" w="100%">
-      <div ref={adRef} style={{ width: '100%', display: 'flex', justifyContent: 'center' }} />
+      <div ref={scriptElementWrapper} style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+        <ins
+          className="kakao_ad_area"
+          style={{ display: 'block', width: `${adWidth}px`, height: `${adHeight}px`, margin: '0 auto' }}
+          data-ad-unit={adUnitId}
+          data-ad-width={adWidth}
+          data-ad-height={adHeight}
+        />
+      </div>
     </Box>
   )
 }
