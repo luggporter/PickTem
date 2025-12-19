@@ -40,7 +40,12 @@ export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: strin
   const adRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!adRef.current) return
+    if (!adRef.current) {
+      console.log('[KakaoAdDirect] adRef.current is null')
+      return
+    }
+
+    console.log('[KakaoAdDirect] 컴포넌트 마운트됨', { adUnitId, adWidth, adHeight })
 
     let ins: HTMLElement | null = null
     let retryCount = 0
@@ -49,6 +54,7 @@ export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: strin
     // 기존 광고 영역 제거
     const existing = adRef.current.querySelector('.kakao_ad_area')
     if (existing) {
+      console.log('[KakaoAdDirect] 기존 광고 영역 제거')
       existing.remove()
     }
 
@@ -64,10 +70,18 @@ export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: strin
     ins.setAttribute('data-ad-height', adHeight.toString())
 
     adRef.current.appendChild(ins)
+    console.log('[KakaoAdDirect] ins 태그 생성 및 추가 완료', {
+      adUnitId,
+      width: adWidth,
+      height: adHeight
+    })
 
     // 재스캔 트리거 함수
     const triggerRescan = () => {
-      if (!ins || !ins.parentNode) return
+      if (!ins || !ins.parentNode) {
+        console.log('[KakaoAdDirect] ins 요소가 없어서 재스캔 중단')
+        return
+      }
       
       // DOM 변경을 트리거하여 카카오 스크립트가 인식하도록 함
       const clone = ins.cloneNode(true) as HTMLElement
@@ -75,31 +89,53 @@ export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: strin
       ins = clone
       
       retryCount++
+      console.log(`[KakaoAdDirect] 재스캔 시도 ${retryCount}/${maxRetries}`)
       
       // 광고가 로드되었는지 확인 (iframe이 추가되었는지)
-      const hasAd = ins.querySelector('iframe')
-      if (!hasAd && retryCount < maxRetries) {
-        // 아직 광고가 로드되지 않았으면 계속 재시도
-        setTimeout(triggerRescan, 200)
-      }
+      setTimeout(() => {
+        const hasAd = ins?.querySelector('iframe')
+        const hasChildren = (ins?.children.length ?? 0) > 0
+        console.log(`[KakaoAdDirect] 재스캔 ${retryCount} 후 상태:`, {
+          hasIframe: !!hasAd,
+          hasChildren,
+          childrenCount: ins?.children.length ?? 0,
+          innerHTMLLength: ins?.innerHTML.length ?? 0
+        })
+        
+        if (!hasAd && retryCount < maxRetries) {
+          // 아직 광고가 로드되지 않았으면 계속 재시도
+          setTimeout(triggerRescan, 200)
+        } else if (hasAd) {
+          console.log('[KakaoAdDirect] ✅ 광고 로드 성공!', { retryCount })
+        } else {
+          console.warn('[KakaoAdDirect] ⚠️ 최대 재시도 횟수 도달, 광고 로드 실패', { retryCount })
+        }
+      }, 100)
     }
 
     // 스크립트 확인
     const existingScript = document.querySelector('script[src*="ba.min.js"]')
+    console.log('[KakaoAdDirect] 스크립트 확인:', { 
+      scriptExists: !!existingScript,
+      scriptSrc: existingScript?.getAttribute('src')
+    })
     
     if (existingScript) {
       // 스크립트가 이미 있으면 즉시 재스캔 시작
       // 약간의 딜레이를 주어 스크립트가 준비될 시간을 줌
+      console.log('[KakaoAdDirect] 스크립트가 이미 존재, 재스캔 시작 예약')
       setTimeout(() => {
         triggerRescan()
       }, 100)
     } else {
       // 스크립트가 없으면 로드 후 재스캔
+      console.log('[KakaoAdDirect] 스크립트가 없어서 로드 시작')
       const scriptTag = document.createElement('script')
       scriptTag.type = 'text/javascript'
       scriptTag.src = '//t1.daumcdn.net/kas/static/ba.min.js'
       scriptTag.async = true
       scriptTag.onload = () => {
+        console.log('[KakaoAdDirect] 스크립트 로드 완료, 재스캔 시작 예약')
         setTimeout(() => {
           triggerRescan()
         }, 100)
@@ -109,10 +145,12 @@ export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: strin
 
     // 정리 함수
     return () => {
+      console.log('[KakaoAdDirect] 컴포넌트 언마운트, 정리 중')
       if (adRef.current) {
         const ad = adRef.current.querySelector('.kakao_ad_area')
         if (ad) {
           ad.remove()
+          console.log('[KakaoAdDirect] 광고 영역 제거 완료')
         }
       }
     }
