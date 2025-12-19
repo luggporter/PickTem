@@ -48,42 +48,70 @@ export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: strin
       existing.remove()
     }
 
-    // ins 태그 생성
-    const ins = document.createElement('ins')
-    ins.className = 'kakao_ad_area'
-    ins.style.display = 'block'
-    ins.style.width = adWidth + 'px'
-    ins.style.height = adHeight + 'px'
-    ins.style.margin = '0 auto'
-    ins.setAttribute('data-ad-unit', adUnitId)
-    ins.setAttribute('data-ad-width', adWidth.toString())
-    ins.setAttribute('data-ad-height', adHeight.toString())
+    const createAdArea = () => {
+      if (!adRef.current) return
 
-    adRef.current.appendChild(ins)
+      // ins 태그 생성
+      const ins = document.createElement('ins')
+      ins.className = 'kakao_ad_area'
+      ins.style.display = 'block'
+      ins.style.width = adWidth + 'px'
+      ins.style.height = adHeight + 'px'
+      ins.style.margin = '0 auto'
+      ins.setAttribute('data-ad-unit', adUnitId)
+      ins.setAttribute('data-ad-width', adWidth.toString())
+      ins.setAttribute('data-ad-height', adHeight.toString())
 
-    // 카카오 애드핏 스크립트 확인 및 재스캔 트리거
-    const checkAndTrigger = () => {
-      const script = document.querySelector('script[src*="ba.min.js"]')
-      if (script) {
-        // 스크립트가 이미 있으면 DOM 변경을 트리거하여 재스캔 유도
+      adRef.current.appendChild(ins)
+
+      // 카카오 애드핏이 동적으로 추가된 요소를 인식하도록 여러 방법 시도
+      const triggerRescan = () => {
+        // 방법 1: DOM 변경을 통해 재스캔 트리거
         setTimeout(() => {
           if (ins && ins.parentNode) {
-            // 요소를 복제해서 교체 (카카오 스크립트 재스캔 트리거)
             const clone = ins.cloneNode(true) as HTMLElement
             ins.parentNode.replaceChild(clone, ins)
           }
+        }, 300)
+
+        // 방법 2: 카카오 API가 있다면 재스캔 호출 시도
+        setTimeout(() => {
+          try {
+            if ((window as any).kakao && (window as any).kakao.adfit && typeof (window as any).kakao.adfit.start === 'function') {
+              (window as any).kakao.adfit.start()
+            }
+          } catch (e) {
+            // API 호출 실패해도 계속 진행
+          }
         }, 500)
-      } else {
-        // 스크립트가 없으면 로드
-        const scriptTag = document.createElement('script')
-        scriptTag.type = 'text/javascript'
-        scriptTag.src = '//t1.daumcdn.net/kas/static/ba.min.js'
-        scriptTag.async = true
-        document.head.appendChild(scriptTag)
       }
+
+      triggerRescan()
     }
 
-    checkAndTrigger()
+    // 스크립트가 이미 로드되어 있는지 확인
+    const existingScript = document.querySelector('script[src*="ba.min.js"]')
+    
+    if (existingScript) {
+      // 스크립트가 이미 있으면, 약간의 딜레이 후 광고 영역 생성
+      // (스크립트가 완전히 초기화될 시간을 줌)
+      setTimeout(() => {
+        createAdArea()
+      }, 500)
+    } else {
+      // 스크립트가 없으면 로드하고, 로드 완료 후 광고 영역 생성
+      const scriptTag = document.createElement('script')
+      scriptTag.type = 'text/javascript'
+      scriptTag.src = '//t1.daumcdn.net/kas/static/ba.min.js'
+      scriptTag.async = true
+      scriptTag.onload = () => {
+        // 스크립트 로드 완료 후 약간의 딜레이를 두고 광고 영역 생성
+        setTimeout(() => {
+          createAdArea()
+        }, 300)
+      }
+      document.head.appendChild(scriptTag)
+    }
 
     // 정리 함수
     return () => {

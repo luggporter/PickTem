@@ -95,7 +95,7 @@ const PickTemList = () => {
         <MobileHeader
           title="상품 리스트"
           showBack
-          onBack={() => navigate('/')}
+          // onBack={() => navigate('/')}
       />
       <Container maxW="container.sm" px={0}>
         <VStack spacing={0} align="stretch">
@@ -121,7 +121,7 @@ const PickTemList = () => {
               }}
             >
               <HStack spacing={2} pb={2}>
-                {categories.map((cat) => (
+                {[...categories].reverse().map((cat) => (
                   <Button
                     key={cat}
                     size="sm"
