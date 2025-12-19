@@ -40,12 +40,7 @@ export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: strin
   const adRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!adRef.current) {
-      console.log('[KakaoAdDirect] adRef.current is null')
-      return
-    }
-
-    console.log('[KakaoAdDirect] 컴포넌트 마운트됨', { adUnitId, adWidth, adHeight })
+    if (!adRef.current) return
 
     let ins: HTMLElement | null = null
     let retryCount = 0
@@ -54,7 +49,6 @@ export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: strin
     // 기존 광고 영역 제거
     const existing = adRef.current.querySelector('.kakao_ad_area')
     if (existing) {
-      console.log('[KakaoAdDirect] 기존 광고 영역 제거')
       existing.remove()
     }
 
@@ -70,21 +64,12 @@ export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: strin
     ins.setAttribute('data-ad-height', adHeight.toString())
 
     adRef.current.appendChild(ins)
-    console.log('[KakaoAdDirect] ins 태그 생성 및 추가 완료', {
-      adUnitId,
-      width: adWidth,
-      height: adHeight
-    })
 
     // 재스캔 트리거 함수
     const triggerRescan = () => {
-      if (!ins || !ins.parentNode) {
-        console.log('[KakaoAdDirect] ins 요소가 없어서 재스캔 중단')
-        return
-      }
+      if (!ins || !ins.parentNode) return
       
       retryCount++
-      console.log(`[KakaoAdDirect] 재스캔 시도 ${retryCount}/${maxRetries}`, { adUnitId })
       
       // DOM 변경을 트리거 (카카오 스크립트가 인식하도록)
       const clone = ins.cloneNode(true) as HTMLElement
@@ -94,50 +79,30 @@ export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: strin
       // 카카오 애드핏 API 직접 호출 시도
       try {
         if ((window as any).kakao && (window as any).kakao.adfit) {
-          console.log('[KakaoAdDirect] 카카오 애드핏 API 발견, 재스캔 호출 시도')
           const adfit = (window as any).kakao.adfit
           
           if (typeof adfit.start === 'function') {
             adfit.start()
-            console.log('[KakaoAdDirect] adfit.start() 호출')
           }
           if (typeof adfit.render === 'function') {
             adfit.render()
-            console.log('[KakaoAdDirect] adfit.render() 호출')
           }
           if (typeof adfit.scan === 'function') {
             adfit.scan()
-            console.log('[KakaoAdDirect] adfit.scan() 호출')
           }
-        } else {
-          console.log('[KakaoAdDirect] 카카오 애드핏 API를 찾을 수 없음', {
-            hasKakao: !!(window as any).kakao,
-            hasAdfit: !!(window as any).kakao?.adfit
-          })
         }
       } catch (e) {
-        console.warn('[KakaoAdDirect] API 호출 중 오류:', e)
+        // API 호출 실패 무시
       }
       
-      // 광고가 로드되었는지 확인 (더 긴 대기 시간)
-      // 성공한 케이스가 첫 번째 재스캔에서 성공했으므로, 충분한 시간을 줌
+      // 광고가 로드되었는지 확인
       setTimeout(() => {
         const hasAd = ins?.querySelector('iframe')
         const hasChildren = (ins?.children.length ?? 0) > 0
         const innerHTML = ins?.innerHTML || ''
         
-        console.log(`[KakaoAdDirect] 재스캔 ${retryCount} 후 상태:`, {
-          adUnitId,
-          hasIframe: !!hasAd,
-          hasChildren,
-          childrenCount: ins?.children.length ?? 0,
-          innerHTMLLength: innerHTML.length,
-          hasContent: innerHTML.length > 0
-        })
-        
         if (hasAd || (hasChildren && innerHTML.length > 100)) {
           // 광고가 로드됨 (iframe이 있거나 충분한 콘텐츠가 있음)
-          console.log('[KakaoAdDirect] ✅ 광고 로드 성공!', { retryCount, adUnitId })
           return // 재시도 중단
         }
         
@@ -146,20 +111,12 @@ export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: strin
           // 첫 번째 재시도는 빠르게, 이후는 점진적으로 딜레이 증가
           const delay = retryCount === 1 ? 500 : 400 + (retryCount * 100)
           setTimeout(triggerRescan, delay)
-        } else {
-          console.warn('[KakaoAdDirect] ⚠️ 최대 재시도 횟수 도달, 광고 로드 실패', { retryCount, adUnitId })
         }
-      }, 400) // 체크 딜레이를 400ms로 증가
+      }, 400)
     }
 
     // 스크립트 확인 및 대기
     const existingScript = document.querySelector('script[src*="ba.min.js"]')
-    console.log('[KakaoAdDirect] 스크립트 확인:', { 
-      scriptExists: !!existingScript,
-      scriptSrc: existingScript?.getAttribute('src'),
-      adUnitId,
-      windowKakao: !!(window as any).kakao
-    })
     
     // 스크립트가 완전히 로드되고 실행될 때까지 기다리는 함수
     const waitForKakaoScript = (callback: () => void, maxWait = 3000) => {
@@ -170,11 +127,6 @@ export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: strin
         
         if (hasKakao || Date.now() - startTime > maxWait) {
           clearInterval(checkInterval)
-          console.log('[KakaoAdDirect] 스크립트 준비 완료 또는 타임아웃', {
-            hasKakao,
-            waitTime: Date.now() - startTime,
-            adUnitId
-          })
           callback()
         }
       }, 50) // 50ms마다 체크
@@ -182,7 +134,6 @@ export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: strin
     
     if (existingScript) {
       // 스크립트가 이미 있으면, window.kakao가 생성될 때까지 기다린 후 재스캔
-      console.log('[KakaoAdDirect] 스크립트가 이미 존재, 초기화 대기 후 재스캔')
       waitForKakaoScript(() => {
         setTimeout(() => {
           triggerRescan()
@@ -190,13 +141,11 @@ export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: strin
       })
     } else {
       // 스크립트가 없으면 로드 후 재스캔
-      console.log('[KakaoAdDirect] 스크립트가 없어서 로드 시작')
       const scriptTag = document.createElement('script')
       scriptTag.type = 'text/javascript'
       scriptTag.src = '//t1.daumcdn.net/kas/static/ba.min.js'
       scriptTag.async = true
       scriptTag.onload = () => {
-        console.log('[KakaoAdDirect] 스크립트 로드 완료, 초기화 대기 후 재스캔')
         waitForKakaoScript(() => {
           setTimeout(() => {
             triggerRescan()
@@ -208,12 +157,10 @@ export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: strin
 
     // 정리 함수
     return () => {
-      console.log('[KakaoAdDirect] 컴포넌트 언마운트, 정리 중')
       if (adRef.current) {
         const ad = adRef.current.querySelector('.kakao_ad_area')
         if (ad) {
           ad.remove()
-          console.log('[KakaoAdDirect] 광고 영역 제거 완료')
         }
       }
     }
