@@ -233,4 +233,15 @@ export const articles: MagazineArticle[] = [
       author: '씩씩이',
       readTime: 8,
     },
+    {
+      id: '22',
+      title: '가래떡 찍어먹을 때, 조청 VS 물엿',
+      description:
+        '가래떡에 찍어먹는 조청과 물엿의 차이점을 알아봅니다. 제조 공정, 맛과 향, 용도부터 건강한 섭취 방법까지, 두 시럽을 올바르게 구별하고 선택하는 방법을 정리했습니다.',
+      thumbnailUrl: '/images/blog/blog22.png',
+      publishedAt: '2024-11-11',
+      category: '식품 과학',
+      author: '씩씩이',
+      readTime: 8,
+    },
   ]

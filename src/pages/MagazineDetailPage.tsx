@@ -23,6 +23,7 @@ import Blog18 from '../components/blog/blog18/blog18'
 import Blog19 from '../components/blog/blog19/blog19'
 import Blog20 from '../components/blog/blog20/Blog20'
 import Blog21 from '../components/blog/blog21/Blog21'
+import Blog22 from '../components/blog/blog22/Blog22'
 
 // 블로그 컴포넌트 매핑
 const blogComponents: Record<string, () => JSX.Element> = {
@@ -47,6 +48,7 @@ const blogComponents: Record<string, () => JSX.Element> = {
   '19': Blog19,
   '20': Blog20,
   '21': Blog21,
+  '22': Blog22,
   // 추후 다른 블로그 추가 시 여기에 추가
   // 'another-blog-id': Blog2,
 }
