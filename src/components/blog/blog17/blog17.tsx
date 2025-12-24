@@ -24,7 +24,7 @@ const Blog17 = () => {
     '겨울 데이트는 “추위/대기/이동” 변수가 커서 코스 설계가 중요합니다. 실패 확률을 낮추는 동선 공식 10가지를 실제 예시와 함께 정리했습니다.';
 
   const baseUrl = window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://ssikapicktem.co.kr';
-  const url = `${baseUrl}#/magazine/17`;
+  const url = `${baseUrl}magazine/17`;
   const ogImage = `${baseUrl}/images/blog/blog17.png`;
 
   const publishedDate = '2024년 5월 19일';

@@ -24,7 +24,7 @@ const Blog15 = () => {
     '겨울 산책, 축제, 여행, 야외 데이트 전 반드시 체크해야 할 안전 수칙 12가지. 미끄럼·저체온증·탈수·일몰 시간까지 현실적인 기준으로 정리했습니다.';
 
   const baseUrl = window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://ssikapicktem.co.kr';
-  const url = `${baseUrl}#/magazine/15`;
+  const url = `${baseUrl}magazine/15`;
   const ogImage = `${baseUrl}/images/blog/blog15.png`;
 
   const publishedDate = '2024년 5월 13일';

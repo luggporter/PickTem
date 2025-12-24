@@ -15,6 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import { FiCalendar, FiUser } from 'react-icons/fi';
 import MobileHeader from '../../MobileHeader';
 import AdSense from '../../AdSense';
+import AdRotator from '../../ads/AdRotator';
 import { KakaoAdDirect } from '../../../pages/Home';
 
 const Blog2 = () => {
@@ -26,7 +27,7 @@ const Blog2 = () => {
   const baseUrl = window.location.hostname === 'localhost' 
     ? 'http://localhost:3001/' 
     : 'https://ssikapicktem.co.kr/';
-  const url = `${baseUrl}#/magazine/2`;
+  const url = `${baseUrl}magazine/2`;
   const ogImage = `${baseUrl}images/blog/blog2.png`;
 
   const publishedDate = '2024년 1월 29일';
@@ -214,18 +215,9 @@ const Blog2 = () => {
 
                   <Divider borderColor="gray.200" />
 
-                  {/* 광고 1: 상단 – 구글 */}
-                  <Box py={4} display="flex" justifyContent="center">
-                    <AdSense
-                      adSlot="9944590930"
-                      adFormat="horizontal"
-                      style={{
-                        display: 'block',
-                        minHeight: '120px',
-                        width: '100%',
-                      }}
-                    />
-                  </Box>
+                  {/* 광고 1: 첫 번째 섹션 후 */}
+                  <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
+                  {/* <AdRotator type="auto" /> */}
 
                   <Box as="section">
                     <Heading
@@ -386,13 +378,7 @@ const Blog2 = () => {
                   </Box>
 
                   <Divider borderColor="gray.200" />
-
-                  {/* 광고 2: 중간 – 카카오 다이렉트 */}
-                  <KakaoAdDirect
-                    adUnitId="DAN-TuJyMLJV5hB5UXiO"
-                    adWidth={320}
-                    adHeight={100}
-                  />
+                  <KakaoAdDirect adUnitId="DAN-qRlpXvY15cfMPpl0" adWidth={300} adHeight={250} />
 
                   <Box as="section">
                     <Heading
@@ -525,7 +511,20 @@ const Blog2 = () => {
                     </Stack>
                   </Box>
 
-                  {/* 중간 AdSense 블록 제거 (상단에만 배치) */}
+                  <Divider borderColor="gray.200" />
+
+                  {/* 광고 2: 중간 지점 */}
+                  <Box py={4} display="flex" justifyContent="center">
+                    <AdSense
+                      adSlot="9944590930"
+                      adFormat="horizontal"
+                      style={{
+                        display: 'block',
+                        minHeight: '120px',
+                        width: '100%',
+                      }}
+                    />
+                  </Box>
 
                   <Box as="section">
                     <Heading
@@ -571,12 +570,8 @@ const Blog2 = () => {
                         죄책감이 아닌 만족감에 가까워집니다.
                       </Text>
 
-                      {/* 광고 3: 하단 – 카카오 다이렉트 */}
-                      <KakaoAdDirect
-                        adUnitId="DAN-qRlpXvY15cfMPpl0"
-                        adWidth={300}
-                        adHeight={250}
-                      />
+                      {/* 광고 3: 마지막 섹션 전 */}
+                      <AdRotator type="kakao" />
 
                       <Box
                         bg="brand.50"

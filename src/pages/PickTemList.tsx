@@ -89,7 +89,7 @@ const PickTemList = () => {
         title={pageTitle}
         description={pageDescription}
         keywords={`추천템, ${selectedCategory}, 인스타 쇼핑, 유튜브 쇼츠, 상품 추천`}
-        canonical={`/#/list${selectedCategory !== '전체' ? `?category=${selectedCategory}` : ''}`}
+        canonical={`/list${selectedCategory !== '전체' ? `?category=${selectedCategory}` : ''}`}
       />
       <Box bg="white" minH="100vh">
         <MobileHeader

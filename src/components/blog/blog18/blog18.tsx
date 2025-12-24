@@ -24,7 +24,7 @@ const Blog18 = () => {
     '빙판길·저체온증·일산화탄소·야간 시야 등 겨울 야외활동에서 자주 발생하는 위험을 줄이는 실전 안전 수칙 12가지를 체크리스트로 정리했습니다.';
 
   const baseUrl = window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://ssikapicktem.co.kr';
-  const url = `${baseUrl}#/magazine/18`;
+  const url = `${baseUrl}magazine/18`;
   const ogImage = `${baseUrl}/images/blog/blog18.png`;
 
   const publishedDate = '2024년 5월 22일';

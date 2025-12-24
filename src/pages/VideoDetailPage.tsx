@@ -66,7 +66,7 @@ const VideoDetailPage = () => {
     description: video.description || video.title,
     thumbnailUrl: video.thumbnailUrl,
     uploadDate: video.publishedAt || new Date().toISOString(),
-    contentUrl: `https://ssikapicktem.co.kr/#/video/${video.id}`,
+    contentUrl: `https://ssikapicktem.co.kr/video/${video.id}`,
   }
 
   return (
@@ -77,7 +77,7 @@ const VideoDetailPage = () => {
         keywords={keywords}
         ogImage={video.thumbnailUrl}
         ogType="video.other"
-        canonical={`/#/video/${video.id}`}
+        canonical={`/video/${video.id}`}
         structuredData={structuredData}
       />
       <Box bg="white" minH="100vh">

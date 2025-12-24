@@ -1,4 +1,5 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 import { Box } from '@chakra-ui/react'
 import Home from './pages/Home'
 import VideoDetailPage from './pages/VideoDetailPage'
@@ -7,8 +8,17 @@ import BottomNav from './components/BottomNav'
 import PickTemList from './pages/PickTemList'
 import MagazinePage from './pages/MagazinePage'
 import MagazineDetailPage from './pages/MagazineDetailPage'
+import { logPageView } from './services/visitorLogger'
 
 function App() {
+  const location = useLocation()
+
+  useEffect(() => {
+    // 페이지 변경 시 방문 로그 전송
+    const path = location.pathname + location.search
+    logPageView(path)
+  }, [location])
+
   return (
     <Box 
       minH="100vh" 

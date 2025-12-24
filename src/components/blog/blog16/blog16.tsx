@@ -24,7 +24,7 @@ const Blog16 = () => {
     '겨울 여행은 준비가 반입니다. 도로 결빙, 지연, 숙소 난방, 방한 장비, 비상약, 일정 여유까지 “실수하기 쉬운 포인트”를 체크리스트로 정리했습니다.';
 
   const baseUrl = window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://ssikapicktem.co.kr';
-  const url = `${baseUrl}#/magazine/16`;
+  const url = `${baseUrl}magazine/16`;
   const ogImage = `${baseUrl}/images/blog/blog16.png`;
 
   const publishedDate = '2024년 5월 16일';

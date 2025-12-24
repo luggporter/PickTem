@@ -24,7 +24,7 @@ const Blog14 = () => {
     '사람 많은 날일수록 계획이 곧 안전이자 재미입니다. 예약/동선/대기/예산/사진 포인트까지 연말 데이트를 실패 없이 굴리는 12가지 체크리스트를 정리했습니다.';
 
   const baseUrl = window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://ssikapicktem.co.kr';
-  const url = `${baseUrl}#/magazine/14`;
+  const url = `${baseUrl}magazine/14`;
   const ogImage = `${baseUrl}/images/blog/blog14.png`;
 
   const publishedDate = '2024년 5월 10일';

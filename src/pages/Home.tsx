@@ -254,7 +254,7 @@ const Home = () => {
     description: '인스타그램 릴스, 유튜브 쇼츠에서 소개된 인기 상품을 한눈에 모아보는 추천템 사이트',
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://ssikapicktem.co.kr/#/search?q={search_term_string}',
+      target: 'https://ssikapicktem.co.kr/search?q={search_term_string}',
       'query-input': 'required name=search_term_string'
     }
   }
@@ -265,7 +265,7 @@ const Home = () => {
         title="SsikAPickTem - 오늘의 추천템 몰아보기 | 인스타 유튜브 쇼츠 인기상품"
         description="인스타그램 릴스, 유튜브 쇼츠에서 소개된 인기 상품을 한눈에! 씩아픽템에서 오늘의 추천 상품을 간편하게 찾아보세요."
         keywords="추천템, 인스타 추천템, 유튜브 쇼츠, 인기상품, 테무, 알리익스프레스, 쇼핑몰, 추천상품, 씨카, 픽템, 소셜 쇼핑"
-        canonical="/#/"
+        canonical="/"
         structuredData={structuredData}
       />
       <Box bg="white" minH="100vh">

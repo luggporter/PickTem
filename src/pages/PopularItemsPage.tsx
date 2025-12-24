@@ -113,7 +113,7 @@ const PopularItemsPage = () => {
         title="인기 상품 분석 - 씩아픽템 | 실시간 트렌드 & 인기 통계"
         description="실시간으로 가장 많이 조회된 인기 상품과 카테고리별 트렌드를 확인하세요. 씩아픽템의 인기 분석 페이지에서 최신 쇼핑 트렌드를 파악하세요."
         keywords="인기상품, 트렌드, 베스트 상품, 실시간 인기, 인기 분석, 쇼핑 통계, 추천템 순위"
-        canonical="/#/popular"
+        canonical="/popular"
       />
       <Box>
         <MobileHeader 

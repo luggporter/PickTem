@@ -16,7 +16,7 @@
   
   <!-- 상품 리스트 페이지 -->
   <url>
-    <loc>https://ssikapicktem.co.kr/#/list</loc>
+    <loc>https://ssikapicktem.co.kr/list</loc>
     <lastmod>2025-12-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
@@ -24,7 +24,7 @@
   
   <!-- 인기 분석 페이지 -->
   <url>
-    <loc>https://ssikapicktem.co.kr/#/popular</loc>
+    <loc>https://ssikapicktem.co.kr/popular</loc>
     <lastmod>2025-12-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -32,70 +32,70 @@
   
   <!-- 카테고리별 페이지 -->
   <url>
-    <loc>https://ssikapicktem.co.kr/#/list?category=생활용품</loc>
+    <loc>https://ssikapicktem.co.kr/list?category=생활용품</loc>
     <lastmod>2025-12-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://ssikapicktem.co.kr/#/list?category=가구</loc>
+    <loc>https://ssikapicktem.co.kr/list?category=가구</loc>
     <lastmod>2025-12-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://ssikapicktem.co.kr/#/list?category=전자제품</loc>
+    <loc>https://ssikapicktem.co.kr/list?category=전자제품</loc>
     <lastmod>2025-12-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://ssikapicktem.co.kr/#/list?category=미용</loc>
+    <loc>https://ssikapicktem.co.kr/list?category=미용</loc>
     <lastmod>2025-12-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://ssikapicktem.co.kr/#/list?category=패션</loc>
+    <loc>https://ssikapicktem.co.kr/list?category=패션</loc>
     <lastmod>2025-12-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://ssikapicktem.co.kr/#/list?category=주방용품</loc>
+    <loc>https://ssikapicktem.co.kr/list?category=주방용품</loc>
     <lastmod>2025-12-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://ssikapicktem.co.kr/#/list?category=건강/의료</loc>
+    <loc>https://ssikapicktem.co.kr/list?category=건강/의료</loc>
     <lastmod>2025-12-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://ssikapicktem.co.kr/#/list?category=스포츠/레저</loc>
+    <loc>https://ssikapicktem.co.kr/list?category=스포츠/레저</loc>
     <lastmod>2025-12-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://ssikapicktem.co.kr/#/list?category=도서/문구</loc>
+    <loc>https://ssikapicktem.co.kr/list?category=도서/문구</loc>
     <lastmod>2025-12-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://ssikapicktem.co.kr/#/list?category=반려동물용품</loc>
+    <loc>https://ssikapicktem.co.kr/list?category=반려동물용품</loc>
     <lastmod>2025-12-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -105,7 +105,7 @@
     개별 영상 페이지는 영상이 추가될 때마다 여기에 추가하세요
     예시:
     <url>
-      <loc>https://ssikapicktem.co.kr/#/video/VIDEO_ID</loc>
+      <loc>https://ssikapicktem.co.kr/video/VIDEO_ID</loc>
       <lastmod>2025-12-03</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>

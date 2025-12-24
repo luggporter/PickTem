@@ -27,7 +27,7 @@ const Blog9 = () => {
   const baseUrl = window.location.hostname === 'localhost' 
     ? 'http://localhost:3001/' 
     : 'https://ssikapicktem.co.kr/';
-  const url = `${baseUrl}#/magazine/9`;
+  const url = `${baseUrl}magazine/9`;
   const ogImage = `${baseUrl}images/blog/blog9.png`;
 
   const publishedDate = '2024년 3월 25일';

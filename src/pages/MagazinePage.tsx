@@ -75,7 +75,7 @@ const MagazinePage = () => {
         title="메거진 - 씩씩이"
         description="반려식물에 대한 깊이 있는 이야기와 가이드를 제공하는 메거진"
         keywords="반려식물, 식물 가이드, 식물 정보, 메거진"
-        canonical="/#/magazine"
+        canonical="/magazine"
       />
       <Box bg="white" minH="100vh">
         <MobileHeader

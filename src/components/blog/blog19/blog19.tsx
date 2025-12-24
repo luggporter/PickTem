@@ -25,7 +25,7 @@ const Blog19 = () => {
     '크리스마스/연말에 “뭘 해야 하지?” 고민을 줄여주는 실전 체크리스트 15가지. 데이트·친구·가족 모임까지 상황별로 정리했습니다.';
 
   const baseUrl = window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://ssikapicktem.co.kr';
-  const url = `${baseUrl}#/magazine/19`;
+  const url = `${baseUrl}magazine/19`;
   const ogImage = `${baseUrl}/images/blog/blog19.png`;
 
   const publishedDate = '2024년 5월 25일';
