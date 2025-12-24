@@ -204,11 +204,33 @@ export const articles: MagazineArticle[] = [
       id: '19',
       title: '크리스마스·연말 이벤트 200% 즐기는 체크리스트 15가지: 약속, 선물, 장소, 예산까지',
       description:
-        '크리스마스/연말에 “뭘 해야 하지?” 고민을 줄여주는 실전 체크리스트 15가지. 데이트·친구·가족 모임까지 상황별로 정리했습니다.',
+        '크리스마스/연말에 "뭘 해야 하지?" 고민을 줄여주는 실전 체크리스트 15가지. 데이트·친구·가족 모임까지 상황별로 정리했습니다.',
       thumbnailUrl: '/images/blog/blog19.png',
       publishedAt: '2024-05-25',
       category: '이벤트·데이트',
       author: '씩씩이',
       readTime: 10,
+    },
+    {
+      id: '20',
+      title: '기내식에 삶은 채소와 과일이 많이 등장하는 이유는?',
+      description:
+        '기내식 메뉴에 삶은 채소와 과일이 자주 등장하는 과학적인 이유를 알아봅니다. 고공에서 변화하는 후각과 미각, 식품 안전성, 식감 유지까지 기내식 메뉴 설계의 비밀을 풀어봅니다.',
+      thumbnailUrl: '/images/blog/blog20.png',
+      publishedAt: '2024-11-25',
+      category: '식품 과학',
+      author: '씩씩이',
+      readTime: 8,
+    },
+    {
+      id: '21',
+      title: '시나몬과 계피, 무엇이 다른가요?',
+      description:
+        '시나몬과 계피의 차이점을 알아봅니다. 나무 품종, 향미 성분, 외관, 보관법부터 쿠마린 함량과 건강 주의사항까지, 두 향신료를 올바르게 구별하고 사용하는 방법을 정리했습니다.',
+      thumbnailUrl: '/images/blog/blog21.png',
+      publishedAt: '2024-11-10',
+      category: '식품 과학',
+      author: '씩씩이',
+      readTime: 8,
     },
   ]
