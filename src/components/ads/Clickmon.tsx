@@ -52,13 +52,45 @@ const Clickmon = ({
         Array.from(oldScript.attributes).forEach((attr) => {
           newScript.setAttribute(attr.name, attr.value)
         })
+        
+        // 스크립트 내용이 있으면 실행
         if (oldScript.innerHTML) {
-          newScript.innerHTML = oldScript.innerHTML
+          // document.writeln을 사용하는 클릭몬 코드를 위해
+          // document.writeln을 오버라이드하여 컨테이너에 쓰도록 설정
+          const originalWriteln = document.writeln
+          const container = adRef.current
+          
+          if (container) {
+            document.writeln = function(html: string) {
+              const tempDiv = document.createElement('div')
+              tempDiv.innerHTML = html
+              while (tempDiv.firstChild) {
+                container.appendChild(tempDiv.firstChild)
+              }
+            }
+            
+            // 스크립트 실행
+            try {
+              newScript.innerHTML = oldScript.innerHTML
+              container.appendChild(newScript)
+            } catch (error) {
+              console.error('클릭몬 스크립트 실행 실패:', error)
+            } finally {
+              // document.writeln 복원
+              document.writeln = originalWriteln
+            }
+          }
         }
+        
+        // 외부 스크립트인 경우
         if (oldScript.src) {
           newScript.src = oldScript.src
+          newScript.async = true
+          adRef.current?.appendChild(newScript)
+        } else if (!oldScript.innerHTML) {
+          // 속성만 있는 경우
+          adRef.current?.appendChild(newScript)
         }
-        adRef.current?.appendChild(newScript)
       })
       
       // 스크립트가 아닌 다른 요소들도 추가

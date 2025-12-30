@@ -35,6 +35,7 @@ import { getPopularVideos } from '../services/googleSheets'
 import { Video } from '../types'
 import { articles } from '../components/blog/blogList'
 import SettingsModal from '../components/SettingsModal'
+import Publishers from '../components/ads/Publishers'
 
 // 카카오 애드핏 타입 정의
 interface Adfit {
@@ -740,6 +741,13 @@ const Home = () => {
                 </SimpleGrid>
               </Box>
 
+              {/* Publishers 광고 */}
+              <Box py={4}>
+                <Publishers 
+                  zoneId={10393755}
+                  style={{ display: 'block', minHeight: '100px', width: '100%' }}
+                />
+              </Box>
               {/* 광고 6: 최근 영상 섹션 후 */}
               <KakaoAdDirect adUnitId="DAN-dvF1SjhFXI54NDXm" adWidth={250} adHeight={250} />
             </VStack>
