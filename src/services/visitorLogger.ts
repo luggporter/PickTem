@@ -16,6 +16,7 @@ interface VisitorLog {
   screenResolution?: string
   country?: string
   visitType: '페이지뷰' | '세션시작'
+  logType: '방문자로그'  // Google Apps Script에서 구분하기 위한 필드
 }
 
 /**
@@ -168,7 +169,8 @@ export async function logPageView(path: string): Promise<boolean> {
     timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     screenResolution: `${window.screen.width}x${window.screen.height}`,
     country,
-    visitType: isNew ? '세션시작' : '페이지뷰'
+    visitType: isNew ? '세션시작' : '페이지뷰',
+    logType: '방문자로그'  // 활동 로그와 구분하기 위한 필드
   }
   
   try {

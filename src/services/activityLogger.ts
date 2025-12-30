@@ -12,6 +12,7 @@ interface ActivityLog {
   count: number          // 카운트 (항상 1)
   activityType: ActivityType  // 활동 타입
   memo?: string          // 메모
+  logType: '활동로그'    // Google Apps Script에서 구분하기 위한 필드
 }
 
 /**
@@ -51,6 +52,7 @@ export function logVideoClick(videoId: string, videoTitle: string): void {
     name: videoTitle,
     count: 1,
     activityType: '클릭수',
+    logType: '활동로그',
   })
 }
 
@@ -63,6 +65,7 @@ export function logVideoLike(videoId: string, videoTitle: string): void {
     name: videoTitle,
     count: 1,
     activityType: '좋아요',
+    logType: '활동로그',
   })
 }
 
@@ -75,6 +78,7 @@ export function logProductClick(productId: string, productName: string): void {
     name: productName,
     count: 1,
     activityType: '클릭수',
+    logType: '활동로그',
   })
 }
 

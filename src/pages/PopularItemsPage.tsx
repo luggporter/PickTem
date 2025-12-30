@@ -27,6 +27,9 @@ import AdRotator from '../components/ads/AdRotator'
 import { useVideos } from '../hooks/useVideos'
 import { useMemo } from 'react'
 import { KakaoAdDirect } from './Home'
+import Dable from '../components/ads/Dable'
+import Clickmon from '../components/ads/Clickmon'
+import Publishers from '../components/ads/Publishers'
 
 const PopularItemsPage = () => {
   const navigate = useNavigate()
@@ -165,6 +168,15 @@ const PopularItemsPage = () => {
 
           {/* 광고 2: 헤더 통계 카드 후 */}
           <AdRotator type="auto" />
+
+          {/* 데이블 광고 */}
+          <Box py={4}>
+            <Dable 
+              serviceId="YOUR_SERVICE_ID" 
+              widgetId="dablewidget_popular" 
+              style={{ display: 'block', minHeight: '100px', width: '100%' }}
+            />
+          </Box>
 
           {/* 왜 인기가 많을까? 섹션 */}
           <Box>
@@ -459,6 +471,22 @@ const PopularItemsPage = () => {
 
           {/* 광고 3: 페이지 하단 */}
           <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
+
+          {/* 클릭몬 광고 */}
+          <Box py={4}>
+            <Clickmon 
+              adCode="YOUR_CLICKMON_AD_CODE" 
+              style={{ display: 'block', minHeight: '100px', width: '100%' }}
+            />
+          </Box>
+
+          {/* Publishers 광고 */}
+          <Box py={4}>
+            <Publishers 
+              zoneId={10393755}
+              style={{ display: 'block', minHeight: '100px', width: '100%' }}
+            />
+          </Box>
         </VStack>
       </Container>
     </Box>
