@@ -481,12 +481,12 @@ const PopularItemsPage = () => {
           </Box>
 
           {/* Publishers 광고 */}
-          <Box py={4}>
+          {/* <Box py={4}>
             <Publishers 
               adCode='<script src="https://quge5.com/88/tag.min.js" data-zone="197310" async data-cfasync="false"></script>'
               style={{ display: 'block', minHeight: '100px', width: '100%' }}
             />
-          </Box>
+          </Box> */}
         </VStack>
       </Container>
     </Box>
