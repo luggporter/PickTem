@@ -64,6 +64,7 @@ const Blog13 = () => {
         <meta property="og:description" content={description} />
         <meta property="og:url" content={url} />
         <meta property="og:image" content={ogImage} />
+        <meta property="og:site_name" content="씩아픽템" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />

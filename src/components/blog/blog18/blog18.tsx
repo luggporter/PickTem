@@ -19,7 +19,7 @@ import { KakaoAdDirect } from '../../../pages/Home';
 
 const Blog18 = () => {
   const navigate = useNavigate();
-  const title = '겨울철 야외활동 전 꼭 알아야 할 안전 수칙 12가지';
+  const title = '겨울 야외활동 안전 체크리스트 12가지: 일산화탄소·야간 시야·빙판길 대비';
   const description =
     '빙판길·저체온증·일산화탄소·야간 시야 등 겨울 야외활동에서 자주 발생하는 위험을 줄이는 실전 안전 수칙 12가지를 체크리스트로 정리했습니다.';
 

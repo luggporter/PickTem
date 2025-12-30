@@ -33,8 +33,15 @@ const Publishers = ({
   useEffect(() => {
     if (!adRef.current) return
 
-    // 기존 광고 제거
-    adRef.current.innerHTML = ''
+    // 모바일에서도 작동하도록 DOM이 완전히 로드될 때까지 대기
+    const initAd = () => {
+      if (!adRef.current || !document.body) {
+        setTimeout(initAd, 100)
+        return
+      }
+
+      // 기존 광고 제거
+      adRef.current.innerHTML = ''
 
     // adCode가 있으면 전체 HTML을 그대로 삽입
     if (adCode) {
@@ -49,13 +56,44 @@ const Publishers = ({
         Array.from(oldScript.attributes).forEach((attr) => {
           newScript.setAttribute(attr.name, attr.value)
         })
+        
+        // 스크립트 내용이 있으면 실행
         if (oldScript.innerHTML) {
-          newScript.innerHTML = oldScript.innerHTML
+          const scriptContent = oldScript.innerHTML
+          
+          // 즉시 실행 함수(IIFE)인 경우 - 직접 실행
+          if (scriptContent.includes('(function(') || scriptContent.includes('=>')) {
+            try {
+              // 즉시 실행 함수를 직접 실행
+              const executeScript = new Function(scriptContent)
+              executeScript()
+            } catch (error) {
+              // 대안: 스크립트 태그로 실행
+              newScript.innerHTML = scriptContent
+              // 모바일에서도 확실히 실행되도록 body에 추가
+              if (document.body) {
+                document.body.appendChild(newScript)
+              } else {
+                document.head.appendChild(newScript)
+              }
+            }
+          } else {
+            // 일반 스크립트는 head에 추가
+            newScript.innerHTML = scriptContent
+            document.head.appendChild(newScript)
+          }
         }
+        
+        // 외부 스크립트인 경우
         if (oldScript.src) {
           newScript.src = oldScript.src
+          newScript.async = oldScript.hasAttribute('async')
+          // 모바일에서도 확실히 로드되도록 head에 추가
+          document.head.appendChild(newScript)
+        } else if (!oldScript.innerHTML) {
+          // 속성만 있는 경우 컨테이너에 추가
+          adRef.current?.appendChild(newScript)
         }
-        adRef.current?.appendChild(newScript)
       })
       
       // 스크립트가 아닌 다른 요소들도 추가
@@ -79,6 +117,19 @@ const Publishers = ({
       // Publishers 광고 스크립트 로드 (이미 service worker가 있으므로 필요시 추가)
       // Publishers는 service worker를 통해 자동으로 광고를 주입하므로
       // 추가 스크립트가 필요하지 않을 수 있습니다.
+    }
+    }
+
+    // DOM이 준비될 때까지 대기
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAd)
+    } else {
+      // 이미 로드되었으면 바로 실행
+      setTimeout(initAd, 0)
+    }
+
+    return () => {
+      document.removeEventListener('DOMContentLoaded', initAd)
     }
   }, [zoneId, adCode])
 

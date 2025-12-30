@@ -158,7 +158,7 @@ export const articles: MagazineArticle[] = [
     },
     {
       id: '15',
-      title: '겨울철 야외활동 전 꼭 알아야 할 안전 수칙 12가지',
+      title: '겨울 산책·축제·데이트 안전 수칙 12가지: 미끄럼·저체온증·일몰 시간 체크리스트',
       description:
         '겨울 산책, 축제, 여행, 야외 데이트 전 반드시 체크해야 할 안전 수칙 12가지. 미끄럼·저체온증·탈수·일몰 시간까지 현실적인 기준으로 정리했습니다.',
       thumbnailUrl: '/images/blog/blog15.png',
@@ -191,7 +191,7 @@ export const articles: MagazineArticle[] = [
     },
     {
       id: '18',
-      title: '겨울철 야외활동 전 꼭 알아야 할 안전 수칙 12가지',
+      title: '겨울 야외활동 안전 체크리스트 12가지: 일산화탄소·야간 시야·빙판길 대비',
       description:
         '빙판길·저체온증·일산화탄소·야간 시야 등 겨울 야외활동에서 자주 발생하는 위험을 줄이는 실전 안전 수칙 12가지를 체크리스트로 정리했습니다.',
       thumbnailUrl: '/images/blog/blog18.png',
