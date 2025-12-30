@@ -36,6 +36,7 @@ import { Video } from '../types'
 import { articles } from '../components/blog/blogList'
 import SettingsModal from '../components/SettingsModal'
 import Publishers from '../components/ads/Publishers'
+import Clickmon from '../components/ads/Clickmon'
 
 // 카카오 애드핏 타입 정의
 interface Adfit {
@@ -741,7 +742,22 @@ const Home = () => {
                 </SimpleGrid>
               </Box>
 
-              {/* Publishers 광고 */}
+              
+              
+              {/* 광고 6: 최근 영상 섹션 후 */}
+                <KakaoAdDirect adUnitId="DAN-dvF1SjhFXI54NDXm" adWidth={250} adHeight={250} />
+                {/* 광고 : 클릭몬 */}
+              <Box py={4}>
+                <Clickmon 
+                  adCode={`<script type="text/javascript">
+(function(cl,i,c,k,l,m,o,n){m=c;o=cl.referrer;m+='&mon_rf='+encodeURIComponent(o);m+='&mon_direct_url='+encodeURIComponent(k);m+='&W100='+l;
+n='<'+i+' type="text/javascript" src="'+m+'"></'+i+'>';cl.writeln(n);
+})(document,'script','https://mtab.clickmon.co.kr/pop/wp_m_320_100_js.php?PopAd=CM_M_1003067%7C%5E%7CCM_A_1154452%7C%5E%7CAdver_M_1046207','PASSBACK_INPUT','N');
+</script>`}
+                  style={{ display: 'block', minHeight: '100px', width: '100%' }}
+                />
+                </Box>
+                {/* Publishers 광고 */}
               <Box py={4}>
                 <Publishers 
                     zoneId={10393755}
@@ -749,8 +765,6 @@ const Home = () => {
                   style={{ display: 'block', minHeight: '100px', width: '100%' }}
                 />
               </Box>
-              {/* 광고 6: 최근 영상 섹션 후 */}
-              <KakaoAdDirect adUnitId="DAN-dvF1SjhFXI54NDXm" adWidth={250} adHeight={250} />
             </VStack>
           </Container>
         </VStack>
