@@ -747,7 +747,7 @@ const Home = () => {
               {/* 광고 6: 최근 영상 섹션 후 */}
                 <KakaoAdDirect adUnitId="DAN-dvF1SjhFXI54NDXm" adWidth={250} adHeight={250} />
                 {/* 광고 : 클릭몬 */}
-              <Box py={4}>
+              {/* <Box py={4}>
                 <Clickmon 
                   adCode={`<script type="text/javascript">
 (function(cl,i,c,k,l,m,o,n){m=c;o=cl.referrer;m+='&mon_rf='+encodeURIComponent(o);m+='&mon_direct_url='+encodeURIComponent(k);m+='&W100='+l;
@@ -756,12 +756,12 @@ n='<'+i+' type="text/javascript" src="'+m+'"></'+i+'>';cl.writeln(n);
 </script>`}
                   style={{ display: 'block', minHeight: '100px', width: '100%' }}
                 />
-                </Box>
+                </Box> */}
                 {/* Publishers 광고 */}
               <Box py={4}>
                 <Publishers 
-                    zoneId={10393755}
-                    adCode='<script src="https://quge5.com/88/tag.min.js" data-zone="197310" async data-cfasync="false"></script>'
+                    // zoneId={10393755}
+                    adCode='<script>(function(s){s.dataset.zone="10393869",s.src="https://gizokraijaw.net/vignette.min.js"})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement("script")))</script>'
                   style={{ display: 'block', minHeight: '100px', width: '100%' }}
                 />
               </Box>
