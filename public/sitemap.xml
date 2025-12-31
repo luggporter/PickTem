@@ -101,6 +101,169 @@
     <priority>0.7</priority>
   </url>
   
+  <!-- 메거진 페이지 -->
+  <url>
+    <loc>https://ssikapicktem.co.kr/magazine</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- 블로그 페이지들 -->
+  <url>
+    <loc>https://ssikapicktem.co.kr/magazine/1</loc>
+    <lastmod>2024-04-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ssikapicktem.co.kr/magazine/2</loc>
+    <lastmod>2024-04-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ssikapicktem.co.kr/magazine/3</loc>
+    <lastmod>2024-04-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ssikapicktem.co.kr/magazine/4</loc>
+    <lastmod>2024-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ssikapicktem.co.kr/magazine/5</loc>
+    <lastmod>2024-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ssikapicktem.co.kr/magazine/6</loc>
+    <lastmod>2024-04-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ssikapicktem.co.kr/magazine/7</loc>
+    <lastmod>2024-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ssikapicktem.co.kr/magazine/8</loc>
+    <lastmod>2024-04-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ssikapicktem.co.kr/magazine/9</loc>
+    <lastmod>2024-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ssikapicktem.co.kr/magazine/10</loc>
+    <lastmod>2024-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ssikapicktem.co.kr/magazine/11</loc>
+    <lastmod>2024-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ssikapicktem.co.kr/magazine/12</loc>
+    <lastmod>2024-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ssikapicktem.co.kr/magazine/13</loc>
+    <lastmod>2024-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ssikapicktem.co.kr/magazine/14</loc>
+    <lastmod>2024-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ssikapicktem.co.kr/magazine/15</loc>
+    <lastmod>2024-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ssikapicktem.co.kr/magazine/16</loc>
+    <lastmod>2024-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ssikapicktem.co.kr/magazine/17</loc>
+    <lastmod>2024-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ssikapicktem.co.kr/magazine/18</loc>
+    <lastmod>2024-05-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ssikapicktem.co.kr/magazine/19</loc>
+    <lastmod>2024-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ssikapicktem.co.kr/magazine/20</loc>
+    <lastmod>2024-11-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ssikapicktem.co.kr/magazine/21</loc>
+    <lastmod>2024-11-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://ssikapicktem.co.kr/magazine/22</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
   <!-- 
     개별 영상 페이지는 영상이 추가될 때마다 여기에 추가하세요
     예시:
