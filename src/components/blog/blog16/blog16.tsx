@@ -443,8 +443,8 @@ const Blog16 = () => {
                     .filter(article => 
                       article.id !== '16' && 
                       (article.category === category || 
-                       article.category.includes('여행') ||
-                       article.category.includes('겨울'))
+                       article.category?.includes('여행') ||
+                       article.category?.includes('겨울'))
                     )
                     .slice(0, 3)
                     .map((article) => (

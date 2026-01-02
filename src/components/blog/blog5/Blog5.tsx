@@ -662,8 +662,8 @@ const Blog5 = () => {
                     .filter(article => 
                       article.id !== '5' && 
                       (article.category === '정리·수납' || 
-                       article.category.includes('정리') ||
-                       article.category.includes('라이프'))
+                       article.category?.includes('정리') ||
+                       article.category?.includes('라이프'))
                     )
                     .slice(0, 3)
                     .map((article) => (

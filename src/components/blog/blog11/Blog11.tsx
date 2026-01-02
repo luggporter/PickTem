@@ -807,8 +807,8 @@ const Blog11 = () => {
                     .filter(article => 
                       article.id !== '11' && 
                       (article.category === category || 
-                       article.category.includes('생활') ||
-                       article.category.includes('정리'))
+                       article.category?.includes('생활') ||
+                       article.category?.includes('정리'))
                     )
                     .slice(0, 3)
                     .map((article) => (

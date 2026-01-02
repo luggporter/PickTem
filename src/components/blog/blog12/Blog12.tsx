@@ -605,8 +605,8 @@ const Blog12 = () => {
                     .filter(article => 
                       article.id !== '12' && 
                       (article.category === category || 
-                       article.category.includes('식물') ||
-                       article.category.includes('생활'))
+                       article.category?.includes('식물') ||
+                       article.category?.includes('생활'))
                     )
                     .slice(0, 3)
                     .map((article) => (

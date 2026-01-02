@@ -689,8 +689,8 @@ const Blog10 = () => {
                     .filter(article => 
                       article.id !== '10' && 
                       (article.category === category || 
-                       article.category.includes('생활') ||
-                       article.category.includes('꿀팁'))
+                       article.category?.includes('생활') ||
+                       article.category?.includes('꿀팁'))
                     )
                     .slice(0, 3)
                     .map((article) => (
