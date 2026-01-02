@@ -8,9 +8,10 @@ import {
   Badge,
   Button,
   Icon,
+  Link,
 } from '@chakra-ui/react'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link as RouterLink } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import MobileHeader from '../components/MobileHeader'
 import SEO from '../components/SEO'
@@ -69,13 +70,47 @@ const MagazinePage = () => {
     }
   }
 
+  const baseUrl = window.location.hostname === 'localhost' 
+    ? 'http://localhost:3001/' 
+    : 'https://ssikapicktem.co.kr/';
+  
+  const magazineStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: '메거진',
+    description: '생활을 더 편하게 만드는 이야기',
+    url: `${baseUrl}magazine`,
+    inLanguage: 'ko-KR',
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: articles.length,
+      itemListElement: articles.slice(0, 10).map((article, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'Article',
+          headline: article.title,
+          description: article.description,
+          url: `${baseUrl}magazine/${article.id}`,
+          image: `${baseUrl}${article.thumbnailUrl.replace(/^\//, '')}`,
+          datePublished: article.publishedAt,
+          author: {
+            '@type': 'Person',
+            name: article.author,
+          },
+        },
+      })),
+    },
+  };
+
   return (
     <>
       <SEO
-        title="메거진 - 씩씩이"
-        description="반려식물에 대한 깊이 있는 이야기와 가이드를 제공하는 메거진"
-        keywords="반려식물, 식물 가이드, 식물 정보, 메거진"
+        title="메거진 - 씩아픽템"
+        description="생활을 더 편하게 만드는 이야기. 정리·수납, 생활 꿀팁, 인테리어, 안전 가이드 등 실용적인 정보를 제공합니다."
+        keywords="메거진, 생활 꿀팁, 정리 수납, 인테리어, 안전 가이드, 생활 정보"
         canonical="/magazine"
+        structuredData={magazineStructuredData}
       />
       <Box bg="white" minH="100vh">
         <MobileHeader
@@ -99,16 +134,24 @@ const MagazinePage = () => {
                   {currentArticles.map((article) => (
                     <Box
                       key={article.id}
+                      as={RouterLink}
+                      to={`/magazine/${article.id}`}
                       bg="white"
                       borderRadius="20px"
                       overflow="hidden"
                       cursor="pointer"
-                      onClick={() => navigate(`/magazine/${article.id}`)}
+                      textDecoration="none"
                       transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
                       boxShadow="0 1px 3px rgba(0, 0, 0, 0.05)"
                       _hover={{
                         boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12)',
                         transform: 'translateY(-4px)',
+                        textDecoration: 'none',
+                      }}
+                      _focus={{
+                        outline: '2px solid',
+                        outlineColor: 'brand.500',
+                        outlineOffset: '2px',
                       }}
                     >
                       <Box

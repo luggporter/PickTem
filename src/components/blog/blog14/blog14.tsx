@@ -9,13 +9,15 @@ import {
   Badge,
   Divider,
   VStack,
+  Link,
 } from '@chakra-ui/react';
 import { Helmet } from 'react-helmet-async';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import { FiCalendar, FiUser } from 'react-icons/fi';
 import MobileHeader from '../../MobileHeader';
 import AdSense from '../../AdSense';
 import { KakaoAdDirect } from '../../../pages/Home';
+import { articles } from '../blogList';
 
 const Blog14 = () => {
   const navigate = useNavigate();
@@ -32,45 +34,100 @@ const Blog14 = () => {
   const category = '데이트·이벤트';
   const readTime = 12;
 
-  const structuredData = {
+  // 개선된 구조화된 데이터
+  const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: title,
     description,
     inLanguage: 'ko-KR',
-    mainEntityOfPage: url,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': url,
+    },
     author: { '@type': 'Person', name: author },
     publisher: {
       '@type': 'Organization',
-      name: '씩씩이',
+      name: '씩아픽템',
       logo: { '@type': 'ImageObject', url: `${baseUrl}/favicon.png` },
     },
     image: [ogImage],
     datePublished: '2024-05-10',
     dateModified: '2024-05-10',
+    articleSection: category,
+    keywords: `${category}, 크리스마스 데이트, 연말 데이트`,
+    wordCount: readTime * 250,
+  };
+
+  // Breadcrumb 스키마 추가
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: '홈',
+        item: baseUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: '메거진',
+        item: `${baseUrl}/magazine`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: title,
+        item: url,
+      },
+    ],
   };
 
   return (
     <>
       <Helmet>
-        <title>{title}</title>
+        <title>{title} | 씩아픽템</title>
         <meta name="description" content={description} />
+        <meta name="keywords" content={`${category}, 크리스마스 데이트, 연말 데이트, ${title}`} />
         <link rel="canonical" href={url} />
 
+        {/* Article 메타 태그 */}
+        <meta property="article:author" content={author} />
+        <meta property="article:published_time" content="2024-05-10" />
+        <meta property="article:modified_time" content="2024-05-10" />
+        <meta property="article:section" content={category} />
+        <meta property="article:tag" content={category} />
+        <meta property="article:tag" content="크리스마스 데이트" />
+        <meta property="article:tag" content="연말 데이트" />
+
+        {/* Open Graph */}
         <meta property="og:type" content="article" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:url" content={url} />
         <meta property="og:image" content={ogImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="씩아픽템" />
+        <meta property="og:locale" content="ko_KR" />
 
+        {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={ogImage} />
 
+        {/* 구조화된 데이터 - Article */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        />
+        {/* 구조화된 데이터 - Breadcrumb */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         />
       </Helmet>
 
@@ -486,6 +543,109 @@ const Blog14 = () => {
                     </Stack>
                   </Box>
                 </Stack>
+              </Box>
+
+              {/* 관련 블로그 추천 섹션 - SEO를 위한 내부 링크 강화 */}
+              <Divider borderColor="gray.200" />
+              
+              <Box as="section">
+                <Heading
+                  as="h2"
+                  fontSize={{ base: 'xl', md: '2xl' }}
+                  fontWeight="700"
+                  mb={6}
+                  color="#1a2e1a"
+                >
+                  관련 글 더보기
+                </Heading>
+                <VStack spacing={4} align="stretch">
+                  {articles
+                    .filter(article => 
+                      article.id !== '14' && 
+                      (article.category === category || 
+                       article.category.includes('데이트') ||
+                       article.category.includes('이벤트'))
+                    )
+                    .slice(0, 3)
+                    .map((article) => (
+                      <Box
+                        key={article.id}
+                        as={RouterLink}
+                        to={`/magazine/${article.id}`}
+                        bg="white"
+                        borderRadius="16px"
+                        overflow="hidden"
+                        boxShadow="sm"
+                        transition="all 0.3s"
+                        _hover={{
+                          boxShadow: 'md',
+                          transform: 'translateY(-2px)',
+                        }}
+                        textDecoration="none"
+                        display="flex"
+                        flexDirection={{ base: 'column', md: 'row' }}
+                      >
+                        <Box
+                          w={{ base: '100%', md: '200px' }}
+                          h={{ base: '180px', md: 'auto' }}
+                          bgImage={`url(${article.thumbnailUrl})`}
+                          bgSize="cover"
+                          bgPosition="center"
+                          flexShrink={0}
+                        />
+                        <Box p={5} flex={1}>
+                          <Badge
+                            colorScheme="brand"
+                            borderRadius="6px"
+                            px={2}
+                            py={1}
+                            fontSize="10px"
+                            fontWeight="700"
+                            mb={2}
+                            w="fit-content"
+                          >
+                            {article.category}
+                          </Badge>
+                          <Heading
+                            as="h3"
+                            fontSize={{ base: 'lg', md: 'xl' }}
+                            fontWeight="700"
+                            color="#1a2e1a"
+                            mb={2}
+                            lineHeight="1.4"
+                          >
+                            {article.title}
+                          </Heading>
+                          <Text
+                            fontSize="14px"
+                            color="#495057"
+                            noOfLines={2}
+                            lineHeight="1.6"
+                            mb={3}
+                          >
+                            {article.description}
+                          </Text>
+                          <HStack spacing={2} fontSize="12px" color="#868e96">
+                            <Text>{article.author}</Text>
+                            <Text>·</Text>
+                            <Text>
+                              {new Date(article.publishedAt).toLocaleDateString('ko-KR', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                              })}
+                            </Text>
+                            {article.readTime && (
+                              <>
+                                <Text>·</Text>
+                                <Text>{article.readTime}분</Text>
+                              </>
+                            )}
+                          </HStack>
+                        </Box>
+                      </Box>
+                    ))}
+                </VStack>
               </Box>
             </VStack>
           </article>
