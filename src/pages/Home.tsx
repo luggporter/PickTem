@@ -761,7 +761,7 @@ n='<'+i+' type="text/javascript" src="'+m+'"></'+i+'>';cl.writeln(n);
               <Box py={4}>
                 <Publishers 
                     // zoneId={10393755}
-                    adCode='<script>(function(s){s.dataset.zone="10393869",s.src="https://gizokraijaw.net/vignette.min.js"})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement("script")))</script>'
+                    adCode="<script>(function(s){s.dataset.zone='10393869',s.src='https://gizokraijaw.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>"
                   style={{ display: 'block', minHeight: '100px', width: '100%' }}
                 />
               </Box>
