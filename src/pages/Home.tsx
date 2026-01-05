@@ -758,6 +758,7 @@ n='<'+i+' type="text/javascript" src="'+m+'"></'+i+'>';cl.writeln(n);
                 />
                 </Box> */}
                 {/* Publishers 광고 */}
+              {/*
               <Box py={4}>
                 <Publishers 
                     // zoneId={10393755}
@@ -765,6 +766,7 @@ n='<'+i+' type="text/javascript" src="'+m+'"></'+i+'>';cl.writeln(n);
                   style={{ display: 'block', minHeight: '100px', width: '100%' }}
                 />
               </Box>
+              */}
             </VStack>
           </Container>
         </VStack>
