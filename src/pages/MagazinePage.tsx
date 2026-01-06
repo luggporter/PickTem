@@ -24,16 +24,9 @@ const MagazinePage = () => {
   const navigate = useNavigate()
   
   // localStorage에서 저장된 페이지 번호 불러오기
-  const getStoredPage = () => {
-    try {
-      const stored = localStorage.getItem(MAGAZINE_PAGE_STORAGE_KEY)
-      return stored ? parseInt(stored, 10) : 1
-    } catch {
-      return 1
-    }
-  }
 
-  const [currentPage, setCurrentPage] = useState(getStoredPage)
+
+  const [currentPage, setCurrentPage] = useState(1)
 
   // 메거진 데이터 (추후 구글 시트나 API로 대체)
   
@@ -54,13 +47,6 @@ const MagazinePage = () => {
 
   // 페이지 변경 시 localStorage에 저장 및 스크롤 상단으로 이동
   useEffect(() => {
-    if (currentPage >= 1 && currentPage <= totalPages) {
-      try {
-        localStorage.setItem(MAGAZINE_PAGE_STORAGE_KEY, currentPage.toString())
-      } catch (error) {
-        console.error('Failed to save page to localStorage:', error)
-      }
-    }
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [currentPage, totalPages])
 
