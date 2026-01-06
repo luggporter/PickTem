@@ -20,6 +20,7 @@ interface ProductCardProps {
 const ProductCard = ({ product }: ProductCardProps) => {
   const handlePurchaseClick = () => {
     logProductClick(product.id, product.name)
+    const url = `https://deg.kr/cps/click.php?apikey=e8a76f287f522ff0bf87d8b8562256c8ee8b1a&url=${product.affiliateUrl}&print=0`
     window.open(product.affiliateUrl, '_blank', 'noopener,noreferrer')
   }
 
