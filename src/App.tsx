@@ -26,7 +26,13 @@ function App() {
       try {
         const urlObj = new URL(url)
         // 이상한 파라미터 패턴이 있으면 제거
-        if (urlObj.search.includes('/&/~and~/') || urlObj.pathname.includes('/&/~and~/')) {
+        const badPatterns = ['/&/~and~/', '&/~and~/', '?/&/~and~/', '/&/', '~and~']
+        const hasBadPattern = badPatterns.some(pattern =>
+          urlObj.search.includes(pattern) || urlObj.pathname.includes(pattern)
+        )
+
+        if (hasBadPattern) {
+          // 깨끗한 pathname만 유지하고 search 파라미터 제거
           return urlObj.origin + urlObj.pathname
         }
         return url
@@ -38,14 +44,54 @@ function App() {
     const checkAndFixUrl = () => {
       const currentUrl = window.location.href
       const clean = cleanUrl(currentUrl)
-      
+
       if (currentUrl !== clean) {
-        // 깨끗한 URL로 복원
+        console.log('URL cleaned:', currentUrl, '->', clean)
+        // 깨끗한 URL로 복원 (replaceState 사용)
         window.history.replaceState(null, '', clean)
+        return true // 변경됨을 표시
+      }
+      return false
+    }
+
+    // MutationObserver로 주소 표시줄 변경 감지
+    const observeUrlChanges = () => {
+      // 주소 표시줄의 hashchange 감지
+      const handleHashChange = () => {
+        checkAndFixUrl()
+      }
+
+      // 주기적으로 URL 체크하는 더 강력한 방법
+      let lastUrl = window.location.href
+      const strongUrlChecker = () => {
+        const currentUrl = window.location.href
+        if (currentUrl !== lastUrl) {
+          lastUrl = currentUrl
+          checkAndFixUrl()
+        }
+      }
+
+      window.addEventListener('hashchange', handleHashChange)
+      // 매우 빈번하게 체크
+      const strongInterval = setInterval(strongUrlChecker, 50)
+
+      return () => {
+        window.removeEventListener('hashchange', handleHashChange)
+        clearInterval(strongInterval)
       }
     }
 
-    // History API 오버라이드 (Publishers 광고가 URL을 변경하는 것을 방지)
+    // 새로고침 시 즉시 URL 클리닝
+    const handleLoad = () => {
+      setTimeout(() => {
+        const changed = checkAndFixUrl()
+        if (changed) {
+          console.log('URL fixed on page load')
+        }
+      }, 50)
+    }
+
+    // History API 오버라이드 강화
     const originalPushState = window.history.pushState
     const originalReplaceState = window.history.replaceState
 
@@ -53,6 +99,7 @@ function App() {
       if (url && typeof url === 'string') {
         const cleaned = cleanUrl(url.toString())
         if (cleaned !== url.toString()) {
+          console.log('pushState cleaned:', url.toString(), '->', cleaned)
           return originalPushState.call(window.history, state, title, cleaned)
         }
       }
@@ -63,27 +110,29 @@ function App() {
       if (url && typeof url === 'string') {
         const cleaned = cleanUrl(url.toString())
         if (cleaned !== url.toString()) {
+          console.log('replaceState cleaned:', url.toString(), '->', cleaned)
           return originalReplaceState.call(window.history, state, title, cleaned)
         }
       }
       return originalReplaceState.call(window.history, state, title, url)
     }
 
-    // popstate 이벤트 감지 (뒤로가기/앞으로가기 시)
-    const handlePopState = () => {
-      setTimeout(checkAndFixUrl, 0)
-    }
-    window.addEventListener('popstate', handlePopState)
+    // 이벤트 리스너 및 옵저버 설정
+    window.addEventListener('load', handleLoad)
+    window.addEventListener('popstate', checkAndFixUrl)
+    const cleanupObserver = observeUrlChanges()
 
     // 초기 확인
     checkAndFixUrl()
 
-    // 주기적으로 URL 확인 (Publishers 광고가 URL을 변경할 수 있으므로)
-    const interval = setInterval(checkAndFixUrl, 500)
+    // 일반적인 주기적 체크
+    const interval = setInterval(checkAndFixUrl, 200)
 
     return () => {
       clearInterval(interval)
-      window.removeEventListener('popstate', handlePopState)
+      window.removeEventListener('load', handleLoad)
+      window.removeEventListener('popstate', checkAndFixUrl)
+      cleanupObserver()
       // History API 복원
       window.history.pushState = originalPushState
       window.history.replaceState = originalReplaceState
