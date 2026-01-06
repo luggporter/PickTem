@@ -26,7 +26,6 @@ import {
 } from 'react-icons/fi'
 import VideoCard from '../components/VideoCard'
 import MobileHeader from '../components/MobileHeader'
-import AdSense from '../components/AdSense'
 import SEO from '../components/SEO'
 import { useVideos } from '../hooks/useVideos'
 import { useNavigate } from 'react-router-dom'
@@ -37,6 +36,7 @@ import { articles } from '../components/blog/blogList'
 import SettingsModal from '../components/SettingsModal'
 import Publishers from '../components/ads/Publishers'
 import Clickmon from '../components/ads/Clickmon'
+import EventAdBanner from '../components/EventAdBanner'
 
 // 카카오 애드핏 타입 정의
 interface Adfit {
@@ -512,8 +512,8 @@ const Home = () => {
               {/* 광고 3: 인기 BEST 섹션 후 */}
               {/* <AdRotator type="auto" /> */}
 
-              {/* 구글 광고 배너 */}
-              <Box 
+              {/* 카카오 광고 배너 */}
+              <Box
                 position="relative"
                 borderRadius="12px"
                 overflow="hidden"
@@ -536,7 +536,7 @@ const Home = () => {
                   >
                     <VStack spacing={2}>
                       <Text color="white" fontSize="14px" fontWeight="600" opacity={0.9}>
-                        Google 광고
+                        카카오 광고
                       </Text>
                       <Text color="rgba(255, 255, 255, 0.7)" fontSize="11px">
                         광고가 곧 표시됩니다
@@ -544,26 +544,18 @@ const Home = () => {
                     </VStack>
                   </Box>
                 )}
-                
+
                 {/* 실제 광고 (로드되면 플레이스홀더 위에 표시) */}
-                <Box 
-                  position="relative" 
-                  zIndex={2} 
+                <Box
+                  position="relative"
+                  zIndex={2}
                   w="100%"
                   minH="120px"
                   bg="transparent"
+                  display="flex"
+                  justifyContent="center"
                 >
-                  <AdSense
-                    adSlot="9944590930"
-                    adFormat="horizontal"
-                    style={{
-                      display: 'block',
-                      minHeight: '120px',
-                      width: '100%',
-                      backgroundColor: 'transparent',
-                    }}
-                    fullWidthResponsive={true}
-                  />
+                  <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
                 </Box>
                 </Box>
                 
@@ -709,8 +701,10 @@ const Home = () => {
                   </Flex>
                 </Box>
                 </Box>
+
                 {/* <KakaoAdDirect adUnitId="DAN-qRlpXvY15cfMPpl0" adWidth={300} adHeight={250} /> */}
-                <KakaoAdDirect adUnitId="DAN-qRlpXvY15cfMPpl0" adWidth={300} adHeight={250} />
+                
+                <EventAdBanner type="event" />
 
               {/* 광고 5: 메거진 섹션 후 */}
               {/* <AdRotator type="auto" /> */}
@@ -743,7 +737,7 @@ const Home = () => {
               </Box>
 
               
-              
+              <EventAdBanner type="premium" />
               {/* 광고 6: 최근 영상 섹션 후 */}
                 <KakaoAdDirect adUnitId="DAN-dvF1SjhFXI54NDXm" adWidth={250} adHeight={250} />
                 {/* 광고 : 클릭몬 */}

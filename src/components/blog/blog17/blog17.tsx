@@ -14,7 +14,7 @@ import { Helmet } from 'react-helmet-async';
 import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import { FiCalendar, FiUser } from 'react-icons/fi';
 import MobileHeader from '../../MobileHeader';
-import AdSense from '../../AdSense';
+
 import { KakaoAdDirect } from '../../../pages/Home';
 import { articles } from '../blogList';
 
@@ -197,17 +197,9 @@ const Blog17 = () => {
 
                   <Divider />
 
-                  {/* 광고 1: 첫 번째 섹션 후 – 구글 */}
+                  {/* 광고 – 카카오 */}
                   <Box py={4} display="flex" justifyContent="center">
-                    <AdSense
-                      adSlot="9944590930"
-                      adFormat="horizontal"
-                      style={{
-                        display: 'block',
-                        minHeight: '120px',
-                        width: '100%',
-                      }}
-                    />
+                    <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
                   </Box>
 
                   {/* 섹션 1 */}
@@ -355,7 +347,7 @@ const Blog17 = () => {
                       <Text>
                         기억하세요. 겨울 데이트의 목표는 "완벽한 하루"가 아니라 "편안하게 즐기는 하루"입니다. 작은 준비 하나하나가 그 목표를 달성하는 데 도움이 됩니다.
                       </Text>
-                      {/* 마지막 AdSense 블록 제거 (상단에만 배치) */}
+                      {/* 마지막 카카오 광고 블록 제거 (상단에만 배치) */}
 
                       <Box bg="brand.50" borderRadius="12px" p={5} borderLeft="4px solid" borderColor="brand.500">
                         <Text fontSize={{ base: '16px', md: '17px' }} fontWeight="600" mb={2}>

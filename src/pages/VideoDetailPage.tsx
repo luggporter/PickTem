@@ -12,7 +12,6 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import MobileHeader from '../components/MobileHeader'
 import ProductCard from '../components/ProductCard'
-import AdSense from '../components/AdSense'
 // import AdRotator from '../components/ads/AdRotator'
 import SEO from '../components/SEO'
 import { useVideos } from '../hooks/useVideos'
@@ -254,33 +253,25 @@ const VideoDetailPage = () => {
               >
                 <VStack spacing={2}>
                   <Text color="white" fontSize="14px" fontWeight="600" opacity={0.9}>
-                    Google 광고
+                    카카오 광고
                   </Text>
                   <Text color="rgba(255, 255, 255, 0.7)" fontSize="11px">
                     광고가 곧 표시됩니다
                   </Text>
                 </VStack>
               </Box>
-              
+
               {/* 실제 광고 (로드되면 플레이스홀더 위에 표시) */}
-              <Box 
-                position="relative" 
-                zIndex={2} 
+              <Box
+                position="relative"
+                zIndex={2}
                 w="100%"
                 minH="120px"
                 bg="transparent"
+                display="flex"
+                justifyContent="center"
               >
-                <AdSense
-                  adSlot="9944590930"
-                  adFormat="horizontal"
-                  style={{
-                    display: 'block',
-                    minHeight: '120px',
-                    width: '100%',
-                    backgroundColor: 'transparent',
-                  }}
-                  fullWidthResponsive={true}
-                />
+                <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
               </Box>
             </Box>
 

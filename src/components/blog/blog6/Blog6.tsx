@@ -15,7 +15,7 @@ import { Helmet } from 'react-helmet-async';
 import { FiCalendar, FiUser } from 'react-icons/fi';
 import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import { KakaoAdDirect } from '../../../pages/Home';
-import AdSense from '../../AdSense';
+
 import MobileHeader from '../../MobileHeader';
 import { articles } from '../blogList';
 
@@ -245,17 +245,9 @@ const Blog6 = () => {
 
                   <Divider />
 
-                  {/* 광고 1: 상단 – 구글 */}
+                  {/* 광고 – 카카오 */}
                   <Box py={4} display="flex" justifyContent="center">
-                    <AdSense
-                      adSlot="9944590930"
-                      adFormat="horizontal"
-                      style={{
-                        display: 'block',
-                        minHeight: '120px',
-                        width: '100%',
-                      }}
-                    />
+                    <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
                   </Box>
 
                   {/* SPRING */}
@@ -323,7 +315,7 @@ const Blog6 = () => {
                     </Stack>
                   </Box>
 
-                  {/* 중간 AdSense 블록 제거 (상단에만 배치) */}
+                  {/* 중간 카카오 광고 블록 제거 (상단에만 배치) */}
 
                   {/* SUMMER */}
                   <Box>

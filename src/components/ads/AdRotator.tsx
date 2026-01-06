@@ -1,12 +1,9 @@
 import { Box } from '@chakra-ui/react'
-import AdSense from '../AdSense'
 import KakaoAdFit from './KakaoAdFit'
 
 interface AdRotatorProps {
-  /** 광고 타입: 'auto'는 랜덤 선택, 특정 타입 지정 가능 */
-  type?: 'auto' | 'adsense' | 'kakao' | 'medianet'
-  /** AdSense 광고 슬롯 ID */
-  adSenseSlot?: string
+  /** 광고 타입: 'auto'는 카카오 광고 사용, 특정 타입 지정 가능 */
+  type?: 'auto' | 'kakao' | 'medianet'
   /** 카카오 애드핏 광고 단위 ID */
   kakaoAdUnitId?: string
   /** Media.net Customer ID */
@@ -25,21 +22,13 @@ interface AdRotatorProps {
  */
 const AdRotator = ({
   type = 'auto',
-  adSenseSlot = '9944590930',
   kakaoAdUnitId = 'DAN-TuJyMLJV5hB5UXiO',
   style = { display: 'block', minHeight: '120px', width: '100%' }
 }: AdRotatorProps) => {
-  // auto 타입일 경우 랜덤 선택
+  // auto 타입일 경우 카카오 광고 사용
   const getAdType = () => {
     if (type !== 'auto') return type
-    
-    const adTypes: Array<'adsense' | 'kakao'> = [
-      'adsense',
-      'kakao'
-    ]
-    // 페이지 로드 시점의 시간 기반으로 선택 (일관성 유지)
-    const index = Math.floor(Date.now() / 10000) % adTypes.length
-    return adTypes[index]
+    return 'kakao'
   }
 
   const selectedType = getAdType()
@@ -48,13 +37,6 @@ const AdRotator = ({
   
   return (
     <Box py={4} display="flex" justifyContent="center" w="100%">
-      {selectedType === 'adsense' && (
-        <AdSense
-          adSlot={adSenseSlot}
-          adFormat="horizontal"
-          style={style}
-        />
-      )}
       {selectedType === 'kakao' && kakaoAdUnitId && (
         <KakaoAdFit
           adUnitId={kakaoAdUnitId}
@@ -69,14 +51,15 @@ const AdRotator = ({
           style={style}
         />
       )} */}
-      {/* 기본값이거나 설정되지 않은 경우 AdSense 사용 */}
-      {/* {selectedType === 'kakao' && (!kakaoAdUnitId || kakaoAdUnitId === 'YOUR_KAKAO_AD_UNIT_ID') && (
-        <AdSense
-          adSlot={adSenseSlot}
-          adFormat="horizontal"
+      {/* 기본값이거나 설정되지 않은 경우 KakaoAdFit 사용 */}
+      {selectedType === 'kakao' && (!kakaoAdUnitId || kakaoAdUnitId === 'DAN-TuJyMLJV5hB5UXiO') && (
+        <KakaoAdFit
+          adUnitId="DAN-TuJyMLJV5hB5UXiO"
+          adWidth={320}
+          adHeight={100}
           style={style}
         />
-      )} */}
+      )}
     </Box>
   )
 }
