@@ -546,7 +546,7 @@ const Home = () => {
                 )}
 
                 {/* 실제 광고 (로드되면 플레이스홀더 위에 표시) */}
-                <Box
+                {/* <Box
                   position="relative"
                   zIndex={2}
                   w="100%"
@@ -557,7 +557,7 @@ const Home = () => {
                 >
                   <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
                 </Box>
-                </Box>
+                </Box> */}
                 
 
             {/* 메거진 섹션 */}
