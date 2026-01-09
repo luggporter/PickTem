@@ -23,13 +23,11 @@
       // Otherwise, leave pathSegmentsToKeep as 0.
       var pathSegmentsToKeep = 0;
 
-      // 커스텀 도메인에서는 간단한 리다이렉트만 수행
+      // 커스텀 도메인에서는 index.html로 직접 리다이렉트
       var l = window.location;
       l.replace(
         l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        '/?/' + l.pathname.slice(1) +
-        (l.search ? '&' + l.search.slice(1) : '') +
-        l.hash
+        l.pathname + l.search + l.hash
       );
 
     </script>
