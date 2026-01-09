@@ -27,21 +27,18 @@ function App() {
     logPageView(path)
   }, [location])
 
-  // URL에 이상한 파라미터가 추가되는 것을 방지
+  // Git Pages SPA 라우팅을 위한 URL 변환 처리
   useEffect(() => {
-    const cleanUrl = (url: string): string => {
+    const processGitPagesUrl = (url: string): string => {
       try {
         const urlObj = new URL(url)
-        // 이상한 파라미터 패턴이 있으면 제거
-        const badPatterns = ['/&/~and~/', '&/~and~/', '?/&/~and~/', '/&/', '~and~']
-        const hasBadPattern = badPatterns.some(pattern =>
-          urlObj.search.includes(pattern) || urlObj.pathname.includes(pattern)
-        )
 
-        if (hasBadPattern) {
-          // 깨끗한 pathname만 유지하고 search 파라미터 제거
-          return urlObj.origin + urlObj.pathname
+        // Git Pages에서 변환된 URL 처리 (?/path 형식)
+        if (urlObj.search.startsWith('?/')) {
+          const path = '/' + urlObj.search.slice(2) // ?/ 제거하고 / 추가
+          return urlObj.origin + path + urlObj.hash
         }
+
         return url
       } catch {
         return url
@@ -50,12 +47,12 @@ function App() {
 
     const checkAndFixUrl = () => {
       const currentUrl = window.location.href
-      const clean = cleanUrl(currentUrl)
+      const processed = processGitPagesUrl(currentUrl)
 
-      if (currentUrl !== clean) {
-        console.log('URL cleaned:', currentUrl, '->', clean)
-        // 깨끗한 URL로 복원 (replaceState 사용)
-        window.history.replaceState(null, '', clean)
+      if (currentUrl !== processed) {
+        console.log('URL processed:', currentUrl, '->', processed)
+        // 처리된 URL로 복원 (replaceState 사용)
+        window.history.replaceState(null, '', processed)
         return true // 변경됨을 표시
       }
       return false
@@ -104,10 +101,10 @@ function App() {
 
     window.history.pushState = function(state, title, url) {
       if (url && typeof url === 'string') {
-        const cleaned = cleanUrl(url.toString())
-        if (cleaned !== url.toString()) {
-          console.log('pushState cleaned:', url.toString(), '->', cleaned)
-          return originalPushState.call(window.history, state, title, cleaned)
+        const processed = processGitPagesUrl(url.toString())
+        if (processed !== url.toString()) {
+          console.log('pushState processed:', url.toString(), '->', processed)
+          return originalPushState.call(window.history, state, title, processed)
         }
       }
       return originalPushState.call(window.history, state, title, url)
@@ -115,10 +112,10 @@ function App() {
 
     window.history.replaceState = function(state, title, url) {
       if (url && typeof url === 'string') {
-        const cleaned = cleanUrl(url.toString())
-        if (cleaned !== url.toString()) {
-          console.log('replaceState cleaned:', url.toString(), '->', cleaned)
-          return originalReplaceState.call(window.history, state, title, cleaned)
+        const processed = processGitPagesUrl(url.toString())
+        if (processed !== url.toString()) {
+          console.log('replaceState processed:', url.toString(), '->', processed)
+          return originalReplaceState.call(window.history, state, title, processed)
         }
       }
       return originalReplaceState.call(window.history, state, title, url)
