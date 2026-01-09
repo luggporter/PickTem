@@ -23,11 +23,11 @@
       // Otherwise, leave pathSegmentsToKeep as 0.
       var pathSegmentsToKeep = 0;
 
-      // SPA 라우팅을 위해 index.html로 리다이렉트 (경로 정보 유지)
+      // SPA 라우팅을 위해 index.html로 리다이렉트 (Hash 기반)
       var l = window.location;
       l.replace(
         l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        '/?/' + l.pathname.slice(1) + l.search + l.hash
+        '/#' + l.pathname + l.search + l.hash
       );
 
     </script>

@@ -27,52 +27,7 @@ function App() {
     logPageView(path)
   }, [location])
 
-  // Git Pages SPA 라우팅을 위한 URL 변환 처리
-  useEffect(() => {
-    const processGitPagesUrl = (url: string): string => {
-      try {
-        const urlObj = new URL(url)
-
-        // Git Pages에서 변환된 URL 처리 (?/path 형식)
-        if (urlObj.search.startsWith('?/')) {
-          const path = '/' + urlObj.search.slice(2) // ?/ 제거하고 / 추가
-          return urlObj.origin + path + urlObj.hash
-        }
-
-        return url
-      } catch {
-        return url
-      }
-    }
-
-    const checkAndFixUrl = () => {
-      const currentUrl = window.location.href
-      const processed = processGitPagesUrl(currentUrl)
-
-      if (currentUrl !== processed) {
-        console.log('URL processed:', currentUrl, '->', processed)
-        // 처리된 URL로 복원 (replaceState 사용)
-        window.history.replaceState(null, '', processed)
-        return true // 변경됨을 표시
-      }
-      return false
-    }
-
-    // 페이지 로드 시 URL 처리
-    const handleLoad = () => {
-      setTimeout(() => {
-        checkAndFixUrl()
-      }, 10)
-    }
-
-    window.addEventListener('load', handleLoad)
-    // 초기 확인
-    checkAndFixUrl()
-
-    return () => {
-      window.removeEventListener('load', handleLoad)
-    }
-  }, [])
+  // HashRouter를 사용하므로 URL 변환 로직 불필요
 
   // 어드민 경로인지 확인
   const isAdminRoute = location.pathname.startsWith('/admin')
