@@ -24,9 +24,9 @@ export interface OGData {
  */
 export async function fetchOGData(url: string): Promise<OGData> {
   try {
-    // CORS 문제를 해결하기 위해 allorigins 프록시 사용 (개발 환경용)
+    // CORS 문제를 해결하기 위해 cors-anywhere 프록시 사용
     // 프로덕션에서는 서버 사이드 API를 사용하는 것을 권장
-    const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`
+    const proxyUrl = `https://cors-anywhere.herokuapp.com/${url}`
     const response = await fetch(proxyUrl)
 
     if (!response.ok) {
