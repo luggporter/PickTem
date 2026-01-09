@@ -24,8 +24,23 @@ export interface OGData {
  */
 export async function fetchOGData(url: string): Promise<OGData> {
   try {
-    // CORS 문제를 해결하기 위해 corsproxy.org 프록시 사용
-    // 프로덕션에서는 서버 사이드 API를 사용하는 것을 권장
+    // 직접 fetch 시도 (User-Agent 헤더로 브라우저 요청 시뮬레이션)
+    try {
+      const response = await fetch(url, {
+        headers: {
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        }
+      })
+
+      if (response.ok) {
+        const html = await response.text()
+        return parseOGTags(html)
+      }
+    } catch (error) {
+      console.log('직접 fetch 실패, 프록시 시도:', error)
+    }
+
+    // 직접 fetch 실패 시 corsproxy.org 프록시 사용
     const proxyUrl = `https://corsproxy.org/?${encodeURIComponent(url)}`
     const response = await fetch(proxyUrl)
 
