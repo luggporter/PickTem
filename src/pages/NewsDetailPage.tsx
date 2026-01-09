@@ -14,7 +14,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import MobileHeader from '../components/MobileHeader'
  import EventAdBanner from '../components/EventAdBanner'
- import { newsData, NewsItem } from '../data/newsData'
+import { getNews, NewsArticle } from '../services/googleSheets'
 import { KakaoAdDirect } from './Home'
 
 const NewsDetailPage = () => {
@@ -24,17 +24,39 @@ const NewsDetailPage = () => {
   const [newsAdViewed, setNewsAdViewed] = useState<string[]>([])
   const [isFullView, setIsFullView] = useState(false)
   const [iframeHeight, setIframeHeight] = useState<number>(600)
+  const [news, setNews] = useState<NewsArticle | null>(null)
+  const [loading, setLoading] = useState(true)
 
-  // 뉴스 데이터 찾기
-  const news = newsData.find(n => n.id === id)
+  // 뉴스 데이터 로드
+  useEffect(() => {
+    const loadNews = async () => {
+      if (!id) {
+        setLoading(false)
+        return
+      }
+
+      try {
+        const newsData = await getNews()
+        const foundNews = newsData.find(n => n.id === id)
+        setNews(foundNews || null)
+      } catch (error) {
+        console.error('Failed to load news:', error)
+        setNews(null)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadNews()
+  }, [id])
 
   // iframe 높이 설정
   useEffect(() => {
     console.log({news});
-    
+
     if (news) {
-      // 뉴스 데이터의 fullHeight 사용, 없으면 기본값 600px
-      setIframeHeight(news.fullHeight || 600)
+      // Google Sheets 뉴스 데이터는 URL만 있으므로 기본값 사용
+      setIframeHeight(600)
     }
   }, [news])
 
@@ -143,6 +165,19 @@ const NewsDetailPage = () => {
       month: 'long',
       day: 'numeric'
     })
+  }
+
+  if (loading) {
+    return (
+      <Box bg="#f7f7f7" minH="100vh" pb="100px">
+        <MobileHeader title="로딩 중..." />
+        <Container maxW="container.sm" py={4} px={4}>
+          <VStack spacing={4} align="center">
+            <Text>뉴스를 불러오는 중입니다...</Text>
+          </VStack>
+        </Container>
+      </Box>
+    )
   }
 
   if (!news) {
