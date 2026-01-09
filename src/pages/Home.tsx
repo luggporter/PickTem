@@ -52,7 +52,7 @@ declare global {
 }
 
 // 카카오 애드핏 직접 삽입 컴포넌트
-export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: string; adWidth: number; adHeight: number }) => {
+export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight, onClick }: { adUnitId: string; adWidth: number; adHeight: number, onClick?: () => void }) => {
   const scriptElementWrapper = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -72,7 +72,7 @@ export const KakaoAdDirect = ({ adUnitId, adWidth, adHeight }: { adUnitId: strin
   }, [])
 
   return (
-    <Box py={4} display="flex" justifyContent="center" w="100%">
+    <Box py={4} display="flex" justifyContent="center" w="100%" onClick={onClick}>
       <div ref={scriptElementWrapper} style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
         <ins
           className="kakao_ad_area"
@@ -546,7 +546,7 @@ const Home = () => {
                 )}
 
                 {/* 실제 광고 (로드되면 플레이스홀더 위에 표시) */}
-                {/* <Box
+                <Box
                   position="relative"
                   zIndex={2}
                   w="100%"
@@ -557,7 +557,7 @@ const Home = () => {
                 >
                   <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
                 </Box>
-                </Box> */}
+              </Box>
                 
 
             {/* 메거진 섹션 */}

@@ -36,11 +36,28 @@ const premiumAdList = [
     url: 'https://bitl.kr/WBqGWu',
   },
 ]
-const EventAdBanner = ({ type = 'event' }: { type?: 'event' | 'premium' }) => {
+const EventAdBanner = ({
+  type = 'event',
+  onAdClick
+}: {
+  type?: 'event' | 'premium'
+  onAdClick?: () => void
+}) => {
   const item = type === 'event' ? list[Math.floor(Math.random() * list.length)] : premiumAdList[Math.floor(Math.random() * premiumAdList.length)];
+  const handleAdClick = () => {
+    // 부모 컴포넌트의 콜백 실행
+    if (onAdClick) {
+      onAdClick()
+    }
+    // 광고 URL 열기
+    if (item?.url) {
+      window.open(item.url, '_blank', 'noopener,noreferrer')
+    }
+  }
+
   return (
     <Box>
-      <Image src={item?.image} alt="광고" cursor={'pointer'} onClick={() => {window.open(item?.url, '_blank', 'noopener,noreferrer')}} />
+      <Image src={item?.image} alt="광고" cursor={'pointer'} onClick={handleAdClick} />
     </Box>
   )
 }

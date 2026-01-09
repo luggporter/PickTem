@@ -1,4 +1,16 @@
+import { NewsFormData } from '../pages/admin/AdminNewsSave';
 import { Video } from '../types'
+
+export interface NewsArticle {
+  id: string;
+  title: string;
+  summary: string;
+  content: string;
+  source: string;
+  publishedAt: string;
+  imageUrl: string;
+  url: string;
+}
 
 // Google Sheets API 설정
 const API_KEY = import.meta.env.VITE_GOOGLE_SHEETS_API_KEY || ''
@@ -6,6 +18,8 @@ const SPREADSHEET_ID = import.meta.env.VITE_GOOGLE_SHEETS_SPREADSHEET_ID || ''
 const VIDEO_RANGE = import.meta.env.VITE_GOOGLE_SHEETS_VIDEO_RANGE || '비디오!A2:J1000'
 const PRODUCT_RANGE = import.meta.env.VITE_GOOGLE_SHEETS_PRODUCT_RANGE || '제품!A2:I1000'
 const USER_ACTIVITY_RANGE = import.meta.env.VITE_GOOGLE_SHEETS_USER_RANGE || '활동로그!A1:Z999'
+const NEWS_RANGE = import.meta.env.VITE_GOOGLE_SHEETS_NEWS_RANGE || '뉴스!A2:I1000'
+const APPS_SCRIPT_URL = import.meta.env.VITE_APPS_SCRIPT_URL || ''
 
 interface GoogleSheetsResponse {
   values: string[][]
@@ -281,6 +295,191 @@ export async function getVideoPopularity(): Promise<VideoPopularity[]> {
   // 점수 높은 순으로 정렬
   return popularityList.sort((a, b) => b.totalScore - a.totalScore)
 }
+
+/**
+ * Google Sheets에서 뉴스 데이터를 가져옵니다.
+ */
+export async function fetchNewsFromGoogleSheets(): Promise<NewsArticle[]> {
+  if (!API_KEY || !SPREADSHEET_ID) {
+    console.warn('Google Sheets API 설정이 없습니다. 로컬 mockData를 사용합니다.')
+    return []
+  }
+
+  try {
+    // 뉴스 데이터를 가져오기
+    const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${NEWS_RANGE}?key=${API_KEY}`)
+
+    if (!response.ok) {
+      throw new Error(`Google Sheets API 오류: ${response.status}`)
+    }
+
+    const data: GoogleSheetsResponse = await response.json()
+
+    if (!data.values || data.values.length === 0) {
+      return []
+    }
+
+    return parseNewsData(data.values)
+  } catch (error) {
+    console.error('Google Sheets 데이터 가져오기 실패:', error)
+    return []
+  }
+}
+
+/**
+ * 뉴스 데이터를 파싱합니다.
+ *
+ * 뉴스 테이블 (헤더 제외):
+ * A: ID
+ * B: 제목
+ * C: 요약
+ * D: 내용
+ * E: 출처
+ * F: 발행일
+ * G: 이미지 URL
+ * H: 원본 URL
+ * I: 상태 (공개/비공개)
+ */
+function parseNewsData(rows: string[][]): NewsArticle[] {
+  return rows.map((_row) => {
+    const row = _row
+    const [
+      id,           // A: ID
+      title,        // B: 제목
+      summary,      // C: 요약
+      content,      // D: 내용
+      source,       // E: 출처
+      publishedAt,  // F: 발행일
+      imageUrl,     // G: 이미지 URL
+      url,          // H: 원본 URL
+      status,       // I: 상태
+    ] = row
+
+    // ID가 없거나 상태가 "공개"가 아니면 건너뛰기
+    if (!id?.trim() || status?.trim() !== '공개') return null
+
+    return {
+      id: id.trim(),
+      title: title?.trim() || '',
+      summary: summary?.trim() || '',
+      content: content?.trim() || '',
+      source: source?.trim() || '',
+      publishedAt: publishedAt?.trim() || new Date().toISOString().split('T')[0],
+      imageUrl: imageUrl?.trim() || '',
+      url: url?.trim() || '',
+    }
+  }).filter((news): news is NewsArticle => news !== null)
+}
+
+/**
+ * 뉴스 데이터를 캐싱하여 재사용합니다.
+ */
+let cachedNews: NewsArticle[] | null = null
+let newsCacheTimestamp = 0
+
+export async function getNews(): Promise<NewsArticle[]> {
+  const now = Date.now()
+
+  // 캐시가 유효하면 반환
+  if (cachedNews && now - newsCacheTimestamp < CACHE_DURATION) {
+    return cachedNews
+  }
+
+  // 새로운 데이터 가져오기
+  const news = await fetchNewsFromGoogleSheets()
+
+  if (news.length > 0) {
+    // 캐시 업데이트
+    cachedNews = news
+    newsCacheTimestamp = now
+  }
+
+  return news
+}
+
+/**
+ * 뉴스 캐시를 강제로 초기화합니다.
+ */
+export function clearNewsCache(): void {
+  cachedNews = null
+  newsCacheTimestamp = 0
+}
+
+/**
+ * Google Sheets에 새로운 뉴스를 추가합니다.
+ */
+// export async function addNewsToGoogleSheets(log: ActivityLog): Promise<boolean> {
+//   if (!APPS_SCRIPT_URL) {
+//     console.warn('Apps Script URL이 설정되지 않았습니다. 로그를 전송하지 않습니다.')
+//     return false
+//   }
+// console.log({log});
+
+//   try {
+//     await fetch(APPS_SCRIPT_URL, {
+//       method: 'POST',
+//       mode: 'no-cors', // Apps Script는 CORS를 지원하지 않으므로 no-cors 사용
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(log),
+//     })
+
+//     // no-cors 모드에서는 response를 확인할 수 없음
+//     console.log('활동 로그 전송:', log)
+//     return true
+//   } catch (error) {
+//     console.error('활동 로그 전송 실패:', error)
+//     return false
+//   }
+// }
+type NewsPost = {
+  logType: string
+  id: string
+  title: string
+  summary: string
+  content: string
+  source: string
+  publishedAt: string
+  imageUrl: string
+  url: string
+  status?: string
+}
+
+export async function addNewsToGoogleSheets(newsData: Omit<NewsFormData, 'sheet'>) {
+  const APPS_SCRIPT_URL = import.meta.env.VITE_APPS_SCRIPT_URL
+
+  const data = {...newsData, logType: '뉴스', id: `1`}
+  await fetch(APPS_SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  })
+}
+// export async function addNewsToGoogleSheets(log: ActivityLog): Promise<boolean> {
+//     if (!APPS_SCRIPT_URL) {
+//     console.warn('Apps Script URL이 설정되지 않았습니다. 로그를 전송하지 않습니다.')
+//     return false
+//   }
+//     try {
+//     await fetch(APPS_SCRIPT_URL, {
+//       method: 'POST',
+//       mode: 'no-cors', // Apps Script는 CORS를 지원하지 않으므로 no-cors 사용
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(log),
+//     })
+
+//     // no-cors 모드에서는 response를 확인할 수 없음
+//     console.log('활동 로그 전송:', log)
+//     return true
+//   } catch (error) {
+//     console.error('활동 로그 전송 실패:', error)
+//     return false
+//   }
+// }
 
 /**
  * 인기도 순으로 정렬된 비디오 목록을 반환합니다.

@@ -6,6 +6,8 @@ const APPS_SCRIPT_URL = import.meta.env.VITE_APPS_SCRIPT_URL || ''
 
 export type ActivityType = '클릭수' | '좋아요'
 
+export type NewsLogType = '뉴스추가'
+
 interface ActivityLog {
   uniqueKey: string      // 고유키 (비디오 ID 또는 상품 ID)
   name: string           // 상품명 (비디오 제목 또는 상품명)
@@ -13,6 +15,20 @@ interface ActivityLog {
   activityType: ActivityType  // 활동 타입
   memo?: string          // 메모
   logType: '활동로그'    // Google Apps Script에서 구분하기 위한 필드
+}
+
+interface NewsLog {
+  logType: NewsLogType   // 뉴스 로그 타입
+  range?: string         // 시트 범위 (옵션)
+  id?: string            // 뉴스 ID
+  title: string          // 뉴스 제목
+  summary: string        // 뉴스 요약
+  content: string        // 뉴스 내용
+  source: string         // 뉴스 출처
+  publishedAt: string    // 발행일
+  imageUrl: string       // 이미지 URL
+  url: string            // 원본 URL
+  status?: string        // 상태 (기본값: '공개')
 }
 
 /**
@@ -81,4 +97,3 @@ export function logProductClick(productId: string, productName: string): void {
     logType: '활동로그',
   })
 }
-

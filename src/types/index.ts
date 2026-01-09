@@ -27,3 +27,14 @@ export interface MagazineArticle {
   author?: string;
   readTime?: number; // 읽기 시간 (분)
 }
+
+export interface NewsArticle {
+  id: string;
+  title: string;
+  summary: string;
+  content: string;
+  source: string;
+  publishedAt: string;
+  imageUrl: string;
+  url: string;
+}

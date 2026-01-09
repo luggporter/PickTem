@@ -1,5 +1,5 @@
 import { Box, HStack, Icon, Text } from '@chakra-ui/react'
-import { FiHome, FiList, FiBook } from 'react-icons/fi'
+import { FiHome, FiList, FiBook, FiGlobe } from 'react-icons/fi'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 const BottomNav = () => {
@@ -9,8 +9,8 @@ const BottomNav = () => {
   const navItems = [
     { icon: FiHome, label: '홈', path: '/' },
     { icon: FiList, label: '상품 리스트', path: '/list' },
-    // { icon: FiTrendingUp, label: '인기 분석', path: '/popular' },
     { icon: FiBook, label: '메거진', path: '/magazine' },
+    { icon: FiGlobe, label: '뉴스', path: '/news' },
   ]
 
   const isActive = (path: string) => {
