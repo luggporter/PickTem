@@ -35,8 +35,10 @@ function App() {
 
         // Git Pages에서 변환된 URL 처리 (?/path 형식)
         if (urlObj.search.startsWith('?/')) {
-          const path = '/' + urlObj.search.slice(2) // ?/ 제거하고 / 추가
-          return urlObj.origin + path + urlObj.hash
+          const pathAndQuery = urlObj.search.slice(2) // ?/ 제거
+          // &/ 패턴이 반복되는 경우 첫 번째 유효한 경로만 추출
+          const cleanPath = pathAndQuery.split('&/')[0]
+          return urlObj.origin + '/' + cleanPath + urlObj.hash
         }
 
         return url
