@@ -78,19 +78,6 @@ const AdminNewsSave = () => {
   }, [ogData, url])
 
   const fetchOGDataFromUrl = async (inputUrl: string) => {
-    // Git Pages 환경에서는 OG 데이터 로드 비활성화
-    if (window.location.hostname.includes('github.io') || window.location.hostname.includes('ssikapicktem.co.kr')) {
-      console.log('Git Pages 환경에서는 OG 데이터 로드를 지원하지 않습니다.')
-      toast({
-        title: 'OG 데이터 로드 불가',
-        description: 'Git Pages 환경에서는 보안 정책으로 인해 지원되지 않습니다.',
-        status: 'info',
-        duration: 3000,
-      })
-      setOgData(null)
-      setLoadingOG(false)
-      return
-    }
 
     setLoadingOG(true)
     try {
