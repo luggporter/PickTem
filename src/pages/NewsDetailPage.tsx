@@ -72,6 +72,7 @@ const NewsDetailPage = () => {
           setNewsAdViewed(parsed)
           // 이미 광고를 본 뉴스라면 바로 전체 표시
           if (parsed.includes(id || '')) {
+            console.log('이미 본 뉴스 - 전체 보기 활성화')
             setIsFullView(true)
           }
         }
@@ -80,11 +81,99 @@ const NewsDetailPage = () => {
         setNewsAdViewed([])
       }
     }
-  }, [id])
+  }, [id, news]) // news도 의존성에 추가
 
-  // 광고 클릭을 통한 전체 보기 활성화 (페이지 이탈 감지 제거)
-  // 배포 환경에서는 페이지 이탈 이벤트가 제대로 작동하지 않으므로
-  // 명시적인 클릭 액션으로만 전체 보기를 허용
+  // 페이지 이탈 감지 - 배포 환경에서도 작동하도록 개선
+  useEffect(() => {
+    if (!news) return // 뉴스가 로드되지 않았으면 실행하지 않음
+
+    let isRefreshing = false
+    let hasProcessedAdClick = false
+    let pageLeaveTimeout: NodeJS.Timeout
+
+    // 새로고침 감지용 이벤트 (더 정확하게)
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'F5' || (e.ctrlKey && e.key === 'r') || (e.metaKey && e.key === 'r')) {
+        isRefreshing = true
+        console.log('새로고침 감지됨')
+        setTimeout(() => { isRefreshing = false }, 2000) // 더 긴 시간으로 설정
+      }
+    }
+
+    // 브라우저 탭 전환 감지 (visibilitychange)
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        console.log('탭 전환 감지 (visibilitychange)')
+        // 탭이 다시 활성화될 때까지 기다렸다가 처리
+        pageLeaveTimeout = setTimeout(() => {
+          if (document.hidden && !isRefreshing && !hasProcessedAdClick) {
+            console.log('사용자가 탭을 떠남 - 광고 클릭 처리')
+            hasProcessedAdClick = true
+            handleAdClick()
+          }
+        }, 3000) // 3초 후에 처리
+      } else {
+        // 탭이 다시 활성화되면 타임아웃 취소
+        if (pageLeaveTimeout) {
+          clearTimeout(pageLeaveTimeout)
+        }
+      }
+    }
+
+    // 창 포커스 잃음 감지
+    const handleWindowBlur = () => {
+      console.log('창 포커스 잃음 감지')
+      pageLeaveTimeout = setTimeout(() => {
+        if (document.hidden && !isRefreshing && !hasProcessedAdClick) {
+          console.log('사용자가 창을 떠남 - 광고 클릭 처리')
+          hasProcessedAdClick = true
+          handleAdClick()
+        }
+      }, 2000)
+    }
+
+    // 실제 페이지 이탈 (브라우저 닫기, URL 직접 입력 등)
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (!isRefreshing && !hasProcessedAdClick) {
+        console.log('페이지 이탈 감지 (beforeunload) - 광고 클릭 처리')
+        hasProcessedAdClick = true
+        handleAdClick()
+
+        // Chrome에서 beforeunload 경고를 방지하기 위해 약간의 딜레이
+        setTimeout(() => {
+          // 실제로는 handleAdClick()이 비동기로 실행되므로 여기가 실행될 수 있음
+        }, 100)
+      }
+    }
+
+    // 뒤로가기/앞으로가기 감지
+    const handlePopState = () => {
+      if (!isRefreshing && !hasProcessedAdClick) {
+        console.log('브라우저 내비게이션 감지 - 광고 클릭 처리')
+        hasProcessedAdClick = true
+        handleAdClick()
+      }
+    }
+
+    // 이벤트 리스너 등록
+    window.addEventListener('beforeunload', handleBeforeUnload)
+    window.addEventListener('blur', handleWindowBlur)
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    document.addEventListener('keydown', handleKeyDown)
+    window.addEventListener('popstate', handlePopState)
+
+    // cleanup 함수
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload)
+      window.removeEventListener('blur', handleWindowBlur)
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+      document.removeEventListener('keydown', handleKeyDown)
+      window.removeEventListener('popstate', handlePopState)
+      if (pageLeaveTimeout) {
+        clearTimeout(pageLeaveTimeout)
+      }
+    }
+  }, [news]) // news가 변경될 때마다 재등록
 
   // 광고를 본 뉴스를 로컬 스토리지에 저장
   const markNewsAdViewed = (newsId: string) => {
