@@ -15,6 +15,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import MobileHeader from '../components/MobileHeader'
  import EventAdBanner from '../components/EventAdBanner'
 import { getNews, NewsArticle } from '../services/googleSheets'
+import SEO from '../components/SEO'
 import { KakaoAdDirect } from './Home'
 
 const NewsDetailPage = () => {
@@ -26,6 +27,7 @@ const NewsDetailPage = () => {
   const [iframeHeight, setIframeHeight] = useState<number>(600)
   const [news, setNews] = useState<NewsArticle | null>(null)
   const [loading, setLoading] = useState(true)
+  const [ogImage, setOgImage] = useState<string>('')
 
   // 뉴스 데이터 로드
   useEffect(() => {
@@ -80,67 +82,9 @@ const NewsDetailPage = () => {
     }
   }, [id])
 
-  // 페이지 이탈 감지 - 모든 경우에 광고 클릭으로 간주 (새로고침 제외)
-  useEffect(() => {
-    let isRefreshing = false
-    let hasProcessedAdClick = false // 중복 실행 방지
-
-    // 새로고침 감지용 이벤트
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // F5, Ctrl+R, Cmd+R 새로고침 감지
-      if (e.key === 'F5' || (e.ctrlKey && e.key === 'r') || (e.metaKey && e.key === 'r')) {
-        isRefreshing = true
-        setTimeout(() => { isRefreshing = false }, 100)
-      }
-    }
-
-    // 브라우저 탭 전환 감지 (다른 탭으로 이동)
-    const handleVisibilityChange = () => {
-      if (document.hidden && id && !newsAdViewed.includes(id) && !isRefreshing && !hasProcessedAdClick) {
-        console.log('탭 전환 감지 - 광고 클릭 처리:', id)
-        hasProcessedAdClick = true
-        handleAdClick()
-      }
-    }
-
-    // 창 포커스 잃음 감지 (새 창 열림 등)
-    const handleWindowBlur = () => {
-      // 약간의 딜레이 후에 처리 (새 창 열림 등으로 인한 blur인지 확인)
-      setTimeout(() => {
-        if (document.hidden && id && !newsAdViewed.includes(id) && !isRefreshing && !hasProcessedAdClick) {
-          console.log('창 포커스 잃음 감지 - 광고 클릭 처리:', id)
-          hasProcessedAdClick = true
-          handleAdClick()
-        }
-      }, 500)
-    }
-
-    // 실제 페이지 이탈 (브라우저 닫기, 다른 페이지 이동)
-    const handleBeforeUnload = () => {
-      if (id && !newsAdViewed.includes(id) && !isRefreshing && !hasProcessedAdClick) {
-        console.log('페이지 이탈 감지 (새로고침 아님) - 광고 클릭 처리:', id)
-        hasProcessedAdClick = true
-        handleAdClick()
-      }
-    }
-
-    // 새로고침 감지용 sessionStorage 설정
-    const pageLoadTime = Date.now()
-    sessionStorage.setItem('pageLoadTime', pageLoadTime.toString())
-
-    // 이벤트 리스너 등록
-    window.addEventListener('beforeunload', handleBeforeUnload)
-    window.addEventListener('blur', handleWindowBlur)
-    document.addEventListener('visibilitychange', handleVisibilityChange)
-    document.addEventListener('keydown', handleKeyDown)
-
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload)
-      window.removeEventListener('blur', handleWindowBlur)
-      document.removeEventListener('visibilitychange', handleVisibilityChange)
-      document.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [id, newsAdViewed])
+  // 광고 클릭을 통한 전체 보기 활성화 (페이지 이탈 감지 제거)
+  // 배포 환경에서는 페이지 이탈 이벤트가 제대로 작동하지 않으므로
+  // 명시적인 클릭 액션으로만 전체 보기를 허용
 
   // 광고를 본 뉴스를 로컬 스토리지에 저장
   const markNewsAdViewed = (newsId: string) => {
@@ -195,9 +139,19 @@ const NewsDetailPage = () => {
   }
 
   return (
-    <Box bg="#f7f7f7" minH="100vh">
+    <>
+      {/* SEO 설정 */}
+      <SEO
+        title={`${news.title} - SsikAPickTem 뉴스`}
+        description={news.summary}
+        ogImage={ogImage || news.imageUrl}
+        canonical={`/news/${news.id}`}
+        ogType="article"
+      />
 
-      <Container maxW="container.sm" py={4} px={4}>
+      <Box bg="#f7f7f7" minH="100vh">
+
+        <Container maxW="container.sm" py={4} px={4}>
         <VStack spacing={4} align="stretch">
           {/* 뒤로가기 버튼 */}
           <Button
@@ -237,7 +191,7 @@ const NewsDetailPage = () => {
                   title={news.title}
                 />
 
-                {/* 블러 오버레이 - 상단 20% 제외하고 블러 처리 */}
+                {/* 블러 오버레이 - 광고 클릭 유도 */}
                 <Box
                   position="absolute"
                   top="90%"
@@ -246,30 +200,40 @@ const NewsDetailPage = () => {
                   right="0"
                   bg="linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0.8), white)"
                   backdropFilter="blur(4px)"
-                  pointerEvents="none"
                   borderRadius="0 0 12px 12px"
                   display="flex"
                   alignItems="center"
                   justifyContent="center"
+                  cursor="pointer"
+                  onClick={handleAdClick}
+                  _hover={{ bg: "linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(255,255,255,0.9), white)" }}
+                  transition="all 0.2s"
                 >
                   <VStack spacing={2}>
                     <Text color="gray.700" fontSize="md" fontWeight="bold" textAlign="center">
                       나머지 내용 보기
                     </Text>
                     <Text color="gray.600" fontSize="sm" textAlign="center">
-                      아래 광고를 클릭하세요
+                      이 영역을 클릭하세요
                     </Text>
                     <Text color="gray.500" fontSize="lg">
-                      ⬇️
+                      👆
                     </Text>
                   </VStack>
                 </Box>
               </Box>
 
-              {/* 광고 배너 */}
-              <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100}  />
-              
-              
+              {/* 광고 배너 - 클릭 시 전체 보기 허용 */}
+              <Box
+                onClick={handleAdClick}
+                cursor="pointer"
+                borderRadius="8px"
+                overflow="hidden"
+                _hover={{ shadow: 'md' }}
+                transition="all 0.2s"
+              >
+                <KakaoAdDirect adUnitId="DAN-TuJyMLJV5hB5UXiO" adWidth={320} adHeight={100} />
+              </Box>
             </VStack>
           )}
 
@@ -311,6 +275,7 @@ const NewsDetailPage = () => {
         </VStack>
       </Container>
     </Box>
+    </>
   )
 }
 
