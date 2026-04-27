@@ -112,7 +112,7 @@ const Blog24 = () => {
                     <Box overflowX="auto">
                       <table style={{width:"100%",borderCollapse:"collapse"}}>
                         <thead><tr><th style={{padding:"8px",borderBottom:"2px solid #e2e8f0",textAlign:"left"}}>항목</th><th style={{padding:"8px",borderBottom:"2px solid #e2e8f0",textAlign:"left"}}>무료</th><th style={{padding:"8px",borderBottom:"2px solid #e2e8f0",textAlign:"left"}}>Plus (월 $20)</th></tr></thead>
-                        <tbody><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>모델</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>GPT-4o mini</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>GPT-4o, GPT-4o mini, o3</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>응답 속도</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>보통 (대기 있음)</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>빠름 (우선 처리)</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>사용량</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>시간당 제한 있음</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>5배 넉넉</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>이미지 생성</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>��한적</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>DALL-E 3 무제한</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>파일 업로드</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>가능 (제한)</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>무제한</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>GPTs (커스텀)</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>사용만 가능</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>직접 만들��� 가능</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>웹 검색</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>가능</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>가능 (더 빠름)</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>고급 분석</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>��한적</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>Code Interpreter 포함</td></tr></tbody>
+                        <tbody><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>모델</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>GPT-4o mini</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>GPT-4o, GPT-4o mini, o3</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>응답 속도</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>보통 (대기 있음)</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>빠름 (우선 처리)</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>사용량</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>시간당 제한 있음</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>5배 넉넉</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>이미지 생성</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>제한적</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>DALL-E 3 무제한</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>파일 업로드</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>가능 (제한)</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>무제한</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>GPTs (커스텀)</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>사용만 가능</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>직접 만들기 가능</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>웹 검색</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>가능</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>가능 (더 빠름)</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>고급 분석</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>제한적</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>Code Interpreter 포함</td></tr></tbody>
                       </table>
                     </Box>
 
@@ -132,7 +132,7 @@ const Blog24 = () => {
 
                     <Text mb={4}><b>3. 이미지 생성 제한</b></Text>
 
-                    <Text mb={4}>무��에서도 이미지 생성이 되긴 하는데, 하루 몇 장으로 제한된다. 블로그 썸네일이나 SNS 이미지를 자주 만들어야 한다면 부족하다.</Text>
+                    <Text mb={4}>무료에서도 이미지 생성이 되긴 하는데, 하루 몇 장으로 제한된다. 블로그 썸네일이나 SNS 이미지를 자주 만들어야 한다면 부족하다.</Text>
 
                     <Heading as="h2" fontSize={{ base: 'xl', md: '2xl' }} mb={5} pb={2} borderBottom="3px solid" borderColor="brand.500" w="fit-content">
                       Plus가 빛나는 순간
@@ -140,7 +140,7 @@ const Blog24 = () => {
 
                     <Text mb={4}><b>코딩할 때</b>: Code Interpreter가 포함되어 있어서 엑셀 분석, 데이터 시각화, 코드 디버깅을 바로 실행해볼 수 있다. 개발자라면 이것만으로도 가치가 있다.</Text>
 
-                    <Text mb={4}><b>업무 문서 ���성할 때</b>: 파일을 올려서 "이 보고서 요약해줘", "이 계약서에서 리스크 찾아줘" 같은 작업이 빠르고 정확하다.</Text>
+                    <Text mb={4}><b>업무 문서 작성할 때</b>: 파일을 올려서 "이 보고서 요약해줘", "이 계약서에서 리스크 찾아줘" 같은 작업이 빠르고 정확하다.</Text>
 
                     <Text mb={4}><b>이미지가 필요할 때</b>: DALL-E 3로 원하는 이미지를 바로 만들 수 있다. 프레젠테이션, 블로그, SNS 콘텐츠 제작에 유용하다.</Text>
 

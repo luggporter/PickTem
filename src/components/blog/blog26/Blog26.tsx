@@ -45,7 +45,7 @@ const Blog26 = () => {
     datePublished: '2026-04-27',
     dateModified: '2026-04-27',
     articleSection: category,
-    keywords: `${category}, 부업, N잡, 부업 추천, ���장인 부업, 투���`,
+    keywords: `${category}, 부업, N잡, 부업 추천, 직장인 부업, 투잡`,
     wordCount: readTime * 250,
   };
 
@@ -54,7 +54,7 @@ const Blog26 = () => {
       <Helmet>
         <title>{title} | 씩아픽템</title>
         <meta name="description" content={description} />
-        <meta name="keywords" content={`${category}, 부업, N잡, 부업 추천, ���장인 부업, 투���`} />
+        <meta name="keywords" content={`${category}, 부업, N잡, 부업 추천, 직장인 부업, 투잡`} />
         <link rel="canonical" href={url} />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={title} />
@@ -103,7 +103,7 @@ const Blog26 = () => {
 
                     <Text mb={4}>부업 관련 글을 보면 "월 300만원 벌었습니다" 같은 제목이 넘쳐난다. 솔직히 말하면 대부분 과장이거나 특수한 케이스다. 하지만 <b>월 30~50만원 수준의 부수입은 누구나 가능하다.</b> 중요한 건 본업에 지장 없이 꾸준히 할 수 있는 걸 고르는 것이다.</Text>
 
-                    <Text mb={4}>2026년 기준, 직접 해보거나 주변에서 ���제로 수익을 내고 있는 부업 7가지를 현실적으로 정리했다.</Text>
+                    <Text mb={4}>2026년 기준, 직접 해보거나 주변에서 실제로 수익을 내고 있는 부업 7가지를 현실적으로 정리했다.</Text>
 
                     <Heading as="h2" fontSize={{ base: 'xl', md: '2xl' }} mb={5} pb={2} borderBottom="3px solid" borderColor="brand.500" w="fit-content">
                       부업 선택 기준
@@ -132,7 +132,7 @@ const Blog26 = () => {
                       </table>
                     </Box>
 
-                    <Text mb={4}>쿠팡 상품 링크를 공유하고, 누군가 그 링크로 구매하면 수수료 3%�� 받는 구조다. 블로그, ��스타, 카페에 "추천 상품" 글을 올리면 된다.</Text>
+                    <Text mb={4}>쿠팡 상품 링크를 공유하고, 누군가 그 링크로 구매하면 수수료 3%를 받는 구조다. 블로그, 인스타, 카페에 "추천 상품" 글을 올리면 된다.</Text>
 
                     <Text mb={4}><b>현실 수익</b>: 초보 1만원/월, 꾸준히 3개월 하면 10~30만원/월. 블로그 글 100개 이상 쌓이면 50만원도 가능하다.</Text>
 
@@ -151,7 +151,7 @@ const Blog26 = () => {
 
                     <Text mb={4}>네이버 블로그에 글을 쓰고 애드포스트 광고를 달면 방문자 수에 따라 수익이 생긴다. 워드프레스/티스토리는 구글 애드센스로 수익화 가능.</Text>
 
-                    <Text mb={4}><b>현실 수익</b>: 일 방문자 500명이면 월 10~15��원. 일 방문자 2,000명이면 월 50~80만원.</Text>
+                    <Text mb={4}><b>현실 수익</b>: 일 방문자 500명이면 월 10~15만원. 일 방문자 2,000명이면 월 50~80만원.</Text>
 
                     <Text mb={4}><b>핵심</b>: 검색에 잘 걸리는 글을 꾸준히 쓰는 게 전부다. 하루 1개씩 3개월 쓰면 90개. 이때부터 검색 유입이 눈에 띄게 늘어난다.</Text>
 
@@ -179,13 +179,13 @@ const Blog26 = () => {
                     <Box overflowX="auto">
                       <table style={{width:"100%",borderCollapse:"collapse"}}>
                         <thead><tr><th style={{padding:"8px",borderBottom:"2px solid #e2e8f0",textAlign:"left"}}>항목</th><th style={{padding:"8px",borderBottom:"2px solid #e2e8f0",textAlign:"left"}}>내용</th></tr></thead>
-                        <tbody><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>월 수���</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>5~30만원</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>난이도</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>중상</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>필요 시간</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>집중 2~4주 → 이후 방치</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>초기 비용</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>0원</td></tr></tbody>
+                        <tbody><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>월 수익</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>5~30만원</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>난이도</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>중상</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>필요 시간</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>집중 2~4주 → 이후 방치</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>초기 비용</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>0원</td></tr></tbody>
                       </table>
                     </Box>
 
                     <Text mb={4}>자기가 잘 아는 분야의 노하우를 전자책으로 만들어 크몽, 리디북스, 교보문고에 올린다. 한 번 만들어 놓으면 꾸준히 팔린다.</Text>
 
-                    <Text mb={4}><b>현실 수익</b>: 권당 5,000~15,000원. 월 30~100권 판�� 시 15~100만원. 하지만 대부분은 월 5~10권 수준. 꾸준한 마케팅이 필요하다.</Text>
+                    <Text mb={4}><b>현실 수익</b>: 권당 5,000~15,000원. 월 30~100권 판매 시 15~100만원. 하지만 대부분은 월 5~10권 수준. 꾸준한 마케팅이 필요하다.</Text>
 
                     <Heading as="h3" fontSize={{ base: 'lg', md: 'xl' }} mb={3} fontWeight="700">
                       5. 프리랜서 플랫폼 (크몽/탈잉/숨고)
@@ -240,15 +240,15 @@ const Blog26 = () => {
 
                     <Box overflowX="auto">
                       <table style={{width:"100%",borderCollapse:"collapse"}}>
-                        <thead><tr><th style={{padding:"8px",borderBottom:"2px solid #e2e8f0",textAlign:"left"}}>부���</th><th style={{padding:"8px",borderBottom:"2px solid #e2e8f0",textAlign:"left"}}>월 수익</th><th style={{padding:"8px",borderBottom:"2px solid #e2e8f0",textAlign:"left"}}>난이도</th><th style={{padding:"8px",borderBottom:"2px solid #e2e8f0",textAlign:"left"}}>시간</th><th style={{padding:"8px",borderBottom:"2px solid #e2e8f0",textAlign:"left"}}>초기비용</th><th style={{padding:"8px",borderBottom:"2px solid #e2e8f0",textAlign:"left"}}>추천 대상</th></tr></thead>
-                        <tbody><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>쿠팡파트너스</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>5~50만</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>하</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>30분/일</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>0원</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>블로그 있는 사람</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>블로그 수익화</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>10~100만</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>중</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>1~2시간/일</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>0원</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>글쓰기 좋아하는 사람</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>스마트스토어</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>10~100만</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>중</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>1~2시간/일</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>0원</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>판매/마��팅 관심</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>전자책</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>5~30만</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>중상</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>집중 2~4주</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>0원</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>전문 지식 보유자</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>프리랜서</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>30~200만</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>상</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>건별</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>0원</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>전문 스킬 보유자</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>AI 대행</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>20~100만</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>중</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>건별</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>2~3만원</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>AI 활용 능력자</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>중고 리셀</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>10~50만</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>하</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>주 2~3시간</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>소액</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>트��드 빠른 사람</td></tr></tbody>
+                        <thead><tr><th style={{padding:"8px",borderBottom:"2px solid #e2e8f0",textAlign:"left"}}>부업</th><th style={{padding:"8px",borderBottom:"2px solid #e2e8f0",textAlign:"left"}}>월 수익</th><th style={{padding:"8px",borderBottom:"2px solid #e2e8f0",textAlign:"left"}}>난이도</th><th style={{padding:"8px",borderBottom:"2px solid #e2e8f0",textAlign:"left"}}>시간</th><th style={{padding:"8px",borderBottom:"2px solid #e2e8f0",textAlign:"left"}}>초기비용</th><th style={{padding:"8px",borderBottom:"2px solid #e2e8f0",textAlign:"left"}}>추천 대상</th></tr></thead>
+                        <tbody><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>쿠팡파트너스</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>5~50만</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>하</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>30분/일</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>0원</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>블로그 있는 사람</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>블로그 수익화</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>10~100만</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>중</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>1~2시간/일</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>0원</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>글쓰기 좋아하는 사람</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>스마트스토어</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>10~100만</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>중</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>1~2시간/일</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>0원</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>판매/마케팅 관심</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>전자책</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>5~30만</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>중상</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>집중 2~4주</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>0원</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>전문 지식 보유자</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>프리랜서</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>30~200만</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>상</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>건별</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>0원</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>전문 스킬 보유자</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>AI 대행</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>20~100만</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>중</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>건별</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>2~3만원</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>AI 활용 능력자</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>중고 리셀</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>10~50만</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>하</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>주 2~3시간</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>소액</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>트렌드 빠른 사람</td></tr></tbody>
                       </table>
                     </Box>
 
                     <Text mb={4}>[개인경험] 여러 부업을 시도해본 경험에서 느낀 현실적인 조언을 공유합니다.</Text>
 
                     <Heading as="h2" fontSize={{ base: 'xl', md: '2xl' }} mb={5} pb={2} borderBottom="3px solid" borderColor="brand.500" w="fit-content">
-                      ���론: 어떤 부업이 나한테 맞을까
+                      결론: 어떤 부업이 나한테 맞을까
                     </Heading>
 
                     <Box as="ul" pl={6}>

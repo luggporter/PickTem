@@ -103,14 +103,14 @@ const Blog25 = () => {
 
                     <Text mb={4}>무선청소기를 사려고 검색하면 다이슨부터 LG, 삼성, 그리고 중국 브랜드까지 선택지가 너무 많다. 가격도 10만원대부터 100만원대까지. 결론부터 말하면, <b>30~50만원대에서 가성비 최고 제품을 고를 수 있다.</b></Text>
 
-                    <Text mb={4}>100만원짜리가 10만원짜리보다 10배 잘 빨아들이는 건 아니다. 내 생활 패턴에 맞는 스펙�� 기준으로 고르는 게 핵심이다.</Text>
+                    <Text mb={4}>100만원짜리가 10만원짜리보다 10배 잘 빨아들이는 건 아니다. 내 생활 패턴에 맞는 스펙을 기준으로 고르는 게 핵심이다.</Text>
 
                     <Heading as="h2" fontSize={{ base: 'xl', md: '2xl' }} mb={5} pb={2} borderBottom="3px solid" borderColor="brand.500" w="fit-content">
                       무선청소기 고를 때 꼭 봐야 할 3가지
                     </Heading>
 
                     <Heading as="h3" fontSize={{ base: 'lg', md: 'xl' }} mb={3} fontWeight="700">
-                      1. 흡입��� (AW, kPa)
+                      1. 흡입력 (AW, kPa)
                     </Heading>
 
                     <Box as="ul" pl={6}>
@@ -150,7 +150,7 @@ const Blog25 = () => {
                     <Box overflowX="auto">
                       <table style={{width:"100%",borderCollapse:"collapse"}}>
                         <thead><tr><th style={{padding:"8px",borderBottom:"2px solid #e2e8f0",textAlign:"left"}}>항목</th><th style={{padding:"8px",borderBottom:"2px solid #e2e8f0",textAlign:"left"}}>스펙</th></tr></thead>
-                        <tbody><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>흡입력</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>210AW</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>배터리</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>최대 60분 (실사용 25~30분)</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>무게</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>1.46kg (본체)</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>특징</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>올인원 타워, 먼지 자동 비움, 물걸레 ��용</td></tr></tbody>
+                        <tbody><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>흡입력</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>210AW</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>배터리</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>최대 60분 (실사용 25~30분)</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>무게</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>1.46kg (본체)</td></tr><tr><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>특징</td><td style={{padding:"8px",borderBottom:"1px solid #e2e8f0"}}>올인원 타워, 먼지 자동 비움, 물걸레 겸용</td></tr></tbody>
                       </table>
                     </Box>
 
@@ -174,7 +174,7 @@ const Blog25 = () => {
                     <Text mb={4}>[AFFILIATE:삼성 비스포크 제트]</Text>
 
                     <Heading as="h3" fontSize={{ base: 'lg', md: 'xl' }} mb={3} fontWeight="700">
-                      3위. 샤오미 G20 (�� 15만원)
+                      3위. 샤오미 G20 (약 15만원)
                     </Heading>
 
                     <Box overflowX="auto">
@@ -199,7 +199,7 @@ const Blog25 = () => {
                       </table>
                     </Box>
 
-                    <Text mb={4}>다이슨의 장점은 레이저 조명으로 눈에 안 보이는 먼지까지 보여주는 것. 숫자상 흡입력은 삼성/LG보다 낮아 보이지만 체감 청소력은 비슷하��. 단, 무겁고 비싸다.</Text>
+                    <Text mb={4}>다이슨의 장점은 레이저 조명으로 눈에 안 보이는 먼지까지 보여주는 것. 숫자상 흡입력은 삼성/LG보다 낮아 보이지만 체감 청소력은 비슷하다. 단, 무겁고 비싸다.</Text>
 
                     <Text mb={4}>[AFFILIATE:다이슨 V12]</Text>
 
@@ -214,7 +214,7 @@ const Blog25 = () => {
                       </table>
                     </Box>
 
-                    <Text mb={4}><b>가장 가벼운 모델.</b> 1.3kg이라 한 손으로 들고 천장이나 커튼도 청소할 수 있다. 흡입력은 가장 낮지만, 매일 가볍��� 쓰기에 좋다.</Text>
+                    <Text mb={4}><b>가장 가벼운 모델.</b> 1.3kg이라 한 손으로 들고 천장이나 커튼도 청소할 수 있다. 흡입력은 가장 낮지만, 매일 가볍게 쓰기에 좋다.</Text>
 
                     <Text mb={4}>[AFFILIATE:테팔 에어포스 360]</Text>
 
@@ -242,7 +242,7 @@ const Blog25 = () => {
                       <li style={{marginBottom:'4px'}}><b>가볍게 매일 쓸 용도</b>: 테팔 에어포스 360</li>
                     </Box>
 
-                    <Text mb={4}>개인적으로는 <b>LG A9S를 가장 추천한다.</b> 자동 비움 기능이 있으면 청��기 관리 자체가 필요 없어진다.</Text>
+                    <Text mb={4}>개인적으로는 <b>LG A9S를 가장 추천한다.</b> 자동 비움 기능이 있으면 청소기 관리 자체가 필요 없어진다.</Text>
                 </Stack>
               </Box>
             </VStack>
