@@ -24,6 +24,10 @@ import Blog19 from '../components/blog/blog19/blog19'
 import Blog20 from '../components/blog/blog20/Blog20'
 import Blog21 from '../components/blog/blog21/Blog21'
 import Blog22 from '../components/blog/blog22/Blog22'
+import Blog23 from '../components/blog/blog23/Blog23'
+import Blog24 from '../components/blog/blog24/Blog24'
+import Blog25 from '../components/blog/blog25/Blog25'
+import Blog26 from '../components/blog/blog26/Blog26'
 
 // 블로그 컴포넌트 매핑
 const blogComponents: Record<string, () => JSX.Element> = {
@@ -49,6 +53,10 @@ const blogComponents: Record<string, () => JSX.Element> = {
   '20': Blog20,
   '21': Blog21,
   '22': Blog22,
+  '23': Blog23,
+  '24': Blog24,
+  '25': Blog25,
+  '26': Blog26,
   // 추후 다른 블로그 추가 시 여기에 추가
   // 'another-blog-id': Blog2,
 }
