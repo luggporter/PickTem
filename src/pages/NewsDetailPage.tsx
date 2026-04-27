@@ -89,7 +89,7 @@ const NewsDetailPage = () => {
 
     let isRefreshing = false
     let hasProcessedAdClick = false
-    let pageLeaveTimeout: NodeJS.Timeout
+    let pageLeaveTimeout: ReturnType<typeof setTimeout>
 
     // 새로고침 감지용 이벤트 (더 정확하게)
     const handleKeyDown = (e: KeyboardEvent) => {
